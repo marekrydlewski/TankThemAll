@@ -2,4 +2,6 @@
 Tank simulator in C++/OpenGl
 
 # How to start?
-Type Install-Package nupengl.core in NuGet ;)
+Type in NuGet ;) ->
+Install-Package nupengl.core
+Install-Package glm
