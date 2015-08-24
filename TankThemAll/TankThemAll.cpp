@@ -2,12 +2,8 @@
 //
 
 #include "stdafx.h"
-#include <iostream>
 
-#include <GL/glew.h>
-#include <GL/freeglut.h>
-#include <GLFW/glfw3.h>
-#include <glm/glm.hpp>
+
 
 using namespace std;
 
@@ -19,8 +15,8 @@ int _tmain(int argc, char **argv)
 	glutInitWindowPosition(500, 500);//optional
 	glutInitWindowSize(800, 600); //optional
 	glutCreateWindow("OpenGL First Window");
- 
+	cout << "fdsfdsffsd";
 	glutMainLoop();
- 
+
 	return 0;
 }
