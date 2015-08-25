@@ -9,3 +9,6 @@ Type in NuGet ;) ->
 # Cool stuff
 * http://www.opengl-tutorial.org/
 * http://in2gpu.com/opengl-3/
+
+# Really cool stuff
+* http://learnopengl.com/
