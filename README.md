@@ -12,3 +12,12 @@ Type in NuGet ;) ->
 
 # Really cool stuff
 * http://learnopengl.com/
+
+# Black list
+   glBegin, glEnd
+  glVertex, glNormal, glTexCoord
+  glRotate, glTranslate, glScale
+  glFrustum, gluPerspective, glOrtho
+  glCreateList, glDeleteList, glCallList
+  glPushMatrix, glPopMatrix
+  gluLookat
