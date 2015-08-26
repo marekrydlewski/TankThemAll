@@ -1,16 +1,16 @@
 #pragma once
 #include "stdafx.h"
 
-using namespace glm;
-
 struct VertexFormat
 {
-	vec3 position;
 
-	VertexFormat(const vec3 &pos)
+	glm::vec3 position;
+	glm::vec4 color;
+
+	VertexFormat(const glm::vec3 &iPos, const glm::vec4 &iColor)
 	{
-		position = pos;
+		position = iPos;
+		color = iColor;
 	}
 
 };
-
