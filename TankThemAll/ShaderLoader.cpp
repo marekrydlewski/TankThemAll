@@ -1,7 +1,8 @@
 #include "stdafx.h"
 #include "ShaderLoader.h"
 #include <vector>
-using namespace std;
+#include <fstream>
+
 ShaderLoader::ShaderLoader()
 {
 }
@@ -90,5 +91,8 @@ GLuint ShaderLoader::CreateProgram(char* vertexShaderFilename,
 		std::cout << "Shader Loader : LINK ERROR" << std::endl << &program_log[0] << std::endl;
 		return 0;
 	}
+
+	glDeleteShader(vertex_shader);
+	glDeleteShader(fragment_shader);
 	return program;
 }
