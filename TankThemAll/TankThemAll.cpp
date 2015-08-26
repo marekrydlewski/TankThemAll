@@ -3,6 +3,7 @@
 
 #include "stdafx.h"
 #include "ShaderLoader.h"
+#include "GameModels.h"
 
 using namespace std;
 
