@@ -81,6 +81,7 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="GameModels.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="ShaderLoader.h" />
     <ClInclude Include="stdafx.h" />
@@ -88,6 +89,7 @@
     <ClInclude Include="VertexFormat.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="GameModels.cpp" />
     <ClCompile Include="ShaderLoader.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

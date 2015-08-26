@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "ShaderLoader.h"
 #include <vector>
+#include <fstream>
 
 ShaderLoader::ShaderLoader()
 {

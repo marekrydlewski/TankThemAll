@@ -53,15 +53,15 @@ int main(int argc, char **argv)
 	glutInitWindowSize(800, 600);
 	glutCreateWindow("OpenGL First Window");
 	glutSetOption(GLUT_ACTION_ON_WINDOW_CLOSE, GLUT_ACTION_GLUTMAINLOOP_RETURNS);
-
+	glewExperimental = true;
 	glewInit();
-	if (glewIsSupported("GL_VERSION_4_5")) //lower your version if 4.5 is not supported by your video card
+	if (glewIsSupported("GL_VERSION_4_4")) //lower your version if 4.4 is not supported by your video card
 	{
-		std::cout << " OpenGL Version is 4.5\n ";
+		std::cout << " OpenGL Version is 4.4\n ";
 	}
 	else
 	{
-		std::cout << "OpenGL 4.5 not supported\n ";
+		std::cout << "OpenGL 4.4 not supported\n ";
 	}
 
 	Init();

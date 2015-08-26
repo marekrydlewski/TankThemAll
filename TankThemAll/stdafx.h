@@ -9,12 +9,12 @@
 
 #include <stdio.h>
 #include <tchar.h>
-#include <iostream>
-#include <fstream>
 #include <GL/glew.h>
 #include <GL/freeglut.h>
 #include <GLFW/glfw3.h>
 #include <glm/glm.hpp>
+#include <iostream>
+
 
 
 
