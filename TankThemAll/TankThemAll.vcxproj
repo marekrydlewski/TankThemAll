@@ -85,6 +85,7 @@
     <ClInclude Include="ShaderLoader.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="VertexFormat.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ShaderLoader.cpp" />
