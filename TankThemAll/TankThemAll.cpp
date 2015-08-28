@@ -43,7 +43,7 @@ void Init()
 	shaderManager->CreateProgram("colorShader",
 		"Shaders\\VertexShader.glsl",
 		"Shaders\\FragmentShader.glsl");
-	program = ShaderManager::GetShader("colorShader");
+	program = shaderManager->GetShader("colorShader");
 
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 }
