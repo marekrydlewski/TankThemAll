@@ -2,12 +2,13 @@
 //
 
 #include "stdafx.h"
-#include "ShaderLoader.h"
+#include "ShaderManager.h"
 #include "GameModels.h"
 
 using namespace std;
 
 GameModels* gameModels;
+ShaderManager* shaderManager;
 GLuint program;
 
 void renderScene(void)
@@ -38,9 +39,12 @@ void Init()
 	gameModels->CreateTriangleModel("triangle1");
 
 	//load and compile shaders
-	ShaderLoader shaderLoader;
-	program = shaderLoader.CreateProgram("Shaders\\VertexShader.glsl",
+	shaderManager = new ShaderManager();
+	shaderManager->CreateProgram("colorShader",
+		"Shaders\\VertexShader.glsl",
 		"Shaders\\FragmentShader.glsl");
+	program = ShaderManager::GetShader("colorShader");
+
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 }
 
@@ -72,6 +76,7 @@ int main(int argc, char **argv)
 	glutMainLoop();
 
 	delete gameModels;
+	delete shaderManager;
 	glDeleteProgram(program);
 	return 0;
 }

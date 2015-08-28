@@ -1,23 +1,30 @@
 #include "stdafx.h"
-#include "ShaderLoader.h"
-#include <vector>
-#include <fstream>
+#include "ShaderManager.h"
 
-ShaderLoader::ShaderLoader()
+
+std::map<std::string, GLuint> ShaderManager::programs;
+
+ShaderManager::ShaderManager()
 {
 }
 
 
-ShaderLoader::~ShaderLoader()
+ShaderManager::~ShaderManager()
 {
+   for (auto i = programs.begin();i != programs.end(); ++i)
+      {
+        GLuint pr = i->second;
+        glDeleteProgram(pr);
+      }
+    programs.clear();
 }
 
 
-std::string ShaderLoader::ReadShader(char *filename)
+std::string ShaderManager::ReadShader(const std::string& filename)
 {
 
 	std::string shaderCode;
-	std::ifstream file(filename, std::ios::in);
+	std::ifstream file(filename.c_str(), std::ios::in);
 
 	if (!file.good())
 	{
@@ -33,8 +40,9 @@ std::string ShaderLoader::ReadShader(char *filename)
 	return shaderCode;
 }
 
-GLuint ShaderLoader::CreateShader(GLenum shaderType, std::string
-	source, char* shaderName)
+GLuint ShaderManager::CreateShader(GLenum shaderType,
+	const std::string& source,
+	const std::string& shaderName)
 {
 
 	int compile_result = 0;
@@ -61,8 +69,9 @@ GLuint ShaderLoader::CreateShader(GLenum shaderType, std::string
 	return shader;
 }
 
-GLuint ShaderLoader::CreateProgram(char* vertexShaderFilename,
-	char* fragmentShaderFilename)
+void ShaderManager::CreateProgram(const std::string& shaderName,
+	const std::string& vertexShaderFilename,
+	const std::string& fragmentShaderFilename)
 {
 
 	//read the shader files and save the code
@@ -89,10 +98,29 @@ GLuint ShaderLoader::CreateProgram(char* vertexShaderFilename,
 		std::vector<char> program_log(info_log_length);
 		glGetProgramInfoLog(program, info_log_length, NULL, &program_log[0]);
 		std::cout << "Shader Loader : LINK ERROR" << std::endl << &program_log[0] << std::endl;
-		return 0;
 	}
-
 	glDeleteShader(vertex_shader);
 	glDeleteShader(fragment_shader);
-	return program;
+
+	auto ref = programs.insert(std::pair<std::string, GLuint>(shaderName, program));//return pair, second == true if new, == false if existed
+	if (ref.second == false)
+	{
+		std::cout << "Program with this shaderName already in memory:" << shaderName << std::endl;
+	}
+
+
+}
+
+const GLuint ShaderManager::GetShader(const std::string& shaderName)
+{
+	//make sure that you check if program exist first
+	//before you return it
+	GLuint shader;
+	try {
+	 shader = programs.at(shaderName);
+	}
+	catch (const std::out_of_range& oor) {
+		std::cerr << "Out of Range error: " << oor.what() << std::endl;
+	}
+	return shader;
 }
