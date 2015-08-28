@@ -2,81 +2,20 @@
 //
 
 #include "stdafx.h"
-#include "ShaderManager.h"
-#include "GameModels.h"
-
-using namespace std;
-
-GameModels* gameModels;
-ShaderManager* shaderManager;
-GLuint program;
-
-void renderScene(void)
-{
-
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	glClearColor(0.0, 0.3, 0.3, 1.0);
-
-	glBindVertexArray(gameModels->GetModel("triangle1"));
-	glUseProgram(program);
-	glDrawArrays(GL_TRIANGLES, 0, 3);
-	glutSwapBuffers();
-}
-
-void closeCallback()
-{
-
-	std::cout << "GLUT:\t Finished" << std::endl;
-	glutLeaveMainLoop();
-}
-
-void Init()
-{
-
-	glEnable(GL_DEPTH_TEST);
-
-	gameModels = new GameModels();
-	gameModels->CreateTriangleModel("triangle1");
-
-	//load and compile shaders
-	shaderManager = new ShaderManager();
-	shaderManager->CreateProgram("colorShader",
-		"Shaders\\VertexShader.glsl",
-		"Shaders\\FragmentShader.glsl");
-	program = shaderManager->GetShader("colorShader");
-
-	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-}
+#include "InitGLUT.h"
 
 int main(int argc, char **argv)
 {
+	WindowInfo window(std::string("TankThemAll"),
+		400, 200,//position
+		800, 600, //size
+		true);//reshape
 
-	glutInit(&argc, argv);
-	glutInitDisplayMode(GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGBA);
-	glutInitWindowPosition(500, 500);
-	glutInitWindowSize(800, 600);
-	glutCreateWindow("OpenGL First Window");
-	glutSetOption(GLUT_ACTION_ON_WINDOW_CLOSE, GLUT_ACTION_GLUTMAINLOOP_RETURNS);
-	glewExperimental = true;
-	glewInit();
-	if (glewIsSupported("GL_VERSION_4_4")) //lower your version if 4.4 is not supported by your video card
-	{
-		std::cout << " OpenGL Version is 4.4\n ";
-	}
-	else
-	{
-		std::cout << "OpenGL 4.4 not supported\n ";
-	}
+	ContextInfo context(4, 5, true);
+	FramebufferInfo frameBufferInfo(true, true, true, true);
+	InitGLUT::init(window, context, frameBufferInfo);
 
-	Init();
-	// register callbacks
-	glutDisplayFunc(renderScene);
-	glutCloseFunc(closeCallback);
+	InitGLUT::run();
 
-	glutMainLoop();
-
-	delete gameModels;
-	delete shaderManager;
-	glDeleteProgram(program);
 	return 0;
 }
