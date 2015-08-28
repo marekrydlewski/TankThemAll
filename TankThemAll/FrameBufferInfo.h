@@ -25,6 +25,5 @@ struct FramebufferInfo{
 			flags |= GLUT_MULTISAMPLE;
 		this->msaa = msaa;
 	}
-
 	//(optional)implement copy constructor and assignment operator
 };
