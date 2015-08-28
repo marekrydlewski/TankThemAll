@@ -21,3 +21,6 @@ Type in NuGet ;) ->
   glCreateList, glDeleteList, glCallList
   glPushMatrix, glPopMatrix
   gluLookat
+
+# Important 
+ ALways check position in vertex format by offsetof()
