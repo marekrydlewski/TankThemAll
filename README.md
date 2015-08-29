@@ -12,6 +12,7 @@ Type in NuGet ;) ->
 
 # Really cool stuff
 * http://learnopengl.com/
+* http://ogldev.atspace.co.uk/index.html <- math yay
 
 # Black list
    glBegin, glEnd
