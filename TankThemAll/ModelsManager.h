@@ -2,6 +2,7 @@
 #include <map>
 #include "IGameObject.h"
 #include "Triangle.h"
+#include "Quad.h"
 #include "ShaderManager.h"
 
 class ModelsManager

@@ -84,6 +84,9 @@
     <ClInclude Include="InitGLUT.h">
       <Filter>Source Files\Core</Filter>
     </ClInclude>
+    <ClInclude Include="Quad.h">
+      <Filter>Source Files\Rendering\Models</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TankThemAll.cpp">
@@ -112,6 +115,9 @@
     </ClCompile>
     <ClCompile Include="InitGLUT.cpp">
       <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Quad.cpp">
+      <Filter>Source Files\Rendering\Models</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

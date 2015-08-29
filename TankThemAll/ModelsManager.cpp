@@ -4,11 +4,15 @@
 
 ModelsManager::ModelsManager()
 {
-	//triangle game object
 	Triangle* triangle = new Triangle();
 	triangle->SetProgram(ShaderManager::GetShader("colorShader"));
 	triangle->Create();
 	gameModelList["triangle"] = triangle;
+
+	Quad* quad = new Quad();
+	quad->SetProgram(ShaderManager::GetShader("colorShader"));
+	quad->Create();
+	gameModelList["quad"] = quad;
 
 }
 
