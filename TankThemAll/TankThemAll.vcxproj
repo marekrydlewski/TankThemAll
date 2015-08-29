@@ -88,11 +88,13 @@
     <ClInclude Include="InitGLEW.h" />
     <ClInclude Include="InitGLUT.h" />
     <ClInclude Include="Model.h" />
+    <ClInclude Include="ModelsManager.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="ShaderManager.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="Triangle.h" />
     <ClInclude Include="VertexFormat.h" />
     <ClInclude Include="WindowInfo.h" />
   </ItemGroup>
@@ -100,6 +102,7 @@
     <ClCompile Include="InitGLEW.cpp" />
     <ClCompile Include="InitGLUT.cpp" />
     <ClCompile Include="Model.cpp" />
+    <ClCompile Include="ModelsManager.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="ShaderManager.cpp" />
     <ClCompile Include="stdafx.cpp">
@@ -107,6 +110,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="TankThemAll.cpp" />
+    <ClCompile Include="Triangle.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

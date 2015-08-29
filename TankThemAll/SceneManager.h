@@ -1,6 +1,8 @@
 #pragma once
 #include "IListener.h"
 #include "ShaderManager.h"
+#include "ModelsManager.h"
+
 class SceneManager :
 	public IListener
 {
@@ -17,5 +19,6 @@ public:
 		int previous_height);
 private:
 	ShaderManager* shader_manager;
+	ModelsManager* models_manager;
 };
 

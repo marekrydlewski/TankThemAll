@@ -60,9 +60,6 @@
     <ClInclude Include="InitGLEW.h">
       <Filter>Source Files\Core\Init</Filter>
     </ClInclude>
-    <ClInclude Include="InitGLUT.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="IListener.h">
       <Filter>Source Files\Core\Init</Filter>
     </ClInclude>
@@ -78,6 +75,15 @@
     <ClInclude Include="Model.h">
       <Filter>Source Files\Rendering\Models</Filter>
     </ClInclude>
+    <ClInclude Include="Triangle.h">
+      <Filter>Source Files\Rendering\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelsManager.h">
+      <Filter>Source Files\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="InitGLUT.h">
+      <Filter>Source Files\Core</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TankThemAll.cpp">
@@ -92,14 +98,20 @@
     <ClCompile Include="InitGLEW.cpp">
       <Filter>Source Files\Core\Init</Filter>
     </ClCompile>
-    <ClCompile Include="InitGLUT.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="SceneManager.cpp">
       <Filter>Source Files\Managers</Filter>
     </ClCompile>
     <ClCompile Include="Model.cpp">
       <Filter>Source Files\Rendering\Models</Filter>
+    </ClCompile>
+    <ClCompile Include="Triangle.cpp">
+      <Filter>Source Files\Rendering\Models</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelsManager.cpp">
+      <Filter>Source Files\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="InitGLUT.cpp">
+      <Filter>Source Files\Core</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
