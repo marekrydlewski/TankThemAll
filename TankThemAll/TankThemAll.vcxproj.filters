@@ -25,6 +25,12 @@
     <Filter Include="Source Files\Core\Init">
       <UniqueIdentifier>{b2d95e1a-e586-40db-95c8-80e7b68064ee}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Rendering">
+      <UniqueIdentifier>{64bd0a4b-2307-49bc-b23e-58569587f210}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Rendering\Models">
+      <UniqueIdentifier>{ba0b41a7-ca60-45be-b9e5-4c1fcb3ec698}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -38,12 +44,6 @@
     </ClInclude>
     <ClInclude Include="ShaderManager.h">
       <Filter>Source Files\Managers</Filter>
-    </ClInclude>
-    <ClInclude Include="GameModels.h">
-      <Filter>Source Files\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="VertexFormat.h">
-      <Filter>Source Files\Core</Filter>
     </ClInclude>
     <ClInclude Include="WindowInfo.h">
       <Filter>Source Files\Core\Init</Filter>
@@ -60,8 +60,32 @@
     <ClInclude Include="InitGLEW.h">
       <Filter>Source Files\Core\Init</Filter>
     </ClInclude>
+    <ClInclude Include="IListener.h">
+      <Filter>Source Files\Core\Init</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager.h">
+      <Filter>Source Files\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="IGameObject.h">
+      <Filter>Source Files\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="VertexFormat.h">
+      <Filter>Source Files\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Model.h">
+      <Filter>Source Files\Rendering\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="Triangle.h">
+      <Filter>Source Files\Rendering\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelsManager.h">
+      <Filter>Source Files\Managers</Filter>
+    </ClInclude>
     <ClInclude Include="InitGLUT.h">
-      <Filter>Header Files</Filter>
+      <Filter>Source Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Quad.h">
+      <Filter>Source Files\Rendering\Models</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -71,17 +95,29 @@
     <ClCompile Include="ShaderManager.cpp">
       <Filter>Source Files\Managers</Filter>
     </ClCompile>
-    <ClCompile Include="GameModels.cpp">
-      <Filter>Source Files\Core</Filter>
-    </ClCompile>
     <ClCompile Include="stdafx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="InitGLEW.cpp">
       <Filter>Source Files\Core\Init</Filter>
     </ClCompile>
+    <ClCompile Include="SceneManager.cpp">
+      <Filter>Source Files\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="Model.cpp">
+      <Filter>Source Files\Rendering\Models</Filter>
+    </ClCompile>
+    <ClCompile Include="Triangle.cpp">
+      <Filter>Source Files\Rendering\Models</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelsManager.cpp">
+      <Filter>Source Files\Managers</Filter>
+    </ClCompile>
     <ClCompile Include="InitGLUT.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Quad.cpp">
+      <Filter>Source Files\Rendering\Models</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

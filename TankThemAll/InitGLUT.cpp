@@ -1,11 +1,16 @@
 #include "stdafx.h"
 #include "InitGLUT.h"
 
+IListener* InitGLUT::listener = NULL;
+WindowInfo InitGLUT::windowInformation;
 
 void InitGLUT::init(const WindowInfo& windowInfo,
 	const ContextInfo& contextInfo,
 	const FramebufferInfo& framebufferInfo)
-{
+{	
+
+	windowInformation = windowInfo;//initialize
+
 	//we need to create these fake arguments
 	int fakeargc = 1;
 	char *fakeargv[] = { "fake", NULL };
@@ -77,7 +82,7 @@ void InitGLUT::printOpenGLInfo(const WindowInfo& windowInfo, const ContextInfo& 
 	std::cout << "GLUT:\t OpenGL context is " << contextInfo.major_version << "." << contextInfo.minor_version;
 	std::cout << " and profile is " << ((contextInfo.core) ? "core" : "compatibility") << std::endl;
 
-	std::cout << "*****************************************************************" << std::endl;
+	std::cout << "*******************************************************************************" << std::endl;
 }
 
 
@@ -95,14 +100,31 @@ void InitGLUT::idleCallback(void)
 
 void InitGLUT::displayCallback()
 {
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	glClearColor(0.0, 0.0, 0.0, 1);
-	glutSwapBuffers();
+	if (listener)
+	{
+		listener->notifyBeginFrame();
+		listener->notifyDisplayFrame();
+
+		glutSwapBuffers();
+
+		listener->notifyEndFrame();
+	}
 }
 
 void InitGLUT::reshapeCallback(int width, int height)
 {
-
+	if (windowInformation.isReshapable == true)
+	{
+		if (listener)
+		{
+			listener->notifyReshape(width,
+				height,
+				windowInformation.width,
+				windowInformation.height);
+		}
+		windowInformation.width = width;
+		windowInformation.height = height;
+	}
 }
 
 void InitGLUT::closeCallback()
@@ -118,4 +140,9 @@ void InitGLUT::enterFullscreen()
 void InitGLUT::exitFullscreen()
 {
 	glutLeaveFullScreen();
+}
+
+void InitGLUT::setListener(IListener*& iListener)
+{
+	listener = iListener;
 }

@@ -3,7 +3,7 @@
 
 #include "stdafx.h"
 #include "InitGLUT.h"
-
+#include "SceneManager.h"
 int main(int argc, char **argv)
 {
 	WindowInfo window(std::string("TankThemAll"),
@@ -15,7 +15,11 @@ int main(int argc, char **argv)
 	FramebufferInfo frameBufferInfo(true, true, true, true);
 	InitGLUT::init(window, context, frameBufferInfo);
 
+	IListener* scene = new SceneManager();
+	InitGLUT::setListener(scene);
+
 	InitGLUT::run();
 
+	delete scene;
 	return 0;
 }

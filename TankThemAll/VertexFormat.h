@@ -13,4 +13,5 @@ struct VertexFormat
 		color = iColor;
 	}
 
+	VertexFormat() {}
 };
