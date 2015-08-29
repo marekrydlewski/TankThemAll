@@ -82,7 +82,7 @@ void InitGLUT::printOpenGLInfo(const WindowInfo& windowInfo, const ContextInfo& 
 	std::cout << "GLUT:\t OpenGL context is " << contextInfo.major_version << "." << contextInfo.minor_version;
 	std::cout << " and profile is " << ((contextInfo.core) ? "core" : "compatibility") << std::endl;
 
-	std::cout << "*****************************************************************" << std::endl;
+	std::cout << "*******************************************************************************" << std::endl;
 }
 
 
