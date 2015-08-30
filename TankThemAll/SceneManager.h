@@ -20,5 +20,7 @@ public:
 private:
 	ShaderManager* shader_manager;
 	ModelsManager* models_manager;
+	glm::mat4 projection_matrix;
+	glm::mat4 view_matrix;
 };
 
