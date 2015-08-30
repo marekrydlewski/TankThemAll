@@ -35,8 +35,10 @@ void InitGLUT::init(const WindowInfo& windowInfo,
 	glutInitWindowSize(windowInfo.width, windowInfo.height);
 
 	glutCreateWindow(windowInfo.name.c_str());
-
 	std::cout << "GLUT:initialized" << std::endl;
+	//debug
+	glEnable(GL_DEBUG_OUTPUT);
+
 	//these callbacks are used for rendering
 	glutIdleFunc(idleCallback);
 	glutCloseFunc(closeCallback);
@@ -45,6 +47,10 @@ void InitGLUT::init(const WindowInfo& windowInfo,
 
 	//init GLEW, this can be called in main.cpp
 	InitGLEW::Init();
+	//debug config
+	glDebugMessageCallback(DebugOutput::myCallback, NULL);
+	glDebugMessageControl(GL_DONT_CARE, GL_DONT_CARE,
+		GL_DONT_CARE, 0, NULL, GL_TRUE);
 
 	//cleanup
 	glutSetOption(GLUT_ACTION_ON_WINDOW_CLOSE,

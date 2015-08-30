@@ -4,6 +4,7 @@
 #include "WindowInfo.h"
 #include "IListener.h"
 #include "InitGLEW.h"
+#include "DebugOutput.h"
 
 class InitGLUT{
 

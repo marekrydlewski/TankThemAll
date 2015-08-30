@@ -82,6 +82,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ContextInfo.h" />
+    <ClInclude Include="DebugOutput.h" />
     <ClInclude Include="FrameBufferInfo.h" />
     <ClInclude Include="IGameObject.h" />
     <ClInclude Include="IListener.h" />
@@ -100,6 +101,7 @@
     <ClInclude Include="WindowInfo.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="DebugOutput.cpp" />
     <ClCompile Include="InitGLEW.cpp" />
     <ClCompile Include="InitGLUT.cpp" />
     <ClCompile Include="Model.cpp" />
