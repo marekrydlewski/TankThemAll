@@ -120,8 +120,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <None Include="Shaders\FragmentShader.glsl" />
-    <None Include="Shaders\VertexShader.glsl" />
+    <None Include="Shaders\ColorPrimitiveFragmentShader.glsl" />
+    <None Include="Shaders\ColorPrimitiveVertexShader.glsl" />
+    <None Include="Shaders\CubeFragmentShader.glsl" />
+    <None Include="Shaders\CubeVertexShader.glsl" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="TankThemAll.rc" />

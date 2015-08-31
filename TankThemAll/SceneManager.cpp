@@ -7,9 +7,13 @@ SceneManager::SceneManager()
 	glEnable(GL_DEPTH_TEST);
 
 	shader_manager = new ShaderManager();
-	shader_manager->CreateProgram("colorShader",
-		"Shaders\\VertexShader.glsl",
-		"Shaders\\FragmentShader.glsl");
+	shader_manager->CreateProgram("colorPrimitiveShader",
+		"Shaders\\ColorPrimitiveVertexShader.glsl",
+		"Shaders\\ColorPrimitiveFragmentShader.glsl");
+
+	shader_manager->CreateProgram("cubeShader",
+		"Shaders\\CubeVertexShader.glsl",
+		"Shaders\\CubeFragmentShader.glsl");
 
 	glEnable(GL_DEPTH_TEST);
 

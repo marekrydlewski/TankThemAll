@@ -4,7 +4,7 @@ layout(location = 1) in vec4 in_color;
  
 uniform mat4 projection_matrix, view_matrix;
 uniform vec3 rotation;
- 
+
 out vec4 color;
  
 void main()

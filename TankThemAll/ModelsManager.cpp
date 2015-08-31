@@ -4,10 +4,15 @@
 
 ModelsManager::ModelsManager()
 {
-	Cube* triangle = new Cube();
-	triangle->SetProgram(ShaderManager::GetShader("colorShader"));
+	Cube* cube = new Cube();
+	cube->SetProgram(ShaderManager::GetShader("cubeShader"));
+	cube->Create();
+	gameModelList["cube"] = cube;
+
+	Triangle* triangle = new Triangle();
+	triangle->SetProgram(ShaderManager::GetShader("colorPrimitiveShader"));
 	triangle->Create();
-	gameModelList["cube"] = triangle;
+	gameModelList["triangle"] = triangle;
 
 }
 
