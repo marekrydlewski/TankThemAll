@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include "Quad.h"
 using namespace BasicEngine;
 using namespace Rendering;

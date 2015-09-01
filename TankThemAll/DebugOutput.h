@@ -1,8 +1,6 @@
 #pragma once
 #include <string>
 #include <iostream>
-#include <glew\glew.h>
-#include <freeglut\freeglut.h>
 #include <assert.h>
 
 namespace BasicEngine
@@ -14,8 +12,8 @@ namespace BasicEngine
 		{
 
 		public:
-			DebugOutput(){};
-			~DebugOutput(){};
+			DebugOutput();
+			~DebugOutput();
 
 			static void CALLBACK myCallback(GLenum source,
 											GLenum type,
@@ -23,7 +21,7 @@ namespace BasicEngine
 											GLenum severity,
 											GLsizei length,
 											const GLchar *msg,
-											const void *data)
+											void *data)
 			{
 				std::cout << "\n**********Debug Output**************" << std::endl;
 				std::cout << "source: " << getStringForSource(source).c_str() << std::endl;

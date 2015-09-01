@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include "Triangle.h"
 using namespace BasicEngine;
 using namespace Rendering;

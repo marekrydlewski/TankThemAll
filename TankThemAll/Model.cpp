@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include "Model.h"
 using namespace BasicEngine;
 using namespace Rendering;

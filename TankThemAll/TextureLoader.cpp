@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include "TextureLoader.h"
 using namespace BasicEngine::Rendering;
 

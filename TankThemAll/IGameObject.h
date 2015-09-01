@@ -1,10 +1,9 @@
 #pragma once
+#include "stdafx.h"
 #include <vector>
 #include <iostream>
-#include <glew\glew.h>
-#include <freeglut\freeglut.h>
 #include "VertexFormat.h"
-#include "Texture\TextureLoader.h"
+#include "TextureLoader.h"
 
 namespace BasicEngine
 {

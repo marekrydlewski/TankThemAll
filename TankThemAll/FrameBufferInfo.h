@@ -1,6 +1,6 @@
 #pragma once
-#include <glew\glew.h>
-#include <freeglut\freeglut.h>
+#include "stdafx.h"
+
 
 namespace BasicEngine
 {
