@@ -102,6 +102,9 @@
     <ClInclude Include="CubeIndex.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Diamond.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TankThemAll.cpp">
@@ -144,6 +147,9 @@
       <Filter>Source Files\Rendering</Filter>
     </ClCompile>
     <ClCompile Include="CubeIndex.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Diamond.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

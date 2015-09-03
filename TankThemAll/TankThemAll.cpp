@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Engine.h"
 #include "CubeIndex.h"
+#include "Diamond.h"
 
 using namespace BasicEngine;
 
@@ -19,6 +20,12 @@ int main(int argc, char **argv)
 	cube->Create();
 
 	engine->GetModels_Manager()->SetModel("cube", cube);
+
+	Diamond* diamond = new Diamond();
+	diamond->SetProgram(engine->GetShader_Manager()->GetShader("cubeShader"));
+	diamond->Create();
+
+	engine->GetModels_Manager()->SetModel("diamond", diamond);
 
 	engine->Run();
 

@@ -85,6 +85,7 @@
     <ClInclude Include="ContextInfo.h" />
     <ClInclude Include="CubeIndex.h" />
     <ClInclude Include="DebugOutput.h" />
+    <ClInclude Include="Diamond.h" />
     <ClInclude Include="Engine.h" />
     <ClInclude Include="FrameBufferInfo.h" />
     <ClInclude Include="IGameObject.h" />
@@ -107,6 +108,7 @@
   <ItemGroup>
     <ClCompile Include="CubeIndex.cpp" />
     <ClCompile Include="DebugOutput.cpp" />
+    <ClCompile Include="Diamond.cpp" />
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="InitGLEW.cpp" />
     <ClCompile Include="InitGLUT.cpp" />
