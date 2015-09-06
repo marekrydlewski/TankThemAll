@@ -96,7 +96,7 @@ void Diamond::Create()
 	// puts 1.0 on the diagonal
 	// all other components are 0.0
 	this->model_matrix = glm::mat4(1.0);	
-	this->rotate = 0.001f;
+	this->rotate = 0.01f;
 
 
 }

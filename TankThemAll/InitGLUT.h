@@ -40,8 +40,8 @@ namespace BasicEngine
 				static WindowInfo   windowInformation;
 			public:
 				static void SetListener(Core::IListener* iListener);
-
-
+				static GLuint framesPerSecond;
+				static GLdouble previousTime;
 			};
 
 		}
