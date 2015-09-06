@@ -15,11 +15,6 @@ int main(int argc, char **argv)
 		"Shaders\\Cube_Vertex_Shader.glsl",
 		"Shaders\\Cube_Fragment_Shader.glsl");
 
-	CubeIndex* cube = new CubeIndex();
-	cube->SetProgram(engine->GetShader_Manager()->GetShader("cubeShader"));
-	cube->Create();
-
-	engine->GetModels_Manager()->SetModel("cube", cube);
 
 	Diamond* diamond = new Diamond();
 	diamond->SetProgram(engine->GetShader_Manager()->GetShader("cubeShader"));

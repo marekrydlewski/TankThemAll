@@ -93,7 +93,7 @@ void Diamond::Create()
 	this->vbos.push_back(vbo);
 	this->vbos.push_back(ibo);
 
-	rotation_speed = glm::vec3(4.0, 4.0, 4.0);
+	rotation_speed = glm::vec3(1.0, 1.0, 0.5);
 	rotation = glm::vec3(0.0, 0.0, 1.0);
 
 }

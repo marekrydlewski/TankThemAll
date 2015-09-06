@@ -93,17 +93,17 @@
     <ClInclude Include="Engine.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="BMPHeaders.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="TextureLoader.h">
       <Filter>Source Files\Rendering</Filter>
     </ClInclude>
-    <ClInclude Include="CubeIndex.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Diamond.h">
-      <Filter>Header Files</Filter>
+      <Filter>Source Files\Rendering\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="CubeIndex.h">
+      <Filter>Source Files\Rendering\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="BMPHeaders.h">
+      <Filter>Source Files\Rendering</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -147,10 +147,10 @@
       <Filter>Source Files\Rendering</Filter>
     </ClCompile>
     <ClCompile Include="CubeIndex.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Rendering\Models</Filter>
     </ClCompile>
     <ClCompile Include="Diamond.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Rendering\Models</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -161,8 +161,12 @@
     <None Include="Shaders\FragmentShader.glsl">
       <Filter>Shaders</Filter>
     </None>
-    <None Include="Shaders\Cube_Fragment_Shader.glsl" />
-    <None Include="Shaders\Cube_Vertex_Shader.glsl" />
+    <None Include="Shaders\Cube_Fragment_Shader.glsl">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Shaders\Cube_Vertex_Shader.glsl">
+      <Filter>Shaders</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="TankThemAll.rc">

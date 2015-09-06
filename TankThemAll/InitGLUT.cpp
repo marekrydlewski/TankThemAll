@@ -30,8 +30,8 @@ void Init_GLUT::Init(const Core::WindowInfo&  windowInfo,
 		glutInitDisplayMode(framebufferInfo.flags);
 		glutInitWindowPosition(windowInfo.position_x, windowInfo.position_y);
 		glutInitWindowSize(windowInfo.width, windowInfo.height);
-		//glutInitContextFlags(GLUT_DEBUG);
-		//glEnable(GL_DEBUG_OUTPUT);
+		glutInitContextFlags(GLUT_DEBUG);
+		glEnable(GL_DEBUG_OUTPUT);
 		glutCreateWindow(windowInfo.name.c_str());
 		std::cout << "GLUT:initialized" << std::endl;
 		glEnable(GL_DEBUG_OUTPUT);

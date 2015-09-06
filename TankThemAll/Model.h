@@ -34,6 +34,7 @@ namespace BasicEngine
 				GLuint program;
 				std::vector<GLuint> vbos;
 				std::map<std::string, GLuint> textures;
+				
 			};
 		}
 	}

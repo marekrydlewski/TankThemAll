@@ -9,10 +9,11 @@ Scene_Manager::Scene_Manager()
 	glEnable(GL_DEPTH_TEST);
 	//glEnable(GL_CULL_FACE);
 
-	view_matrix = glm::mat4(1.0f, 0.0f, 0.0f, 0.0f,
-				  		    0.0f, 1.0f, 0.0f, 0.0f,
-							0.0f, 0.0f, -1.0f, 0.0f,
-							0.0f, 0.0f, 10.0f, 1.0f);
+	view_matrix = glm::lookAt(
+		glm::vec3(4, 3, 3), // Camera is at (4,3,3), in World Space
+		glm::vec3(0, 0, 0), // and looks at the origin
+		glm::vec3(0, 1, 0)  // Head is up (set to 0,-1,0 to look upside-down)
+		);
 
 }
 
@@ -47,14 +48,7 @@ void Scene_Manager::NotifyEndFrame()
 void Scene_Manager::NotifyReshape(int width, int height,
 								int previos_width, int previous_height)
 {
-	float ar = (float)glutGet(GLUT_WINDOW_WIDTH) / (float)glutGet(GLUT_WINDOW_HEIGHT);
-	float angle = 45.0f, near1 = 0.1f, far1 = 2000.0f;
-	
-	projection_matrix[0][0] = 1.0f / (ar * tan(angle / 2.0f));
-	projection_matrix[1][1] = 1.0f / tan(angle / 2.0f);
-	projection_matrix[2][2] = (-near1 - far1) / (near1 - far1);
-	projection_matrix[2][3] = 1.0f;
-	projection_matrix[3][2] = 2.0f * near1 * far1 / (near1 - far1);
+	projection_matrix = glm::perspective(45.0f, 4.0f / 3.0f, 0.1f, 100.0f);
 }
 
 void Scene_Manager::SetModelsManager(Managers::Models_Manager* models_m)

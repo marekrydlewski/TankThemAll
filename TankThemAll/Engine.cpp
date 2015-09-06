@@ -12,8 +12,8 @@ Engine::Engine()
 //You can set params for init
 bool Engine::Init()
 {
-	WindowInfo window(std::string("in2gpu OpenGL Chapter 2 tutorial"), 400, 200, 800, 600, true);
-	ContextInfo context(4, 5, false);
+	WindowInfo window(std::string("TankThemAll"), 400, 200, 800, 600, true);
+	ContextInfo context(4, 5, true);
 	FramebufferInfo frameBufferInfo(true, true, true, true);
 
 	Init::Init_GLUT::Init(window, context, frameBufferInfo);
