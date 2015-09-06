@@ -1,11 +1,27 @@
 #pragma once
-class Quad : public Model
+#include "Model.h"
+namespace BasicEngine
 {
-public:
-	Quad();
-	~Quad();
+	namespace Rendering
+	{
+		namespace Models
+		{
 
-	void Create();
-	virtual void Draw() override final;
-	virtual void Update() override final;
-};
+			class Quad : public Models::Model
+			{
+			public:
+				using IGameObject::Draw;
+				Quad();
+				~Quad();
+
+				void Create();
+				virtual void Draw()   override final;
+				virtual void Update() override final;
+			private:
+
+			};
+
+		}
+	}
+}
+

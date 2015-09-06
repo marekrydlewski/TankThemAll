@@ -39,7 +39,7 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros">
-    <NuGetPackageImportStamp>11381e3d</NuGetPackageImportStamp>
+    <NuGetPackageImportStamp>2b99e05a</NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
@@ -81,7 +81,12 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BMPHeaders.h" />
     <ClInclude Include="ContextInfo.h" />
+    <ClInclude Include="CubeIndex.h" />
+    <ClInclude Include="DebugOutput.h" />
+    <ClInclude Include="Diamond.h" />
+    <ClInclude Include="Engine.h" />
     <ClInclude Include="FrameBufferInfo.h" />
     <ClInclude Include="IGameObject.h" />
     <ClInclude Include="IListener.h" />
@@ -95,11 +100,16 @@
     <ClInclude Include="ShaderManager.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="TextureLoader.h" />
     <ClInclude Include="Triangle.h" />
     <ClInclude Include="VertexFormat.h" />
     <ClInclude Include="WindowInfo.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CubeIndex.cpp" />
+    <ClCompile Include="DebugOutput.cpp" />
+    <ClCompile Include="Diamond.cpp" />
+    <ClCompile Include="Engine.cpp" />
     <ClCompile Include="InitGLEW.cpp" />
     <ClCompile Include="InitGLUT.cpp" />
     <ClCompile Include="Model.cpp" />
@@ -112,10 +122,13 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="TankThemAll.cpp" />
+    <ClCompile Include="TextureLoader.cpp" />
     <ClCompile Include="Triangle.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="Shaders\Cube_Fragment_Shader.glsl" />
+    <None Include="Shaders\Cube_Vertex_Shader.glsl" />
     <None Include="Shaders\FragmentShader.glsl" />
     <None Include="Shaders\VertexShader.glsl" />
   </ItemGroup>

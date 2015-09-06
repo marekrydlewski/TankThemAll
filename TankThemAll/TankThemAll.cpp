@@ -1,25 +1,29 @@
-// TankThemAll.cpp : Defines the entry point for the console application.
-//
-
 #include "stdafx.h"
-#include "InitGLUT.h"
-#include "SceneManager.h"
+#include "Engine.h"
+#include "CubeIndex.h"
+#include "Diamond.h"
+
+using namespace BasicEngine;
+
 int main(int argc, char **argv)
 {
-	WindowInfo window(std::string("TankThemAll"),
-		400, 200,//position
-		800, 600, //size
-		true);//reshape
 
-	ContextInfo context(4, 5, true);
-	FramebufferInfo frameBufferInfo(true, true, true, true);
-	InitGLUT::init(window, context, frameBufferInfo);
+	Engine* engine = new Engine();
+	engine->Init();
 
-	IListener* scene = new SceneManager();
-	InitGLUT::setListener(scene);
+	engine->GetShader_Manager()->CreateProgram("cubeShader",
+		"Shaders\\Cube_Vertex_Shader.glsl",
+		"Shaders\\Cube_Fragment_Shader.glsl");
 
-	InitGLUT::run();
 
-	delete scene;
+	Diamond* diamond = new Diamond();
+	diamond->SetProgram(engine->GetShader_Manager()->GetShader("cubeShader"));
+	diamond->Create();
+
+	engine->GetModels_Manager()->SetModel("diamond", diamond);
+
+	engine->Run();
+
+	delete engine;
 	return 0;
 }

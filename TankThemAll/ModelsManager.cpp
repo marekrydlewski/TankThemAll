@@ -1,57 +1,100 @@
 #include "stdafx.h"
 #include "ModelsManager.h"
+using namespace BasicEngine;
+using namespace Managers;
+using namespace Rendering;
 
-
-ModelsManager::ModelsManager()
+Models_Manager::Models_Manager()
 {
-	Triangle* triangle = new Triangle();
-	triangle->SetProgram(ShaderManager::GetShader("colorShader"));
-	triangle->Create();
-	gameModelList["triangle"] = triangle;
+	//two examples - when in doubt decomment these to see something on the screen
+	//Models::Triangle* triangle = new Models::Triangle();
+	//triangle->SetProgram(Shader_Manager::GetShader("colorShader"));
+	//triangle->Create();
+	//gameModelList_NDC["triangle"] = triangle;
 
-	Quad* quad = new Quad();
-	quad->SetProgram(ShaderManager::GetShader("colorShader"));
-	quad->Create();
-	gameModelList["quad"] = quad;
+	//Models::Quad* quad = new Models::Quad();
+	//quad->SetProgram(Shader_Manager::GetShader("colorShader"));
+	//quad->Create();
+	//gameModelList_NDC["quad"] = quad;
+
 
 }
 
-ModelsManager::~ModelsManager()
+Models_Manager::~Models_Manager()
 {
-	//auto -it's a map iterator
-	for (auto& model : gameModelList)
+
+	for (auto model: gameModelList)
 	{
 		delete model.second;
 	}
 	gameModelList.clear();
+
+	for (auto model : gameModelList_NDC)
+	{
+		delete model.second;
+	}
+	gameModelList_NDC.clear();
 }
 
-void ModelsManager::DeleteModel(const std::string& gameModelName)
+void Models_Manager::Update()
 {
-	IGameObject* model = gameModelList[gameModelName];
-	model->Destroy();
-	gameModelList.erase(gameModelName);
-}
-
-const IGameObject& ModelsManager::GetModel(const std::string& gameModelName) const
-{
-	return (*gameModelList.at(gameModelName));
-}
-
-void ModelsManager::Update()
-{
-	//auto -it's a map iterator
-	for (auto& model : gameModelList)
+	for (auto model: gameModelList)
+	{
+		model.second->Update();
+	}
+	for (auto model : gameModelList_NDC)
 	{
 		model.second->Update();
 	}
 }
 
-void ModelsManager::Draw()
+//NDC
+void Models_Manager::Draw()
 {
-	//auto -it's a map iterator
-	for (auto& model : gameModelList)
+	for (auto model : gameModelList_NDC)
 	{
 		model.second->Draw();
 	}
 }
+
+void Models_Manager::Draw(const glm::mat4& projection_matrix, const glm::mat4& view_matrix)
+{
+	for (auto model : gameModelList)
+	{
+		model.second->Draw(projection_matrix, view_matrix);
+	}
+}
+
+void Models_Manager::DeleteModel(const std::string& gameModelName)
+{
+
+	IGameObject* model = gameModelList[gameModelName];
+	model->Destroy();
+	gameModelList.erase(gameModelName);
+
+}
+
+void Models_Manager::DeleteModel_NDC(const std::string& gameModelName)
+{
+
+	IGameObject* model = gameModelList_NDC[gameModelName];
+	model->Destroy();
+	gameModelList_NDC.erase(gameModelName);
+
+}
+
+const IGameObject& Models_Manager::GetModel(const std::string& gameModelName) const
+{
+	return (*gameModelList.at(gameModelName));
+}
+
+const IGameObject& Models_Manager::GetModel_NDC(const std::string& gameModelName) const
+{
+	return (*gameModelList_NDC.at(gameModelName));
+}
+
+void Models_Manager::SetModel(const std::string& gameObjectName, IGameObject* gameObject)
+{
+	gameModelList[gameObjectName.c_str()] = gameObject;
+}
+

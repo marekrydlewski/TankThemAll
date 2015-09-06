@@ -1,29 +1,36 @@
 #pragma once
+#include <fstream>
+#include <iostream>
 #include <map>
 #include <vector>
-#include <fstream>
-#include <string>
 
-class ShaderManager
+namespace BasicEngine
 {
-public:
+	namespace Managers
+	{
 
-	ShaderManager();
-	~ShaderManager();
-	void CreateProgram(const std::string& shaderName,
-		const std::string& VertexShaderFilename,
-		const std::string& FragmentShaderFilename);
+		class Shader_Manager
+		{
 
-	static const GLuint GetShader(const std::string&);
+		public:
 
-private:
+			Shader_Manager(void);
+			~Shader_Manager(void);
 
-	std::string ReadShader(const std::string& filename);
+			void CreateProgram(const std::string& shaderName,
+							   const std::string& VertexShaderFilename,
+							   const std::string& FragmentShaderFilename);
 
-	GLuint CreateShader(GLenum shaderType,
-		const std::string& source,
-		const std::string& shaderName);
+			static const GLuint GetShader(const std::string&);
 
+		private:
 
-	static std::map<std::string, GLuint> programs;
-};
+			std::string ReadShader(const std::string& filename);
+			GLuint CreateShader(GLenum shaderType,
+								const std::string& source,
+								const std::string& shaderName);
+
+			static std::map<std::string, GLuint> programs;
+		};
+	}
+}
