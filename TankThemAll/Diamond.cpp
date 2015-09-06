@@ -20,13 +20,12 @@ void Diamond::Create()
 	GLuint vbo;
 	GLuint ibo;
 
-	time(&timer);
 
 	glGenVertexArrays(1, &vao);
 	glBindVertexArray(vao);
 
 	std::vector<VertexFormat> vertices;
-	std::vector<unsigned int>  indices = { 0, 1, 2,   //upfront
+	std::vector<GLuint>  indices = { 0, 1, 2,   //upfront
 		3, 4, 5,   //upright
 		6, 7, 8,  //upback
 		9, 10, 11,  //upleft
@@ -85,32 +84,34 @@ void Diamond::Create()
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof(unsigned int), &indices[0], GL_STATIC_DRAW);
 
 	glEnableVertexAttribArray(0);
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(VertexFormat), (void*)0);
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(VertexFormat), (GLvoid*)0);
 	glEnableVertexAttribArray(1);
-	glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, sizeof(VertexFormat), (void*)(offsetof(VertexFormat, VertexFormat::color)));
+	glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, sizeof(VertexFormat), (GLvoid*)(offsetof(VertexFormat, VertexFormat::color)));
 	glBindVertexArray(0);
 	this->vao = vao;
 	this->vbos.push_back(vbo);
 	this->vbos.push_back(ibo);
 
-	rotation_speed = glm::vec3(1.0, 1.0, 0.5);
-	rotation = glm::vec3(0.0, 0.0, 1.0);
+	//model matrix
+	// puts 1.0 on the diagonal
+	// all other components are 0.0
+	this->model_matrix = glm::mat4(1.0);	
+	this->rotate = 0.001f;
+
 
 }
 
 void Diamond::Update()
 {
+	model_matrix = glm::rotate(model_matrix, rotate, glm::vec3(1.0, 0.5, 0.1));
 
 }
 
 void Diamond::Draw(const glm::mat4& projection_matrix, const glm::mat4& view_matrix)
 {
-	rotation = 0.01f * rotation_speed + rotation;
-
-	glm::vec3 rotation_sin = glm::vec3(rotation.x * PI / 180, rotation.y * PI / 180, rotation.z * PI / 180);
 
 	glUseProgram(program);
-	glUniform3f(glGetUniformLocation(program, "rotation"), rotation_sin.x, rotation_sin.y, rotation_sin.z);
+	glUniformMatrix4fv(glGetUniformLocation(program, "model_matrix"),1, false, &model_matrix[0][0]);
 	glUniformMatrix4fv(glGetUniformLocation(program, "view_matrix"), 1, false, &view_matrix[0][0]);
 	glUniformMatrix4fv(glGetUniformLocation(program, "projection_matrix"), 1, false, &projection_matrix[0][0]);
 	glBindVertexArray(vao);
