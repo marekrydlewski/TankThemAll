@@ -9,17 +9,12 @@
 
 #include <stdio.h>
 #include <tchar.h>
-#include <iostream>
 #include <GL/glew.h>
 #include <GL/freeglut.h>
 #include <GLFW/glfw3.h>
 #include <glm/glm.hpp>
-#include <string>
-#include <vector>
-#include <fstream>
-#include <algorithm>
-#include <stdlib.h>
-#include <string.h>
+#include <glm/gtc/matrix_transform.hpp>
+
 
 
 // TODO: reference additional headers your program requires here

@@ -39,7 +39,7 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros">
-    <NuGetPackageImportStamp>f0812e14</NuGetPackageImportStamp>
+    <NuGetPackageImportStamp>2b99e05a</NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
@@ -82,28 +82,66 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="loadShaders.h" />
+    <ClInclude Include="BMPHeaders.h" />
+    <ClInclude Include="ContextInfo.h" />
+    <ClInclude Include="CubeIndex.h" />
+    <ClInclude Include="DebugOutput.h" />
+    <ClInclude Include="Diamond.h" />
+    <ClInclude Include="Engine.h" />
+    <ClInclude Include="FrameBufferInfo.h" />
+    <ClInclude Include="IGameObject.h" />
+    <ClInclude Include="IListener.h" />
+    <ClInclude Include="InitGLEW.h" />
+    <ClInclude Include="InitGLUT.h" />
+    <ClInclude Include="Model.h" />
+    <ClInclude Include="ModelsManager.h" />
+    <ClInclude Include="Quad.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="SceneManager.h" />
+    <ClInclude Include="ShaderManager.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="TextureLoader.h" />
+    <ClInclude Include="Triangle.h" />
+    <ClInclude Include="VertexFormat.h" />
+    <ClInclude Include="WindowInfo.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="loadShaders.cpp" />
+    <ClCompile Include="CubeIndex.cpp" />
+    <ClCompile Include="DebugOutput.cpp" />
+    <ClCompile Include="Diamond.cpp" />
+    <ClCompile Include="Engine.cpp" />
+    <ClCompile Include="InitGLEW.cpp" />
+    <ClCompile Include="InitGLUT.cpp" />
+    <ClCompile Include="Model.cpp" />
+    <ClCompile Include="ModelsManager.cpp" />
+    <ClCompile Include="Quad.cpp" />
+    <ClCompile Include="SceneManager.cpp" />
+    <ClCompile Include="ShaderManager.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="TankThemAll.cpp" />
+    <ClCompile Include="TextureLoader.cpp" />
+    <ClCompile Include="Triangle.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="FragmentShader.fragmentshader" />
     <None Include="packages.config" />
-    <None Include="VertexShader.vertexshader" />
+    <None Include="Shaders\Cube_Fragment_Shader.glsl" />
+    <None Include="Shaders\Cube_Vertex_Shader.glsl" />
+    <None Include="Shaders\FragmentShader.glsl" />
+    <None Include="Shaders\VertexShader.glsl" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="TankThemAll.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
     <Import Project="..\packages\nupengl.core.redist.0.0.0.1\build\native\nupengl.core.redist.targets" Condition="Exists('..\packages\nupengl.core.redist.0.0.0.1\build\native\nupengl.core.redist.targets')" />
     <Import Project="..\packages\nupengl.core.0.0.0.1\build\native\nupengl.core.targets" Condition="Exists('..\packages\nupengl.core.0.0.0.1\build\native\nupengl.core.targets')" />
+    <Import Project="..\packages\glm.0.9.7.0\build\native\glm.targets" Condition="Exists('..\packages\glm.0.9.7.0\build\native\glm.targets')" />
   </ImportGroup>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
@@ -111,5 +149,6 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\nupengl.core.redist.0.0.0.1\build\native\nupengl.core.redist.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\nupengl.core.redist.0.0.0.1\build\native\nupengl.core.redist.targets'))" />
     <Error Condition="!Exists('..\packages\nupengl.core.0.0.0.1\build\native\nupengl.core.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\nupengl.core.0.0.0.1\build\native\nupengl.core.targets'))" />
+    <Error Condition="!Exists('..\packages\glm.0.9.7.0\build\native\glm.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\glm.0.9.7.0\build\native\glm.targets'))" />
   </Target>
 </Project>

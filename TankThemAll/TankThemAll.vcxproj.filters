@@ -13,6 +13,24 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Source Files\Core">
+      <UniqueIdentifier>{aa15d521-ab29-43f0-867f-563b9b955074}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Managers">
+      <UniqueIdentifier>{cdbb5e3d-4998-4ca1-85bc-b748a8926fee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shaders">
+      <UniqueIdentifier>{eb70d64c-2dc9-4530-a20c-f2fc4c86309b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Core\Init">
+      <UniqueIdentifier>{b2d95e1a-e586-40db-95c8-80e7b68064ee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Rendering">
+      <UniqueIdentifier>{64bd0a4b-2307-49bc-b23e-58569587f210}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Rendering\Models">
+      <UniqueIdentifier>{ba0b41a7-ca60-45be-b9e5-4c1fcb3ec698}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -24,27 +42,135 @@
     <ClInclude Include="targetver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="loadShaders.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="ShaderManager.h">
+      <Filter>Source Files\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="WindowInfo.h">
+      <Filter>Source Files\Core\Init</Filter>
+    </ClInclude>
+    <ClInclude Include="ContextInfo.h">
+      <Filter>Source Files\Core\Init</Filter>
+    </ClInclude>
+    <ClInclude Include="FrameBufferInfo.h">
+      <Filter>Source Files\Core\Init</Filter>
     </ClInclude>
     <ClInclude Include="resource.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="InitGLEW.h">
+      <Filter>Source Files\Core\Init</Filter>
+    </ClInclude>
+    <ClInclude Include="IListener.h">
+      <Filter>Source Files\Core\Init</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager.h">
+      <Filter>Source Files\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="IGameObject.h">
+      <Filter>Source Files\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="VertexFormat.h">
+      <Filter>Source Files\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Model.h">
+      <Filter>Source Files\Rendering\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="Triangle.h">
+      <Filter>Source Files\Rendering\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelsManager.h">
+      <Filter>Source Files\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="InitGLUT.h">
+      <Filter>Source Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Quad.h">
+      <Filter>Source Files\Rendering\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="DebugOutput.h">
+      <Filter>Source Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureLoader.h">
+      <Filter>Source Files\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Diamond.h">
+      <Filter>Source Files\Rendering\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="CubeIndex.h">
+      <Filter>Source Files\Rendering\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="BMPHeaders.h">
+      <Filter>Source Files\Rendering</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="stdafx.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="TankThemAll.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="loadShaders.cpp">
+    <ClCompile Include="ShaderManager.cpp">
+      <Filter>Source Files\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="InitGLEW.cpp">
+      <Filter>Source Files\Core\Init</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneManager.cpp">
+      <Filter>Source Files\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="Model.cpp">
+      <Filter>Source Files\Rendering\Models</Filter>
+    </ClCompile>
+    <ClCompile Include="Triangle.cpp">
+      <Filter>Source Files\Rendering\Models</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelsManager.cpp">
+      <Filter>Source Files\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="InitGLUT.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Quad.cpp">
+      <Filter>Source Files\Rendering\Models</Filter>
+    </ClCompile>
+    <ClCompile Include="DebugOutput.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureLoader.cpp">
+      <Filter>Source Files\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="CubeIndex.cpp">
+      <Filter>Source Files\Rendering\Models</Filter>
+    </ClCompile>
+    <ClCompile Include="Diamond.cpp">
+      <Filter>Source Files\Rendering\Models</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <None Include="VertexShader.vertexshader" />
-    <None Include="FragmentShader.fragmentshader" />
+    <None Include="Shaders\VertexShader.glsl">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Shaders\FragmentShader.glsl">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Shaders\Cube_Fragment_Shader.glsl">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Shaders\Cube_Vertex_Shader.glsl">
+      <Filter>Shaders</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="TankThemAll.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>
