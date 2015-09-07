@@ -1,9 +1,19 @@
 #pragma once
-class InitGLEW
+#include <iostream>
+namespace BasicEngine
 {
-public:
-	InitGLEW();
-	~InitGLEW();
-	static void Init();
-};
+	namespace Core
+	{
+		namespace Init
+		{
+			class Init_GLEW
+			{
+			public:
+				Init_GLEW();
+				~Init_GLEW();
 
+				static void Init();
+			};
+		}
+	}
+}

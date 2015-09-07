@@ -1,25 +1,17 @@
 #include "stdafx.h"
 #include "InitGLEW.h"
+using namespace BasicEngine::Core::Init;
 
-
-InitGLEW::InitGLEW()
+void Init_GLEW::Init()
 {
-}
-
-
-InitGLEW::~InitGLEW()
-{
-}
-
-
-void InitGLEW::Init(){
 
 	glewExperimental = true;
+	
 	if (glewInit() == GLEW_OK)
 	{
-		std::cout << "GLEW: Initialize" << std::endl;
+		std::cout << "GLEW: Initialized" << std::endl;
 	}
-
+	int s = glGetError();
 	if (glewIsSupported("GL_VERSION_4_4"))
 	{
 		std::cout << "GLEW GL_VERSION_4_4 is 4.4\n ";
@@ -28,4 +20,6 @@ void InitGLEW::Init(){
 	{
 		std::cout << " GLEW GL_VERSION_4_4 not supported\n ";
 	}
+
 }
+

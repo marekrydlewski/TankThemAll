@@ -1,68 +1,140 @@
+//GlutInit.cpp
+
 #include "stdafx.h"
 #include "InitGLUT.h"
 
-IListener* InitGLUT::listener = NULL;
-WindowInfo InitGLUT::windowInformation;
+using namespace BasicEngine;
+using namespace Core::Init;
 
-void InitGLUT::init(const WindowInfo& windowInfo,
-	const ContextInfo& contextInfo,
-	const FramebufferInfo& framebufferInfo)
-{	
+Core::IListener* Init_GLUT::listener = NULL;
+Core::WindowInfo Init_GLUT::windowInformation;
 
-	windowInformation = windowInfo;//initialize
+GLuint Init_GLUT::framesPerSecond = 60; //set frames
+GLdouble  Init_GLUT::previousTime = 0.0;
 
-	//we need to create these fake arguments
+void Init_GLUT::Init(const Core::WindowInfo&  windowInfo,
+	const Core::ContextInfo& contextInfo,
+	const Core::FramebufferInfo& framebufferInfo)
+{
+	glfwInit(); //init glfw
+	std::cout << "GLFW:initialized" << std::endl;
+	///////////
 	int fakeargc = 1;
 	char *fakeargv[] = { "fake", NULL };
 	glutInit(&fakeargc, fakeargv);
-
+	windowInformation = windowInfo;
 	if (contextInfo.core)
 	{
-		glutInitContextVersion(contextInfo.major_version,
-			contextInfo.minor_version);
+		glutInitContextVersion(contextInfo.major_version, contextInfo.minor_version);
 		glutInitContextProfile(GLUT_CORE_PROFILE);
 	}
 	else
 	{
-		// version doesn't matter
-		// in Compatibility mode
 		glutInitContextProfile(GLUT_COMPATIBILITY_PROFILE);
 	}
 
 	glutInitDisplayMode(framebufferInfo.flags);
-	glutInitWindowPosition(windowInfo.position_x,
-		windowInfo.position_y);
+	glutInitWindowPosition(windowInfo.position_x, windowInfo.position_y);
 	glutInitWindowSize(windowInfo.width, windowInfo.height);
-
+	glutInitContextFlags(GLUT_DEBUG);
+	glEnable(GL_DEBUG_OUTPUT);
 	glutCreateWindow(windowInfo.name.c_str());
-
 	std::cout << "GLUT:initialized" << std::endl;
-	//these callbacks are used for rendering
-	glutIdleFunc(idleCallback);
-	glutCloseFunc(closeCallback);
-	glutDisplayFunc(displayCallback);
-	glutReshapeFunc(reshapeCallback);
+	glEnable(GL_DEBUG_OUTPUT);
+	glutIdleFunc(IdleCallback);
+	glutCloseFunc(CloseCallback);
+	glutDisplayFunc(DisplayCallback);
+	glutReshapeFunc(ReshapeCallback);
 
-	//init GLEW, this can be called in main.cpp
-	InitGLEW::Init();
+	Core::Init::Init_GLEW::Init();
 
+	if (GL_DEBUG_OUTPUT)
+	{
+		std::cout << "Debug Output supported" << std::endl;
+	}
+	glDebugMessageCallback(DebugOutput::myCallback, NULL);
+	glDebugMessageControl(GL_DONT_CARE, GL_DONT_CARE,
+		GL_DONT_CARE, 0, NULL, GL_TRUE);
 	//cleanup
-	glutSetOption(GLUT_ACTION_ON_WINDOW_CLOSE,
-		GLUT_ACTION_GLUTMAINLOOP_RETURNS);
+	glutSetOption(GLUT_ACTION_ON_WINDOW_CLOSE, GLUT_ACTION_GLUTMAINLOOP_RETURNS);
 
-	//our method to display some info. Needs contextInfo and windowinfo
-	printOpenGLInfo(windowInfo, contextInfo);
+
+	PrintOpenGLInfo(windowInfo, contextInfo);
 
 }
 
-//starts the rendering Loop
-void InitGLUT::run()
+void Init_GLUT::Run()
 {
-	std::cout << "GLUT:\t Start Running " << std::endl;
+	std::cout << "GLUT:\t Start Running  " << std::endl;
+	previousTime = glfwGetTime();
 	glutMainLoop();
 }
 
-void InitGLUT::printOpenGLInfo(const WindowInfo& windowInfo, const ContextInfo& contextInfo){
+
+void Init_GLUT::Close()
+{
+
+	std::cout << "GLFW:\t Finished" << std::endl;
+	glfwTerminate();
+	std::cout << "GLUT:\t Finished" << std::endl;
+	glutLeaveMainLoop();
+}
+
+void Init_GLUT::IdleCallback(void)
+{
+
+	glutPostRedisplay();
+}
+
+void Init_GLUT::DisplayCallback()
+{
+	if (listener)
+	{
+		GLfloat lastTime = glfwGetTime();
+		if ((lastTime - previousTime) * framesPerSecond >= 1.0f)
+		{
+			listener->NotifyBeginFrame();
+			listener->NotifyDisplayFrame();
+			glutSwapBuffers();
+
+			listener->NotifyEndFrame();
+			previousTime = lastTime;
+		}
+	}
+}
+
+void Init_GLUT::ReshapeCallback(int width, int height)
+{
+	if (windowInformation.isReshapable){
+
+		if (listener)
+			listener->NotifyReshape(width, height, windowInformation.width, windowInformation.height);
+
+		windowInformation.width = width;
+		windowInformation.height = height;
+	}
+}
+
+void Init_GLUT::CloseCallback()
+{
+
+	Close();
+}
+
+void Init_GLUT::EnterFullscreen()
+{
+
+	glutFullScreen();
+}
+
+void Init_GLUT::ExitFullscreen()
+{
+
+	glutLeaveFullScreen();
+}
+
+void Init_GLUT::PrintOpenGLInfo(const Core::WindowInfo& windowInfo, const Core::ContextInfo& contextInfo)
+{
 
 	const unsigned char* renderer = glGetString(GL_RENDERER);
 	const unsigned char* vendor = glGetString(GL_VENDOR);
@@ -82,67 +154,11 @@ void InitGLUT::printOpenGLInfo(const WindowInfo& windowInfo, const ContextInfo& 
 	std::cout << "GLUT:\t OpenGL context is " << contextInfo.major_version << "." << contextInfo.minor_version;
 	std::cout << " and profile is " << ((contextInfo.core) ? "core" : "compatibility") << std::endl;
 
-	std::cout << "*******************************************************************************" << std::endl;
+	std::cout << "GLFW settings:\t" << glfwGetVersionString() << std::endl;
+	std::cout << "*****************************************************************" << std::endl;
 }
 
-
-void InitGLUT::close()
-{
-	std::cout << "GLUT:\t Finished" << std::endl;
-	glutLeaveMainLoop();
-}
-
-void InitGLUT::idleCallback(void)
-{
-	//do nothing, just redisplay
-	glutPostRedisplay();
-}
-
-void InitGLUT::displayCallback()
-{
-	if (listener)
-	{
-		listener->notifyBeginFrame();
-		listener->notifyDisplayFrame();
-
-		glutSwapBuffers();
-
-		listener->notifyEndFrame();
-	}
-}
-
-void InitGLUT::reshapeCallback(int width, int height)
-{
-	if (windowInformation.isReshapable == true)
-	{
-		if (listener)
-		{
-			listener->notifyReshape(width,
-				height,
-				windowInformation.width,
-				windowInformation.height);
-		}
-		windowInformation.width = width;
-		windowInformation.height = height;
-	}
-}
-
-void InitGLUT::closeCallback()
-{
-	close();
-}
-
-void InitGLUT::enterFullscreen()
-{
-	glutFullScreen();
-}
-
-void InitGLUT::exitFullscreen()
-{
-	glutLeaveFullScreen();
-}
-
-void InitGLUT::setListener(IListener*& iListener)
+void Init_GLUT::SetListener(Core::IListener* iListener)
 {
 	listener = iListener;
 }
