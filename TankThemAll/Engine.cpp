@@ -12,7 +12,7 @@ Engine::Engine()
 //You can set params for init
 bool Engine::Init()
 {
-	WindowInfo window(std::string("TankThemAll"), 400, 200, 800, 600, true);
+	WindowInfo window(std::string("TankThemAll"), 100, 100, 1600, 900, true);
 	ContextInfo context(4, 5, true);
 	FramebufferInfo frameBufferInfo(true, true, true, true);
 

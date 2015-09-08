@@ -20,7 +20,12 @@ int main(int argc, char **argv)
 	diamond->SetProgram(engine->GetShader_Manager()->GetShader("cubeShader"));
 	diamond->Create();
 
+	CubeIndex* cube = new CubeIndex();
+	cube->SetProgram(engine->GetShader_Manager()->GetShader("cubeShader"));
+	cube->Create();
+
 	engine->GetModels_Manager()->SetModel("diamond", diamond);
+	engine->GetModels_Manager()->SetModel("cube", cube);
 
 	engine->Run();
 

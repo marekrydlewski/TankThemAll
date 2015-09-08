@@ -14,7 +14,7 @@ Scene_Manager::Scene_Manager()
 		glm::vec3(0, 0, 0), // and looks at the origin
 		glm::vec3(0, 1, 0)  // Head is up (set to 0,-1,0 to look upside-down)
 		);
-
+	projection_matrix = glm::perspective(45.0f, 16.0f / 9.0f, 0.1f, 100.0f);
 }
 
 Scene_Manager::~Scene_Manager()
@@ -48,7 +48,9 @@ void Scene_Manager::NotifyEndFrame()
 void Scene_Manager::NotifyReshape(int width, int height,
 								int previos_width, int previous_height)
 {
-	projection_matrix = glm::perspective(45.0f, 4.0f / 3.0f, 0.1f, 100.0f);
+
+	
+	
 }
 
 void Scene_Manager::SetModelsManager(Managers::Models_Manager* models_m)
