@@ -14,6 +14,7 @@ public:
 	void Create(GLchar* path);
 	virtual void Draw(const glm::mat4& projection_matrix, const glm::mat4& view_matrix) override final;
 	virtual void Update() override final;
+	std::vector<Mesh> getMeshes();
 private:
 	/*  Model Data  */
 	std::vector<Mesh> meshes;

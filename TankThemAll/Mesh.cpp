@@ -20,7 +20,7 @@ void Mesh::Create(std::vector<VertexFormat> vertices, std::vector<GLuint> indice
 
 void Mesh::Update()
 {
-
+	model_matrix = glm::rotate(model_matrix, 0.01f, glm::vec3(0.0, 1.0, 0.0));
 }
 
 void Mesh::Draw(const glm::mat4& projection_matrix, const glm::mat4& view_matrix)

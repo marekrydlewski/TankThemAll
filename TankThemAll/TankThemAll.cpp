@@ -15,81 +15,51 @@ int main(int argc, char **argv)
 		"Shaders\\Cube_Vertex_Shader.glsl",
 		"Shaders\\Cube_Fragment_Shader.glsl");
 
-	//Diamond* diamond = new Diamond();
-	//diamond->SetProgram(engine->GetShader_Manager()->GetShader("cubeShader"));
-	//diamond->Create();
-
-	//engine->GetModels_Manager()->SetModel("diamond", diamond);
-
 	engine->GetShader_Manager()->CreateProgram("importedModelShader",
 		"Shaders\\ImportedVertexShader.glsl",
 		"Shaders\\ImportedFragmentShader.glsl");
 
-	/*ImportedModel* tank = new ImportedModel();
-	tank->SetProgram(engine->GetShader_Manager()->GetShader("importedModelShader"));
+	ImportedModel* tank = new ImportedModel();
+	//tank->SetProgram(engine->GetShader_Manager()->GetShader("cubeShader"));
 	tank->Create("C:\\Projekty\\TankThemAll\\models\\Tiger\\Tiger_I.obj");
 
-	engine->GetModels_Manager()->SetModel("tank", tank);*/
+	//engine->GetModels_Manager()->SetModel("tank", tank);
 
+	std::vector<Mesh> sampleMeshes = tank->getMeshes();
+	Mesh* cannon = new Mesh(sampleMeshes[0].vertices, sampleMeshes[0].indices, sampleMeshes[0].textures);
+	cannon->SetProgram(engine->GetShader_Manager()->GetShader("cubeShader"));
 
-	std::vector<VertexFormat> vertices;
-	std::vector<GLuint>  indices = { 0, 1, 2,   //upfront
-		3, 4, 5,   //upright
-		6, 7, 8,  //upback
-		9, 10, 11,  //upleft
-		12, 13, 14,  //lowfront
-		15, 16, 17, //lowright
-		18, 19, 20, //lowleft
-		21, 22, 23 }; //lowback
+	engine->GetModels_Manager()->SetModel("cannon", cannon);
 
-	//upfront
-	vertices.push_back(VertexFormat(glm::vec3(-1.0, 0, 1.0), glm::vec4(0, 0, 1, 1)));
-	vertices.push_back(VertexFormat(glm::vec3(0, 1.0, 0), glm::vec4(1, 0, 1, 1)));
-	vertices.push_back(VertexFormat(glm::vec3(1.0, 0, 1.0), glm::vec4(1, 1, 1, 1)));
+	Mesh* turret = new Mesh(sampleMeshes[1].vertices, sampleMeshes[1].indices, sampleMeshes[1].textures);
+	turret->SetProgram(engine->GetShader_Manager()->GetShader("cubeShader"));
 
-	//upright
-	vertices.push_back(VertexFormat(glm::vec3(1.0, 0, 1.0), glm::vec4(1, 1, 1, 1)));
-	vertices.push_back(VertexFormat(glm::vec3(0, 1.0, 0), glm::vec4(1, 1, 0, 1)));
-	vertices.push_back(VertexFormat(glm::vec3(1.0, 0, -1.0), glm::vec4(1, 0, 0, 1)));
+	engine->GetModels_Manager()->SetModel("turret", turret);
 
-	//upback
-	vertices.push_back(VertexFormat(glm::vec3(1.0, 0, -1.0), glm::vec4(0, 0, 0, 1)));
-	vertices.push_back(VertexFormat(glm::vec3(0, 1.0, 0), glm::vec4(1, 0, 0, 1)));
-	vertices.push_back(VertexFormat(glm::vec3(-1.0, 0, -1.0), glm::vec4(1, 1, 0, 1)));
+	Mesh* hull = new Mesh(sampleMeshes[2].vertices, sampleMeshes[2].indices, sampleMeshes[2].textures);
+	hull->SetProgram(engine->GetShader_Manager()->GetShader("cubeShader"));
 
-	//upleft
-	vertices.push_back(VertexFormat(glm::vec3(-1.0, 0, -1.0), glm::vec4(0, 0, 0, 1)));
-	vertices.push_back(VertexFormat(glm::vec3(0, 1.0, 0), glm::vec4(0, 0, 1, 1)));
-	vertices.push_back(VertexFormat(glm::vec3(-1.0, 0, 1.0), glm::vec4(0, 1, 1, 1)));
+	engine->GetModels_Manager()->SetModel("hull", hull);
 
-	//lowfront
-	vertices.push_back(VertexFormat(glm::vec3(-1.0, 0, 1.0), glm::vec4(1, 1, 1, 1)));
-	vertices.push_back(VertexFormat(glm::vec3(0, -1.0, 0), glm::vec4(1, 0, 0, 1)));
-	vertices.push_back(VertexFormat(glm::vec3(1.0, 0, 1.0), glm::vec4(1, 0, 1, 1)));
+	Mesh* wheel_1 = new Mesh(sampleMeshes[3].vertices, sampleMeshes[3].indices, sampleMeshes[3].textures);
+	wheel_1->SetProgram(engine->GetShader_Manager()->GetShader("cubeShader"));
 
+	engine->GetModels_Manager()->SetModel("wheel_1", wheel_1);
 
-	//lowright
-	vertices.push_back(VertexFormat(glm::vec3(1.0, 0, 1.0), glm::vec4(0, 0, 0, 1)));
-	vertices.push_back(VertexFormat(glm::vec3(0, -1.0, 0), glm::vec4(1, 0, 0, 1)));
-	vertices.push_back(VertexFormat(glm::vec3(1.0, 0, -1.0), glm::vec4(1, 0, 1, 1)));
+	Mesh* wheel_2 = new Mesh(sampleMeshes[4].vertices, sampleMeshes[4].indices, sampleMeshes[4].textures);
+	wheel_2->SetProgram(engine->GetShader_Manager()->GetShader("cubeShader"));
 
-	//lowback
-	vertices.push_back(VertexFormat(glm::vec3(1.0, 0, -1.0), glm::vec4(0, 0, 0, 1)));
-	vertices.push_back(VertexFormat(glm::vec3(0, -1.0, 0), glm::vec4(0, 0, 1, 1)));
-	vertices.push_back(VertexFormat(glm::vec3(-1.0, 0, -1.0), glm::vec4(0, 1, 1, 1)));
+	Mesh* track_1 = new Mesh(sampleMeshes[5].vertices, sampleMeshes[5].indices, sampleMeshes[5].textures);
+	track_1->SetProgram(engine->GetShader_Manager()->GetShader("cubeShader"));
 
-	//lowleft
-	vertices.push_back(VertexFormat(glm::vec3(-1.0, 0, -1.0), glm::vec4(1, 1, 1, 1)));
-	vertices.push_back(VertexFormat(glm::vec3(0, -1.0, 0), glm::vec4(1, 1, 0, 1)));
-	vertices.push_back(VertexFormat(glm::vec3(-1.0, 0, 1.0), glm::vec4(1, 0, 0, 1)));
+	engine->GetModels_Manager()->SetModel("track_1", track_1);
 
-	std::vector<TextureWrap> textures;
+	Mesh* track_2 = new Mesh(sampleMeshes[6].vertices, sampleMeshes[6].indices, sampleMeshes[6].textures);
+	track_2->SetProgram(engine->GetShader_Manager()->GetShader("cubeShader"));
 
-	Mesh* diamondMesh = new Mesh(vertices, indices, textures);
-	diamondMesh->SetProgram(engine->GetShader_Manager()->GetShader("cubeShader"));
+	engine->GetModels_Manager()->SetModel("track_2", track_2);
 
-	engine->GetModels_Manager()->SetModel("diamondMesh", diamondMesh);
-
+	engine->GetModels_Manager()->SetModel("wheel_2", wheel_2);
 	engine->Run();
 
 	delete engine;

@@ -27,7 +27,10 @@ void ImportedModel::Draw(const glm::mat4& projection_matrix, const glm::mat4& vi
 
 void ImportedModel::Update()
 {
-
+	for (GLuint i = 0; i < this->meshes.size(); i++)
+	{
+		this->meshes[i].Update();
+	}
 }
 
 void ImportedModel::loadModel(std::string path)
@@ -183,4 +186,9 @@ std::string ImportedModel::excludePath(std::string name)
 		}
 	}
 	return result;
+}
+
+std::vector<Mesh> ImportedModel::getMeshes()
+{
+	return meshes;
 }
