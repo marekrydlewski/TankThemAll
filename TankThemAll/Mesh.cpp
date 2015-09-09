@@ -51,9 +51,9 @@ void Mesh::Draw(const glm::mat4& projection_matrix, const glm::mat4& view_matrix
 	glUniformMatrix4fv(glGetUniformLocation(program, "model_matrix"), 1, false, &model_matrix[0][0]);
 	glUniformMatrix4fv(glGetUniformLocation(program, "view_matrix"), 1, false, &view_matrix[0][0]);
 	glUniformMatrix4fv(glGetUniformLocation(program, "projection_matrix"), 1, false, &projection_matrix[0][0]);
-	glBindVertexArray(vao);
+	glBindVertexArray(this->vao);
 	glDrawElements(GL_TRIANGLES, this->indices.size(), GL_UNSIGNED_INT, 0);
-	//glBindVertexArray(0);
+	glBindVertexArray(0);
 }
 
 void Mesh::setupMesh()
