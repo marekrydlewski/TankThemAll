@@ -27,6 +27,6 @@ private:
 	std::vector<TextureWrap> loadMaterialTextures(aiMaterial* mat, aiTextureType type,
 		std::string typeName);
 	aiString excludeFilename(aiString name);
-	std::string excludePath(std::string name);
+	aiString excludePath(std::string name);
 };
 

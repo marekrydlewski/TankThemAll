@@ -33,6 +33,12 @@ void ImportedModel::Update()
 	}
 }
 
+std::vector<Mesh> ImportedModel::getMeshes()
+{
+	return meshes;
+}
+
+#pragma region DataLoad
 void ImportedModel::loadModel(std::string path)
 {
 	Assimp::Importer import;
@@ -128,10 +134,14 @@ std::vector<TextureWrap> ImportedModel::loadMaterialTextures(aiMaterial* mat, ai
 	{
 		aiString str;
 		mat->GetTexture(type, i, &str);
+		std::string filename = excludeFilename(str).C_Str();
+		std::string path = excludePath(this->directory).C_Str();
+		aiString fullPath;
+		fullPath.Set(path + filename);
 		GLboolean skip = false;
 		for (GLuint j = 0; j < textures_loaded.size(); j++)
 		{
-			if (textures_loaded[j].path == str)
+			if (textures_loaded[j].path == fullPath)
 			{
 				textures.push_back(textures_loaded[j]);
 				skip = true;
@@ -141,12 +151,9 @@ std::vector<TextureWrap> ImportedModel::loadMaterialTextures(aiMaterial* mat, ai
 		if (!skip)
 		{   // If texture hasn't been loaded already, load it
 			TextureWrap texture;
-			aiString filename = excludeFilename(str);
-			std::string path = excludePath(this->directory);
-			std::string fullPath = path + filename.C_Str();
-			texture.id = TextureLoader::loadDDS(fullPath.c_str());
+			texture.id = TextureLoader::loadDDS(fullPath.C_Str());
 			texture.type = typeName;
-			texture.path = str;
+			texture.path = fullPath;
 			textures.push_back(texture);
 			this->textures_loaded.push_back(texture);  // Add to loaded textures
 		}
@@ -172,9 +179,10 @@ aiString ImportedModel::excludeFilename(aiString name)
 	return result;
 }
 
-std::string ImportedModel::excludePath(std::string name)
+aiString ImportedModel::excludePath(std::string name)
 {
-	std::string result = "";
+	aiString result;
+	std::string tempStr = "";
 	bool skip = true;
 	for (int i = name.length() - 1; i >= 0; i--)
 	{
@@ -182,13 +190,10 @@ std::string ImportedModel::excludePath(std::string name)
 			skip = false;
 		if (!skip)
 		{
-			result = name[i] + result;
+			tempStr = name[i] + tempStr;
 		}
 	}
+	result.Set(tempStr);
 	return result;
 }
-
-std::vector<Mesh> ImportedModel::getMeshes()
-{
-	return meshes;
-}
+#pragma endregion This is loading data - it should actually work
