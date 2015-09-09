@@ -6,6 +6,11 @@ using namespace BasicEngine::Rendering;
 
 Mesh::Mesh(std::vector<VertexFormat> vertices, std::vector<GLuint> indices, std::vector<TextureWrap> textures)
 {
+	this->Create(vertices, indices, textures);
+}
+
+void Mesh::Create(std::vector<VertexFormat> vertices, std::vector<GLuint> indices, std::vector<TextureWrap> textures)
+{
 	this->vertices = vertices;
 	this->indices = indices;
 	this->textures = textures;
@@ -13,7 +18,12 @@ Mesh::Mesh(std::vector<VertexFormat> vertices, std::vector<GLuint> indices, std:
 	this->setupMesh();
 }
 
-void Mesh::Draw()
+void Mesh::Update()
+{
+
+}
+
+void Mesh::Draw(const glm::mat4& projection_matrix, const glm::mat4& view_matrix)
 {
 	GLuint diffuseNr = 1;
 	GLuint specularNr = 1;
@@ -30,30 +40,38 @@ void Mesh::Draw()
 			ss << specularNr++; // Transfer GLuint to stream
 		number = ss.str();
 
-		glUniform1f(glGetUniformLocation(program, ("material." + name + number).c_str()), i);
+		GLint location = glGetUniformLocation(program, (name + number).c_str());
+		glUniform1i(location, i);
 		glBindTexture(GL_TEXTURE_2D, this->textures[i].id);
 	}
 	glActiveTexture(GL_TEXTURE0);
 
 	// Draw mesh
-	glBindVertexArray(this->VAO);
+	glUseProgram(program);
+	glUniformMatrix4fv(glGetUniformLocation(program, "model_matrix"), 1, false, &model_matrix[0][0]);
+	glUniformMatrix4fv(glGetUniformLocation(program, "view_matrix"), 1, false, &view_matrix[0][0]);
+	glUniformMatrix4fv(glGetUniformLocation(program, "projection_matrix"), 1, false, &projection_matrix[0][0]);
+	glBindVertexArray(vao);
 	glDrawElements(GL_TRIANGLES, this->indices.size(), GL_UNSIGNED_INT, 0);
-	glBindVertexArray(0);
+	//glBindVertexArray(0);
 }
 
 void Mesh::setupMesh()
 {
-	glGenVertexArrays(1, &this->VAO);
-	glGenBuffers(1, &this->VBO);
-	glGenBuffers(1, &this->EBO);
+	GLuint VAO;
+	GLuint VBO;
+	GLuint EBO;
 
-	glBindVertexArray(this->VAO);
-	glBindBuffer(GL_ARRAY_BUFFER, this->VBO);
+	glGenVertexArrays(1, &VAO);
+	glBindVertexArray(VAO);
 
+	glGenBuffers(1, &VBO);
+	glBindBuffer(GL_ARRAY_BUFFER, VBO);
 	glBufferData(GL_ARRAY_BUFFER, this->vertices.size() * sizeof(VertexFormat),
 		&this->vertices[0], GL_STATIC_DRAW);
 
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, this->EBO);
+	glGenBuffers(1, &EBO);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, this->indices.size() * sizeof(GLuint),
 		&this->indices[0], GL_STATIC_DRAW);
 
@@ -61,20 +79,23 @@ void Mesh::setupMesh()
 	glEnableVertexAttribArray(0);
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(VertexFormat),
 		(GLvoid*)0);
+
 	// Vertex Texture Coords
 	glEnableVertexAttribArray(1);
 	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, sizeof(VertexFormat),
 		(GLvoid*)offsetof(VertexFormat, VertexFormat::texture));
+
 	// Vertex Normals
 	/*glEnableVertexAttribArray(2);
 	glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, sizeof(VertexFormat),
 		(GLvoid*)offsetof(VertexFormat, VertexFormat::normals));*/
 
 	glBindVertexArray(0);
-}
+	this->vao = VAO;
+	this->vbos.push_back(VBO);
+	this->vbos.push_back(EBO);
 
-void Mesh::SetProgram(GLuint program)
-{
-	if (program == 0) return;
-	this->program = program;
+	this->model_matrix = glm::mat4(1.0);
+
+	this->model_matrix = glm::scale(this->model_matrix,glm::vec3(0.3f, 0.3f, 0.3f));
 }

@@ -41,6 +41,7 @@ void Init_GLUT::Init(const Core::WindowInfo&  windowInfo,
 	glutCreateWindow(windowInfo.name.c_str());
 	std::cout << "GLUT:initialized" << std::endl;
 	glEnable(GL_DEBUG_OUTPUT);
+
 	glutIdleFunc(IdleCallback);
 	glutCloseFunc(CloseCallback);
 	glutDisplayFunc(DisplayCallback);

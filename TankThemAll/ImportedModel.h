@@ -12,7 +12,7 @@ public:
 	ImportedModel();
 	virtual ~ImportedModel();
 	void Create(GLchar* path);
-	virtual void Draw() override final;
+	virtual void Draw(const glm::mat4& projection_matrix, const glm::mat4& view_matrix) override final;
 	virtual void Update() override final;
 private:
 	/*  Model Data  */

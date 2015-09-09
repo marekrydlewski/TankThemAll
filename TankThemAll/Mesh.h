@@ -4,24 +4,26 @@
 #include "stdafx.h"
 #include "VertexFormat.h"
 #include "TextureWrap.h"
+#include "Model.h"
 
 using namespace BasicEngine::Rendering;
+using namespace BasicEngine::Rendering::Models;
 
 
-class Mesh {
+class Mesh : 
+	public Model
+{
 	public:
 		/*  Mesh Data  */
 		std::vector<VertexFormat> vertices;
 		std::vector<GLuint> indices;
 		std::vector<TextureWrap> textures;
 		/*  Functions  */
-		Mesh(std::vector<BasicEngine::Rendering::VertexFormat> vertices, std::vector<GLuint> indices, std::vector<TextureWrap> textures);
-		void Draw();
-		void SetProgram(GLuint program);
+		Mesh(std::vector<VertexFormat> vertices, std::vector<GLuint> indices, std::vector<TextureWrap> textures);
+		void Create(std::vector<VertexFormat> vertices, std::vector<GLuint> indices, std::vector<TextureWrap> textures);
+		virtual void Draw(const glm::mat4& projection_matrix, const glm::mat4& view_matrix) override final;
+		virtual void Update() override final;
 	private:
-		/*  Render data  */
-		GLuint VAO, VBO, EBO;
-		GLuint program;
 		/*  Functions    */
 		void setupMesh();
 };

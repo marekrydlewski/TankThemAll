@@ -16,10 +16,13 @@ void ImportedModel::Create(GLchar* path)
 	this->loadModel(path);
 }
 
-void ImportedModel::Draw()
+void ImportedModel::Draw(const glm::mat4& projection_matrix, const glm::mat4& view_matrix)
 {
 	for (GLuint i = 0; i < this->meshes.size(); i++)
-		this->meshes[i].Draw();
+	{
+		this->meshes[i].SetProgram(this->program);
+		this->meshes[i].Draw(projection_matrix, view_matrix);
+	}
 }
 
 void ImportedModel::Update()
