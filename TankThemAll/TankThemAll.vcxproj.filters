@@ -105,6 +105,9 @@
     <ClInclude Include="BMPHeaders.h">
       <Filter>Source Files\Rendering</Filter>
     </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>Source Files\Rendering</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TankThemAll.cpp">

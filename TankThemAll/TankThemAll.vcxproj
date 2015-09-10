@@ -82,6 +82,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BMPHeaders.h" />
+    <ClInclude Include="Camera.h" />
     <ClInclude Include="ContextInfo.h" />
     <ClInclude Include="CubeIndex.h" />
     <ClInclude Include="DebugOutput.h" />
