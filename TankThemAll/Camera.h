@@ -60,6 +60,7 @@ namespace BasicEngine{
 				this->Pitch = pitch;
 				this->updateCameraVectors();
 			}
+			~Camera(){}
 
 			// Returns the view matrix calculated using Eular Angles and the LookAt Matrix
 			glm::mat4 GetViewMatrix()

@@ -18,6 +18,7 @@ namespace BasicEngine
 									   int height,
 									   int previous_width,
 									   int previous_height) = 0;
+			virtual void MakeCameraMove() = 0;
 		};
 
 		inline IListener::~IListener()

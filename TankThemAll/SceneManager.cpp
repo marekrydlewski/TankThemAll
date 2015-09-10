@@ -14,7 +14,7 @@ Scene_Manager::Scene_Manager()
 		glm::vec3(0, 0, 0), // and looks at the origin
 		glm::vec3(0, 1, 0)  // Head is up (set to 0,-1,0 to look upside-down)
 		);
-	*/
+		*/
 
 	camera = new Camera(glm::vec3(1, 1, 10), glm::vec3(0, 1, 0), YAW, PITCH);
 	projection_matrix = glm::perspective(45.0f, 16.0f / 9.0f, 0.1f, 100.0f);
@@ -22,7 +22,7 @@ Scene_Manager::Scene_Manager()
 
 Scene_Manager::~Scene_Manager()
 {
-
+	delete camera;
 }
 
 void Scene_Manager::NotifyBeginFrame()
@@ -65,3 +65,6 @@ glm::mat4 Scene_Manager::GetViewFromCamera()
 {
 	return this->camera->GetViewMatrix();
 }
+
+void Scene_Manager::MakeCameraMove()
+{}

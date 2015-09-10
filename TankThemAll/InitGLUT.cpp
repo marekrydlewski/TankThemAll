@@ -88,8 +88,11 @@ void Init_GLUT::IdleCallback(void)
 
 void Init_GLUT::DisplayCallback()
 {
+	//glfwPollEvents();
+
 	if (listener)
 	{
+		listener->MakeCameraMove();
 		GLfloat lastTime = glfwGetTime();
 		if ((lastTime - previousTime) * framesPerSecond >= 1.0f)
 		{
