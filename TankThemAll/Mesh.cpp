@@ -9,6 +9,10 @@ Mesh::Mesh(std::vector<VertexFormat> vertices, std::vector<GLuint> indices, std:
 	this->Create(vertices, indices, textures);
 }
 
+Mesh::~Mesh()
+{
+}
+
 void Mesh::Create(std::vector<VertexFormat> vertices, std::vector<GLuint> indices, std::vector<TextureWrap> textures)
 {
 	this->vertices = vertices;

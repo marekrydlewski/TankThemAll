@@ -16,24 +16,62 @@ void ImportedModel::Create(GLchar* path)
 	this->loadModel(path);
 }
 
+void ImportedModel::Draw()
+{
+	//abstract
+}
+
 void ImportedModel::Draw(const glm::mat4& projection_matrix, const glm::mat4& view_matrix)
 {
-	for (GLuint i = 0; i < this->meshes.size(); i++)
+	for (unsigned int i = 0; i < this->meshes.size(); i++)
 	{
-		this->meshes[i].SetProgram(this->program);
-		this->meshes[i].Draw(projection_matrix, view_matrix);
+		this->meshes[i]->Draw(projection_matrix, view_matrix);
 	}
 }
 
 void ImportedModel::Update()
 {
-	for (GLuint i = 0; i < this->meshes.size(); i++)
+	for (unsigned int i = 0; i < this->meshes.size(); i++)
 	{
-		this->meshes[i].Update();
+		this->meshes[i]->Update();
 	}
 }
 
-std::vector<Mesh> ImportedModel::getMeshes()
+void ImportedModel::SetProgram(GLuint program)
+{
+	this->program = program;
+}
+
+GLuint ImportedModel::GetVao() const
+{
+	return NULL;
+}
+
+const std::vector<GLuint> ImportedModel::GetVbos() const
+{
+	std::vector<GLuint> nullvec;
+	return nullvec;
+}
+
+const GLuint ImportedModel::GetTexture(std::string textureName) const
+{
+	return NULL;
+}
+
+void ImportedModel::SetTexture(std::string textureName, GLuint texture)
+{
+	//abstract
+}
+
+void ImportedModel::Destroy()
+{
+	for (auto& m : meshes)
+	{
+		m->Destroy();
+	}
+}
+
+std::vector<Mesh*> ImportedModel::getMeshes()
 {
 	return meshes;
 }
@@ -60,7 +98,9 @@ void ImportedModel::processNode(aiNode* node, const aiScene* scene)
 	for (GLuint i = 0; i < node->mNumMeshes; i++)
 	{
 		aiMesh* mesh = scene->mMeshes[node->mMeshes[i]];
-		this->meshes.push_back(this->processMesh(mesh, scene));
+		Mesh* processedMesh = this->processMesh(mesh, scene);
+		processedMesh->SetProgram(this->program);
+		this->meshes.push_back(processedMesh);
 	}
 	// Then do the same for each of its children
 	for (GLuint i = 0; i < node->mNumChildren; i++)
@@ -69,7 +109,7 @@ void ImportedModel::processNode(aiNode* node, const aiScene* scene)
 	}
 }
 
-Mesh ImportedModel::processMesh(aiMesh* mesh, const aiScene* scene)
+Mesh* ImportedModel::processMesh(aiMesh* mesh, const aiScene* scene)
 {
 	std::vector<VertexFormat> vertices;
 	std::vector<GLuint> indices;
@@ -124,7 +164,7 @@ Mesh ImportedModel::processMesh(aiMesh* mesh, const aiScene* scene)
 		textures.insert(textures.end(), specularMaps.begin(), specularMaps.end());
 	}
 
-	return Mesh(vertices, indices, textures);
+	return new Mesh(vertices, indices, textures);
 }
 
 std::vector<TextureWrap> ImportedModel::loadMaterialTextures(aiMaterial* mat, aiTextureType type, std::string typeName)
