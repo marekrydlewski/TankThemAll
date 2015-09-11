@@ -19,6 +19,8 @@ namespace BasicEngine
 			virtual void NotifyEndFrame();
 			virtual void NotifyReshape(int width, int height, int previos_width, int previous_height);
 			virtual void MakeCameraMove();
+			virtual void KeyboardHandler(unsigned char key, int x, int y);
+			virtual void KeyboardSpecialHandler(int key, int x, int y);
 			virtual glm::mat4 GetViewFromCamera();
 			void SetModelsManager(Managers::Models_Manager* models_manager);
 
