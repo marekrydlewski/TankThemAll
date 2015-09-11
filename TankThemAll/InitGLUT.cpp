@@ -97,6 +97,7 @@ void Init_GLUT::DisplayCallback()
 	{
 		GLfloat lastTime = glfwGetTime();
 		listener->MakeCameraMove(lastTime - previousTime);
+		listener->ProcessMouseMove();
 		if ((lastTime - previousTime) * framesPerSecond >= 1.0f)
 		{
 			listener->NotifyBeginFrame();

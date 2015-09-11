@@ -1,7 +1,7 @@
 #pragma once
 #include "stdafx.h"
 #include <vector>
-
+using namespace std;
 namespace BasicEngine{
 	namespace Rendering{
 
@@ -17,7 +17,7 @@ namespace BasicEngine{
 		const GLfloat YAW = -90.0f;
 		const GLfloat PITCH = 0.0f;
 		const GLfloat SPEED = 0.01f;
-		const GLfloat SENSITIVTY = 0.25f;
+		const GLfloat SENSITIVTY = 0.08f;
 		const GLfloat ZOOM = 45.0f;
 
 

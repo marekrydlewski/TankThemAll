@@ -4,32 +4,55 @@ using namespace BasicEngine;
 using namespace Managers;
 using namespace std;
 
+/* ... */
 bool keys[1024] = { false };
-std::string x1 = "marek";
+bool activeUpdateCamera = false;
+bool firstMouse = true;
+GLfloat xoffset, yoffset;
+GLfloat lastX, lastY;
 
-void CameraCallbackDown(int key, int x, int y){
+
+void CameraCallbackDown(int key, int x, int y)
+{
 
 	if (key >= 0 && key < 1024)
 	{
 		keys[key] = true;
 	}
-	cout << "down" << endl;
 }
 
-void CameraCallbackUp(int key, int x, int y){
+void CameraCallbackUp(int key, int x, int y)
+{
 
 	if (key >= 0 && key < 1024)
 	{
 		keys[key] = false;
 	}
-	cout << GLUT_KEY_LEFT << endl;
+}
+
+void CameraMouseCallback(int xpos, int ypos)
+{
+	if (activeUpdateCamera == false){
+		if (firstMouse)
+		{
+			lastX = xpos;
+			lastY = ypos;
+			firstMouse = false;
+		}
+		xoffset = xpos - lastX;
+		yoffset = lastY - ypos;  // Reversed since y-coordinates go from bottom to left
+		lastX = xpos;
+		lastY = ypos;
+		// Update Front, Right and Up Vectors using the updated Eular angles
+		activeUpdateCamera = true;
+	}
 }
 
 
-	
+/* ... */
+
 Scene_Manager::Scene_Manager()
 {
-
 	glEnable(GL_DEPTH_TEST);
 	//glEnable(GL_CULL_FACE);
 
@@ -55,8 +78,9 @@ Scene_Manager::~Scene_Manager()
 
 void Scene_Manager::EnableCallbacks()
 {
-	glutSpecialFunc(&CameraCallbackDown);
+	glutSpecialFunc(CameraCallbackDown);
 	glutSpecialUpFunc(CameraCallbackUp);
+	glutPassiveMotionFunc(CameraMouseCallback);
 }
 
 void Scene_Manager::NotifyBeginFrame()
@@ -79,7 +103,6 @@ void Scene_Manager::NotifyDisplayFrame()
 
 void Scene_Manager::NotifyEndFrame()
 {
-
 }
 
 void Scene_Manager::NotifyReshape(int width, int height,
@@ -108,6 +131,19 @@ void Scene_Manager::MakeCameraMove(GLfloat deltaTime)
 		camera->ProcessKeyboard(LEFT, deltaTime);
 	if (keys[GLUT_KEY_RIGHT])
 		camera->ProcessKeyboard(RIGHT, deltaTime);
+}
+
+void Scene_Manager::MakeMouseMove(int x, int y)
+{
+	if (activeUpdateCamera){
+		this->camera->ProcessMouseMovement(x, y);
+		activeUpdateCamera = false;
+	}
+}
+
+void Scene_Manager::ProcessMouseMove()
+{
+	MakeMouseMove(xoffset, yoffset);
 }
 
 void Scene_Manager::KeyboardHandler(unsigned char key, int x, int y)

@@ -21,9 +21,11 @@ namespace BasicEngine
 			virtual void MakeCameraMove(GLfloat);
 			virtual void KeyboardHandler(unsigned char key, int x, int y);
 			virtual void KeyboardSpecialHandler(int key, int x, int y);
+			virtual void ProcessMouseMove();
 			virtual glm::mat4 GetViewFromCamera();
 			void SetModelsManager(Managers::Models_Manager* models_manager);
-
+	
+				
 		private:
 			Managers::Models_Manager* models_manager;
 			Rendering::Camera* camera;
@@ -31,6 +33,7 @@ namespace BasicEngine
 			glm::mat4 view_matrix;
 		private:
 			void EnableCallbacks();
+			void MakeMouseMove(int x, int y);
 		};
 
 	}

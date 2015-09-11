@@ -19,6 +19,7 @@ namespace BasicEngine
 									   int previous_width,
 									   int previous_height) = 0;
 			virtual void MakeCameraMove(GLfloat) = 0;
+			virtual void ProcessMouseMove() = 0;
 			virtual void KeyboardHandler(unsigned char key, int x, int y) = 0;
 			virtual void KeyboardSpecialHandler(int key, int x, int y) = 0;
 		};
