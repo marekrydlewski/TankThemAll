@@ -100,7 +100,7 @@ artifacts/
 *.scc
 
 #except model .objs
-!models/**/*.obj
+!TankThemAll/models/**/*.obj
 
 # Chutzpah Test files
 _Chutzpah*
