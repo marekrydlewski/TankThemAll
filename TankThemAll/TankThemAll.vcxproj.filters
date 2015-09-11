@@ -115,7 +115,7 @@
       <Filter>Source Files\Rendering\Models</Filter>
     </ClInclude>
     <ClInclude Include="Tank.h">
-      <Filter>Header Files</Filter>
+      <Filter>Source Files\Rendering\Models</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -171,7 +171,7 @@
       <Filter>Source Files\Rendering\Models</Filter>
     </ClCompile>
     <ClCompile Include="Tank.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Rendering\Models</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -182,7 +182,6 @@
     <None Include="Shaders\Cube_Vertex_Shader.glsl">
       <Filter>Shaders</Filter>
     </None>
-    <None Include="FragmentShader.fragmentshader" />
     <None Include="Shaders\ImportedFragmentShader.glsl">
       <Filter>Shaders</Filter>
     </None>
