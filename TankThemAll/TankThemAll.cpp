@@ -21,7 +21,7 @@ int main(int argc, char **argv)
 
 	ImportedModel* tank = new ImportedModel();
 	tank->SetProgram(engine->GetShader_Manager()->GetShader("cubeShader"));
-	tank->Create("C:\\Projekty\\TankThemAll\\models\\Tiger\\Tiger_I.obj");
+	tank->Create("models\\Tiger\\Tiger_I.obj");
 
 	engine->GetModels_Manager()->SetModel("tank", tank);
 
