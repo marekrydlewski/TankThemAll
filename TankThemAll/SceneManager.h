@@ -18,7 +18,7 @@ namespace BasicEngine
 			virtual void NotifyDisplayFrame();
 			virtual void NotifyEndFrame();
 			virtual void NotifyReshape(int width, int height, int previos_width, int previous_height);
-			virtual void MakeCameraMove();
+			virtual void MakeCameraMove(GLfloat);
 			virtual void KeyboardHandler(unsigned char key, int x, int y);
 			virtual void KeyboardSpecialHandler(int key, int x, int y);
 			virtual glm::mat4 GetViewFromCamera();
@@ -29,6 +29,8 @@ namespace BasicEngine
 			Rendering::Camera* camera;
 			glm::mat4 projection_matrix;
 			glm::mat4 view_matrix;
+		private:
+			void EnableCallbacks();
 		};
 
 	}
