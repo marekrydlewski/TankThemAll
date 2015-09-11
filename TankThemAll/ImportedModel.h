@@ -25,7 +25,6 @@ public:
 	virtual const GLuint GetTexture(std::string textureName) const override;
 	virtual void SetTexture(std::string textureName, GLuint texture) override;
 
-	std::vector<Mesh*> getMeshes();
 private:
 	/*  Model Data  */
 	std::vector<Mesh*> meshes;

@@ -71,11 +71,6 @@ void ImportedModel::Destroy()
 	}
 }
 
-std::vector<Mesh*> ImportedModel::getMeshes()
-{
-	return meshes;
-}
-
 #pragma region DataLoad
 void ImportedModel::loadModel(std::string path)
 {

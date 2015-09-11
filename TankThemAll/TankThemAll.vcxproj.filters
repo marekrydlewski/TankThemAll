@@ -114,6 +114,9 @@
     <ClInclude Include="ImportedModel.h">
       <Filter>Source Files\Rendering\Models</Filter>
     </ClInclude>
+    <ClInclude Include="Tank.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TankThemAll.cpp">
@@ -166,6 +169,9 @@
     </ClCompile>
     <ClCompile Include="ImportedModel.cpp">
       <Filter>Source Files\Rendering\Models</Filter>
+    </ClCompile>
+    <ClCompile Include="Tank.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
