@@ -245,5 +245,5 @@ FakesAssemblies/
 **/*.Server/ModelManifest.xml
 _Pvt_Extensions
 
-#except models .obj
-!models/Tiger/Tiger_I.obj
+#except models
+!models/
