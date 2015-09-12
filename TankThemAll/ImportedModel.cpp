@@ -1,7 +1,5 @@
 #include "stdafx.h"
 #include "ImportedModel.h"
-#include <iostream>
-#include "TextureLoader.h"
 
 ImportedModel::ImportedModel()
 {	

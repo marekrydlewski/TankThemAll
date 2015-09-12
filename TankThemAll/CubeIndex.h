@@ -16,6 +16,5 @@ public:
 	virtual void Update() override final;
 
 private:
-	glm::vec3 rotation, rotation_speed;
-	time_t timer;
+	GLfloat rotate;
 };

@@ -12,6 +12,7 @@ Core::WindowInfo Init_GLUT::windowInformation;
 GLuint Init_GLUT::framesPerSecond = 60; //set frames
 GLdouble  Init_GLUT::previousTime = 0.0;
 
+
 void Init_GLUT::Init(const Core::WindowInfo&  windowInfo,
 	const Core::ContextInfo& contextInfo,
 	const Core::FramebufferInfo& framebufferInfo)
@@ -46,6 +47,8 @@ void Init_GLUT::Init(const Core::WindowInfo&  windowInfo,
 	glutCloseFunc(CloseCallback);
 	glutDisplayFunc(DisplayCallback);
 	glutReshapeFunc(ReshapeCallback);
+
+
 
 	Core::Init::Init_GLEW::Init();
 
@@ -89,9 +92,13 @@ void Init_GLUT::IdleCallback(void)
 
 void Init_GLUT::DisplayCallback()
 {
+	//glfwPollEvents();
+
 	if (listener)
 	{
 		GLfloat lastTime = glfwGetTime();
+		listener->MakeCameraMove(lastTime - previousTime);
+		listener->ProcessMouseMove();
 		if ((lastTime - previousTime) * framesPerSecond >= 1.0f)
 		{
 			listener->NotifyBeginFrame();

@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "Mesh.h"
-#include <sstream>
+
 
 using namespace BasicEngine::Rendering;
 
