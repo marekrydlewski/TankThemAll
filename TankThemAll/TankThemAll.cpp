@@ -9,21 +9,24 @@ int main(int argc, char **argv)
 
 	Engine* engine = new Engine();
 	engine->Init();
-
+	
 	engine->GetShader_Manager()->CreateProgram("cubeShader",
 		"Shaders\\Cube_Vertex_Shader.glsl",
 		"Shaders\\Cube_Fragment_Shader.glsl");
+	
 
+	
 	engine->GetShader_Manager()->CreateProgram("importedModelShader",
 		"Shaders\\ImportedVertexShader.glsl",
 		"Shaders\\ImportedFragmentShader.glsl");
-
+	
+	
 	Tank* tank = new Tank();
 	tank->SetProgram(engine->GetShader_Manager()->GetShader("importedModelShader"));
 	tank->Create("models\\Tiger\\Tiger_I.obj");
 
 	engine->GetModels_Manager()->SetModel("tank", tank);
-
+	
 	engine->Run();
 
 	delete engine;

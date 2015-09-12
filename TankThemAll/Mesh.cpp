@@ -31,7 +31,8 @@ void Mesh::Draw(const glm::mat4& projection_matrix, const glm::mat4& view_matrix
 {
 	GLuint diffuseNr = 1;
 	GLuint specularNr = 1;
-	for (GLuint i = 0; i < this->textures.size(); i++)
+	glUseProgram(program);
+	for (int i = 0; i < this->textures.size(); i++)
 	{
 		glActiveTexture(GL_TEXTURE0 + i); // Activate proper texture unit before binding
 		// Retrieve texture number (the N in diffuse_textureN)
@@ -48,10 +49,7 @@ void Mesh::Draw(const glm::mat4& projection_matrix, const glm::mat4& view_matrix
 		glUniform1i(location, i);
 		glBindTexture(GL_TEXTURE_2D, this->textures[i].id);
 	}
-	glActiveTexture(GL_TEXTURE0);
-
 	// Draw mesh
-	glUseProgram(program);
 	glUniformMatrix4fv(glGetUniformLocation(program, "model_matrix"), 1, false, &model_matrix[0][0]);
 	glUniformMatrix4fv(glGetUniformLocation(program, "view_matrix"), 1, false, &view_matrix[0][0]);
 	glUniformMatrix4fv(glGetUniformLocation(program, "projection_matrix"), 1, false, &projection_matrix[0][0]);
