@@ -12,9 +12,8 @@ namespace BasicEngine
 		class TextureLoader
 		{
 			public:
-				//static GLuint loadPNG(const std::string filename, int &width, int &height);
 				static GLuint loadDDS(const char * imagepath);
-				static unsigned int LoadTexture(const std::string& filename, unsigned int width, unsigned int height);
+				static unsigned int LoadTexture(const std::string& filename, int &width, int &height);
 
 			private:
 
