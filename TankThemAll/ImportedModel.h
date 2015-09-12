@@ -1,5 +1,7 @@
 #pragma once
 #include<vector>
+#include <iostream>
+#include "TextureLoader.h"
 #include "Mesh.h"
 #include "Model.h"
 

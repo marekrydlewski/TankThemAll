@@ -105,7 +105,7 @@
     <ClInclude Include="BMPHeaders.h">
       <Filter>Source Files\Rendering</Filter>
     </ClInclude>
-	<ClInclude Include="Camera.h">
+    <ClInclude Include="Camera.h">
       <Filter>Source Files\Rendering</Filter>
     </ClInclude>
     <ClInclude Include="Mesh.h">
@@ -179,16 +179,16 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <None Include="Shaders\Cube_Fragment_Shader.glsl">
-      <Filter>Shaders</Filter>
-    </None>
-    <None Include="Shaders\Cube_Vertex_Shader.glsl">
-      <Filter>Shaders</Filter>
-    </None>
     <None Include="Shaders\ImportedFragmentShader.glsl">
       <Filter>Shaders</Filter>
     </None>
     <None Include="Shaders\ImportedVertexShader.glsl">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Shaders\Base_Vertex_Shader.glsl">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Shaders\Base_Fragment_Shader.glsl">
       <Filter>Shaders</Filter>
     </None>
   </ItemGroup>

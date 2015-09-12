@@ -8,7 +8,6 @@ namespace BasicEngine
 	namespace Managers
 	{
 		class Scene_Manager : public Core::IListener
-
 		{
 		public:
 			Scene_Manager();
@@ -19,10 +18,9 @@ namespace BasicEngine
 			virtual void NotifyEndFrame();
 			virtual void NotifyReshape(int width, int height, int previos_width, int previous_height);
 			virtual void MakeCameraMove(GLfloat);
-			virtual void KeyboardHandler(unsigned char key, int x, int y);
-			virtual void KeyboardSpecialHandler(int key, int x, int y);
 			virtual void ProcessMouseMove();
 			virtual glm::mat4 GetViewFromCamera();
+
 			void SetModelsManager(Managers::Models_Manager* models_manager);
 	
 				

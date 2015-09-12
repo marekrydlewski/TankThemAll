@@ -54,17 +54,11 @@ void CameraMouseCallback(int xpos, int ypos)
 Scene_Manager::Scene_Manager()
 {
 	glEnable(GL_DEPTH_TEST);
-	//glEnable(GL_CULL_FACE);
-
-	/*view_matrix = glm::lookAt(
-		glm::vec3(4, 3, 3), // Camera is at (4,3,3), in World Space
-		glm::vec3(0, 0, 0), // and looks at the origin
-		glm::vec3(0, 1, 0)  // Head is up (set to 0,-1,0 to look upside-down)
-		);
-		*/
+	//glEnable(GL_CULL_FACE); //add to enable culling
 
 	camera = new Camera(glm::vec3(1, 1, 10), glm::vec3(0, 1, 0), YAW, PITCH);
 	projection_matrix = glm::perspective(45.0f, 16.0f / 9.0f, 0.1f, 100.0f);
+
 	//enable callbacks
 	this->EnableCallbacks();
 
@@ -136,7 +130,7 @@ void Scene_Manager::MakeCameraMove(GLfloat deltaTime)
 void Scene_Manager::MakeMouseMove(int x, int y)
 {
 	if (activeUpdateCamera){
-		this->camera->ProcessMouseMovement(x, y);
+		this->camera->ProcessMouseMovement(x, y); //add false to disable constraint pitch
 		activeUpdateCamera = false;
 	}
 }
@@ -144,16 +138,4 @@ void Scene_Manager::MakeMouseMove(int x, int y)
 void Scene_Manager::ProcessMouseMove()
 {
 	MakeMouseMove(xoffset, yoffset);
-}
-
-void Scene_Manager::KeyboardHandler(unsigned char key, int x, int y)
-{
-
-
-}
-
-void Scene_Manager::KeyboardSpecialHandler(int key, int x, int y)
-{
-
-
 }

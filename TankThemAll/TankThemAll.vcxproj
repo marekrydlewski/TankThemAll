@@ -138,8 +138,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <None Include="Shaders\Cube_Fragment_Shader.glsl" />
-    <None Include="Shaders\Cube_Vertex_Shader.glsl" />
+    <None Include="Shaders\Base_Fragment_Shader.glsl" />
+    <None Include="Shaders\Base_Vertex_Shader.glsl" />
     <None Include="Shaders\ImportedFragmentShader.glsl" />
     <None Include="Shaders\ImportedVertexShader.glsl" />
   </ItemGroup>
