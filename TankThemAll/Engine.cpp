@@ -13,7 +13,7 @@ Engine::Engine()
 bool Engine::Init()
 {
 	WindowInfo window(std::string("TankThemAll"), 400, 200, 800, 600, true);
-	ContextInfo context(4, 5, true);
+	ContextInfo context(4, 4, true);
 	FramebufferInfo frameBufferInfo(true, true, true, true);
 
 	Init::Init_GLUT::Init(window, context, frameBufferInfo);

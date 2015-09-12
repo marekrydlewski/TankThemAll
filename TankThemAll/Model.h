@@ -6,13 +6,10 @@ namespace BasicEngine
 {
 	namespace Rendering
 	{
-
 		namespace Models
 		{
-
 			class Model : public IGameObject
 			{
-
 			public:
 				Model();
 				virtual ~Model();

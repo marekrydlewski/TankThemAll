@@ -99,6 +99,9 @@ artifacts/
 *.svclog
 *.scc
 
+#except model .objs
+!TankThemAll/models/**/*.obj
+
 # Chutzpah Test files
 _Chutzpah*
 
@@ -244,3 +247,4 @@ FakesAssemblies/
 **/*.Server/GeneratedArtifacts
 **/*.Server/ModelManifest.xml
 _Pvt_Extensions
+

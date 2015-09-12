@@ -105,6 +105,18 @@
     <ClInclude Include="BMPHeaders.h">
       <Filter>Source Files\Rendering</Filter>
     </ClInclude>
+    <ClInclude Include="Mesh.h">
+      <Filter>Source Files\Rendering\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureWrap.h">
+      <Filter>Source Files\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="ImportedModel.h">
+      <Filter>Source Files\Rendering\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="Tank.h">
+      <Filter>Source Files\Rendering\Models</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TankThemAll.cpp">
@@ -152,19 +164,28 @@
     <ClCompile Include="Diamond.cpp">
       <Filter>Source Files\Rendering\Models</Filter>
     </ClCompile>
+    <ClCompile Include="Mesh.cpp">
+      <Filter>Source Files\Rendering\Models</Filter>
+    </ClCompile>
+    <ClCompile Include="ImportedModel.cpp">
+      <Filter>Source Files\Rendering\Models</Filter>
+    </ClCompile>
+    <ClCompile Include="Tank.cpp">
+      <Filter>Source Files\Rendering\Models</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <None Include="Shaders\VertexShader.glsl">
-      <Filter>Shaders</Filter>
-    </None>
-    <None Include="Shaders\FragmentShader.glsl">
-      <Filter>Shaders</Filter>
-    </None>
     <None Include="Shaders\Cube_Fragment_Shader.glsl">
       <Filter>Shaders</Filter>
     </None>
     <None Include="Shaders\Cube_Vertex_Shader.glsl">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Shaders\ImportedFragmentShader.glsl">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Shaders\ImportedVertexShader.glsl">
       <Filter>Shaders</Filter>
     </None>
   </ItemGroup>
