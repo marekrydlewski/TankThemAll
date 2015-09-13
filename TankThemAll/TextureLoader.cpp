@@ -24,8 +24,6 @@ GLuint TextureLoader::LoadTexture(const std::string& filename, unsigned int widt
 	glGetFloatv(GL_MAX_TEXTURE_MAX_ANISOTROPY_EXT, &maxAnisotropy);
 	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAX_ANISOTROPY_EXT, maxAnisotropy);
 
-	//cand lucram cu texturi cu dimensiuni non multiple de 4 trebuie sa facem cititorul de randuri
-	//ce incarca texturile in OpenGL sa lucreze cu memorie aliniata la 1 (default este la 4)
 	//when we work with textures of sizes not divisible by 4 we have to use the line reader
 	//which loads the textures in OpenGL so as it can work with a 1 alligned memory (default is 4)
 	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
