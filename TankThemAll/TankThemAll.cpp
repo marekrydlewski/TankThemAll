@@ -30,6 +30,7 @@ int main(int argc, char **argv)
 	engine->GetModels_Manager()->SetModel("tank", tank);
 	engine->GetModels_Manager()->SetModel("diamond", diamond);
 
+	engine->BindTank("tank");
 	engine->Run();
 
 	delete engine;

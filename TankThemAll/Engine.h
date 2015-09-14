@@ -1,6 +1,8 @@
 #pragma once
 #include "SceneManager.h"
 #include "InitGLUT.h"
+#include "Tank.h"
+
 namespace BasicEngine
 {
 	class Engine
@@ -22,7 +24,7 @@ namespace BasicEngine
 		Managers::Models_Manager* GetModels_Manager() const;
 
 		TextureLoader* GetTexture_Loader() const;
-		void BindTank(string) const;
+		void BindTank(std::string) const;
 	private:
 		Managers::Scene_Manager*  m_scene_manager;
 		Managers::Shader_Manager* m_shader_manager;

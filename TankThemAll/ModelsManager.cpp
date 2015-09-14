@@ -83,16 +83,21 @@ void Models_Manager::DeleteModel_NDC(const std::string& gameModelName)
 
 }
 
-const IGameObject& Models_Manager::GetModel(const std::string& gameModelName) const
+IGameObject& Models_Manager::GetModel(const std::string& gameModelName) const
 {
 	return (*gameModelList.at(gameModelName));
 }
 
-const IGameObject& Models_Manager::GetModel_NDC(const std::string& gameModelName) const
+IGameObject& Models_Manager::GetModel_NDC(const std::string& gameModelName) const
 {
 	return (*gameModelList_NDC.at(gameModelName));
 }
 
+
+IGameObject* Models_Manager::GetModelPointer(const std::string& gameModelName) const
+{
+	return gameModelList.at(gameModelName);
+}
 void Models_Manager::SetModel(const std::string& gameObjectName, IGameObject* gameObject)
 {
 	gameModelList[gameObjectName.c_str()] = gameObject;

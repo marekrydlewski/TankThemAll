@@ -21,10 +21,10 @@ namespace BasicEngine
 			void Update();
 
 			void DeleteModel(const std::string& gameModelName);
-			const IGameObject& GetModel(const std::string& gameModelName) const;
-
+			IGameObject& GetModel(const std::string& gameModelName) const;
+			IGameObject* GetModelPointer(const std::string& gameModelName) const;
 			void DeleteModel_NDC(const std::string& gameModelName);
-			const IGameObject& GetModel_NDC(const std::string& gameModelName) const;
+			IGameObject& GetModel_NDC(const std::string& gameModelName) const;
 
 			void SetModel(const std::string& gameObjectName, IGameObject* gameObject);
 
