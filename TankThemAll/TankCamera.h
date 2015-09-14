@@ -17,6 +17,8 @@ namespace BasicEngine{
 			TankCamera(GLfloat posX, GLfloat posY, GLfloat posZ, GLfloat upX, GLfloat upY, GLfloat upZ, GLfloat yaw, GLfloat pitch) :
 				Camera(posX, posY, posZ, upX, upY, upZ, yaw, pitch){}
 			virtual ~TankCamera();
+		private:
+			glm::vec3 offset;
 		};
 	}
 }

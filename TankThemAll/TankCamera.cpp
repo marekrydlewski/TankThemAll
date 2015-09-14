@@ -9,8 +9,8 @@ TankCamera::~TankCamera()
 {
 }
 
-void TankCamera::SetTankOffset(glm::vec3)
+void TankCamera::SetTankOffset(glm::vec3 offset)
 {
-
+	this->offset = offset;
 }
 

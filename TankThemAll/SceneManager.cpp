@@ -147,6 +147,7 @@ void Scene_Manager::BindTank(std::string name)
 
 	tank = dynamic_cast<Tank*>(models_manager->GetModelPointer(name));
 	if (tank == nullptr)
-		std::cout << "BindTank function Error: Cannot find tank object" << std::endl;
-
+		std::cout << "ENGINE: BindTank function Error: Cannot find tank object" << std::endl;
+	else
+		std::cout << "ENGINE: Camera successfully found tank object" << std::endl;
 }

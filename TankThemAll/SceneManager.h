@@ -24,6 +24,9 @@ namespace BasicEngine
 			virtual glm::mat4 GetViewFromCamera();
 
 			void BindTank(std::string);
+			void SetCameraOffset(glm::vec3 x){
+				camera->SetTankOffset(x);
+			}
 			void SetModelsManager(Managers::Models_Manager* models_manager);
 	
 				

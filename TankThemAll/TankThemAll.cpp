@@ -31,6 +31,7 @@ int main(int argc, char **argv)
 	engine->GetModels_Manager()->SetModel("diamond", diamond);
 
 	engine->GetScene_Manager()->BindTank("tank");
+	engine->GetScene_Manager()->SetCameraOffset(glm::vec3(0.0f, 2.0f, -2.0f));
 
 	engine->Run();
 
