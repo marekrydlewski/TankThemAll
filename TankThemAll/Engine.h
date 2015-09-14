@@ -25,6 +25,7 @@ namespace BasicEngine
 
 		TextureLoader* GetTexture_Loader() const;
 		void BindTank(std::string) const;
+
 	private:
 		Managers::Scene_Manager*  m_scene_manager;
 		Managers::Shader_Manager* m_shader_manager;

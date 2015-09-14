@@ -5,12 +5,6 @@ using namespace BasicEngine;
 using  namespace Rendering;
 
 
-
-TankCamera::TankCamera()
-{
-}
-
-
 TankCamera::~TankCamera()
 {
 }

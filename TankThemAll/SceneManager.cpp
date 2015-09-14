@@ -56,7 +56,7 @@ Scene_Manager::Scene_Manager()
 	glEnable(GL_DEPTH_TEST);
 	//glEnable(GL_CULL_FACE); //add to enable culling
 
-	camera = new Camera(glm::vec3(1, 1, 10), glm::vec3(0, 1, 0), YAW, PITCH);
+	camera = new TankCamera(glm::vec3(1, 1, 10), glm::vec3(0, 1, 0), YAW, PITCH);
 	projection_matrix = glm::perspective(45.0f, 16.0f / 9.0f, 0.1f, 100.0f);
 
 	//enable callbacks

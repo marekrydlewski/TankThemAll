@@ -2,6 +2,7 @@
 #include "IListener.h"
 #include "ModelsManager.h"
 #include "Camera.h"
+#include "TankCamera.h"
 
 namespace BasicEngine
 {
@@ -26,7 +27,7 @@ namespace BasicEngine
 				
 		private:
 			Managers::Models_Manager* models_manager;
-			Rendering::Camera* camera;
+			Rendering::TankCamera* camera;
 			glm::mat4 projection_matrix;
 			glm::mat4 view_matrix;
 		private:
