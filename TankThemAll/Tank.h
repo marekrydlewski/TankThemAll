@@ -1,10 +1,21 @@
 #pragma once
 #include "ImportedModel.h"
-class Tank :
-	public ImportedModel
-{
-public:
-	Tank();
-	virtual ~Tank();
-};
 
+namespace BasicEngine
+{
+	namespace Rendering
+	{
+		namespace Models
+		{
+
+			class Tank :
+				public ImportedModel
+			{
+			public:
+				Tank();
+				virtual ~Tank();
+			};
+
+		}
+	}
+}

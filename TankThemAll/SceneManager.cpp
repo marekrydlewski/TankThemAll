@@ -2,6 +2,7 @@
 #include "SceneManager.h"
 using namespace BasicEngine;
 using namespace Managers;
+using namespace Models;
 using namespace std;
 
 /* ... */
@@ -138,4 +139,14 @@ void Scene_Manager::MakeMouseMove(int x, int y)
 void Scene_Manager::ProcessMouseMove()
 {
 	MakeMouseMove(xoffset, yoffset);
+}
+
+
+void Scene_Manager::BindTank(std::string name)
+{
+
+	tank = dynamic_cast<Tank*>(models_manager->GetModelPointer(name));
+	if (tank == nullptr)
+		std::cout << "BindTank function Error: Cannot find tank object" << std::endl;
+
 }

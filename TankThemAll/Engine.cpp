@@ -81,11 +81,3 @@ Engine::~Engine()
 		delete m_texture_loader;
 }
 
-void Engine::BindTank(std::string name) const
-{
-
-	Tank* tank = dynamic_cast<Tank*>(m_models_manager->GetModelPointer("tank"));
-	if (tank == nullptr)
-		std::cout << "BindTank function Error: Cannot find tank object" << std::endl;
-
-}

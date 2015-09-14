@@ -24,7 +24,6 @@ namespace BasicEngine
 		Managers::Models_Manager* GetModels_Manager() const;
 
 		TextureLoader* GetTexture_Loader() const;
-		void BindTank(std::string) const;
 
 	private:
 		Managers::Scene_Manager*  m_scene_manager;
