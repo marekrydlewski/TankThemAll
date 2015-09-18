@@ -2,8 +2,9 @@
 #include "Engine.h"
 #include "Tank.h"
 #include "Diamond.h"
-
+#include "SOIL.h"
 using namespace BasicEngine;
+using namespace std;
 
 int main(int argc, char **argv)
 {
@@ -18,7 +19,8 @@ int main(int argc, char **argv)
 	engine->GetShader_Manager()->CreateProgram("importedModelShader",
 		"Shaders\\ImportedVertexShader.glsl",
 		"Shaders\\ImportedFragmentShader.glsl");
-	
+
+
 	
 	Tank* tank = new Tank();
 	tank->SetProgram(engine->GetShader_Manager()->GetShader("importedModelShader"));
