@@ -14,7 +14,11 @@ namespace BasicEngine
 			public:
 				Tank();
 				virtual ~Tank();
+				glm::mat4 GetTankMatrix();
+			private:
+				glm::mat4 tank_model_matrix;
 			};
+
 
 		}
 	}
