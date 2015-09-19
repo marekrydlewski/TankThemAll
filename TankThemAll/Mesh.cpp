@@ -24,7 +24,7 @@ void Mesh::Create(std::vector<VertexFormat> vertices, std::vector<GLuint> indice
 
 void Mesh::Update()
 {
-	model_matrix = glm::rotate(model_matrix, 0.01f, glm::vec3(0.0, 1.0, 0.0));
+	//model_matrix = glm::rotate(model_matrix, 0.01f, glm::vec3(0.0, 1.0, 0.0));
 }
 
 void Mesh::Draw(const glm::mat4& projection_matrix, const glm::mat4& view_matrix)
@@ -98,6 +98,6 @@ void Mesh::setupMesh()
 	this->vbos.push_back(EBO);
 
 	this->model_matrix = glm::mat4(1.0);
-
-	this->model_matrix = glm::scale(this->model_matrix,glm::vec3(0.3f, 0.3f, 0.3f));
+	this->model_matrix = glm::rotate(this->model_matrix, 3.141f, glm::vec3(0.0f, 1.0f, 0.0f));
+	//this->model_matrix = glm::scale(this->model_matrix,glm::vec3(0.3f, 0.3f, 0.3f));
 }

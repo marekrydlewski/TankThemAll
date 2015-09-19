@@ -6,18 +6,7 @@ using namespace Rendering;
 
 Models_Manager::Models_Manager()
 {
-	//two examples - when in doubt decomment these to see something on the screen
-	//Models::Triangle* triangle = new Models::Triangle();
-	//triangle->SetProgram(Shader_Manager::GetShader("colorShader"));
-	//triangle->Create();
-	//gameModelList_NDC["triangle"] = triangle;
-
-	//Models::Quad* quad = new Models::Quad();
-	//quad->SetProgram(Shader_Manager::GetShader("colorShader"));
-	//quad->Create();
-	//gameModelList_NDC["quad"] = quad;
-
-
+	
 }
 
 Models_Manager::~Models_Manager()
@@ -83,16 +72,21 @@ void Models_Manager::DeleteModel_NDC(const std::string& gameModelName)
 
 }
 
-const IGameObject& Models_Manager::GetModel(const std::string& gameModelName) const
+IGameObject& Models_Manager::GetModel(const std::string& gameModelName) const
 {
 	return (*gameModelList.at(gameModelName));
 }
 
-const IGameObject& Models_Manager::GetModel_NDC(const std::string& gameModelName) const
+IGameObject& Models_Manager::GetModel_NDC(const std::string& gameModelName) const
 {
 	return (*gameModelList_NDC.at(gameModelName));
 }
 
+
+IGameObject* Models_Manager::GetModelPointer(const std::string& gameModelName) const
+{
+	return gameModelList.at(gameModelName);
+}
 void Models_Manager::SetModel(const std::string& gameObjectName, IGameObject* gameObject)
 {
 	gameModelList[gameObjectName.c_str()] = gameObject;

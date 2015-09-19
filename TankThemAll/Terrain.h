@@ -1,5 +1,4 @@
 #pragma once
-#include <vector>
 #include <map>
 #include "IGameObject.h"
 namespace BasicEngine
@@ -8,31 +7,37 @@ namespace BasicEngine
 	{
 		namespace Models
 		{
-			class Model : public IGameObject
+			class Terrain :
+				public IGameObject
 			{
 			public:
-				Model();
-				virtual ~Model();
-
-				virtual void Draw()             override;
+				Terrain();
+				virtual ~Terrain();
+				void Create(char *filename);
+				virtual void Draw() override;
 				virtual void Draw(const glm::mat4& projection_matrix, const glm::mat4& view_matrix) override;
-				virtual void Update()           override;
-				virtual void SetProgram(GLuint shaderName) override;
-				virtual void Destroy()          override;
+				virtual void Update() override;
+				virtual void Destroy() override;
+				virtual void SetProgram(GLuint program) override;
 
 				virtual GLuint GetVao()                     const override;
 				virtual const std::vector<GLuint> GetVbos() const override;
 
 				virtual const GLuint GetTexture(std::string textureName) const override;
 				virtual void SetTexture(std::string textureName, GLuint texture) override;
-
-			public:
-				GLuint vao;
+			private:
+				void ComputeNormals();
+				int width, height, channels;
+				int centerX, centerZ;
+				float scaleMap;
+				float** heights;
+				glm::vec3** vertexNormals;
+				std::vector<glm::vec3> faceNormals;
 				GLuint program;
+				GLuint vao;
 				std::vector<GLuint> vbos;
-				std::map<std::string, GLuint> textures;
 				glm::mat4 model_matrix;
-				
+				std::map<std::string, GLuint> textures;
 			};
 		}
 	}

@@ -2,6 +2,8 @@
 #include "IListener.h"
 #include "ModelsManager.h"
 #include "Camera.h"
+#include "TankCamera.h"
+#include "Tank.h"
 
 namespace BasicEngine
 {
@@ -21,12 +23,17 @@ namespace BasicEngine
 			virtual void ProcessMouseMove();
 			virtual glm::mat4 GetViewFromCamera();
 
+			void BindTank(std::string);
+			void SetCameraOffset(glm::vec3 x){
+				camera->SetTankOffset(x);
+			}
 			void SetModelsManager(Managers::Models_Manager* models_manager);
 	
 				
 		private:
 			Managers::Models_Manager* models_manager;
-			Rendering::Camera* camera;
+			Rendering::TankCamera* camera;
+			Rendering::Models::Tank* tank;
 			glm::mat4 projection_matrix;
 			glm::mat4 view_matrix;
 		private:
