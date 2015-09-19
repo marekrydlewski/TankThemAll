@@ -194,6 +194,12 @@
     <None Include="Shaders\ImportedVertexShader.glsl">
       <Filter>Shaders</Filter>
     </None>
+    <None Include="Shaders\TerrainFragmentShader.glsl">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Shaders\TerrainVertexShader.glsl">
+      <Filter>Shaders</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="TankThemAll.rc">

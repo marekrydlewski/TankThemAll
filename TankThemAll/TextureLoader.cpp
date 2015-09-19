@@ -7,7 +7,7 @@ using namespace BasicEngine::Rendering;
 GLuint TextureLoader::LoadTexture(const std::string& filename, int &width, int &height)
 {
 	
-	unsigned char* data = SOIL_load_image(filename.c_str(), &width, &height, 0, SOIL_LOAD_RGB);
+	unsigned char* data = SOIL_load_image(filename.c_str(), &width, &height, 0, SOIL_LOAD_AUTO);
 
 	//create the OpenGL texture
 	GLuint gl_texture_object;
@@ -18,7 +18,7 @@ GLuint TextureLoader::LoadTexture(const std::string& filename, int &width, int &
 	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	float maxAnisotropy;
 	glGetFloatv(GL_MAX_TEXTURE_MAX_ANISOTROPY_EXT, &maxAnisotropy);
 	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAX_ANISOTROPY_EXT, maxAnisotropy);

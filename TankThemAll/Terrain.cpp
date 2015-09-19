@@ -57,10 +57,10 @@ void Terrain::Create(char *filename)
 	{
 		for (int j = 0; j < width - 1; j++)
 		{
-			vertices.push_back(VertexFormat(glm::vec3((j - centerX) / scaleMap, heights[i][j], (i - centerZ) / scaleMap), glm::vec4(1, 1, 1, 1)));
-			vertices.push_back(VertexFormat(glm::vec3((j - centerX) / scaleMap, heights[i + 1][j], (i + 1 - centerZ) / scaleMap), glm::vec4(1, 0, 0, 1)));
-			vertices.push_back(VertexFormat(glm::vec3((j + 1 - centerX) / scaleMap, heights[i][j + 1], (i - centerZ) / scaleMap), glm::vec4(0, 1, 0, 1)));
-			vertices.push_back(VertexFormat(glm::vec3((j + 1 - centerX) / scaleMap, heights[i + 1][j + 1], (i + 1 - centerZ) / scaleMap), glm::vec4(0, 0, 1, 1)));
+			vertices.push_back(VertexFormat(glm::vec3((j - centerX) / scaleMap, heights[i][j], (i - centerZ) / scaleMap), glm::vec2(0, 0)));
+			vertices.push_back(VertexFormat(glm::vec3((j - centerX) / scaleMap, heights[i + 1][j], (i + 1 - centerZ) / scaleMap), glm::vec2(0, 1)));
+			vertices.push_back(VertexFormat(glm::vec3((j + 1 - centerX) / scaleMap, heights[i][j + 1], (i - centerZ) / scaleMap), glm::vec2(1, 0)));
+			vertices.push_back(VertexFormat(glm::vec3((j + 1 - centerX) / scaleMap, heights[i + 1][j + 1], (i + 1 - centerZ) / scaleMap), glm::vec2(1, 1)));
 		}
 	}
 
@@ -85,7 +85,7 @@ void Terrain::Create(char *filename)
 	glEnableVertexAttribArray(0);
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(VertexFormat), (GLvoid*)0);
 	glEnableVertexAttribArray(1);
-	glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, sizeof(VertexFormat), (GLvoid*)(offsetof(VertexFormat, VertexFormat::color)));
+	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, sizeof(VertexFormat), (GLvoid*)(offsetof(VertexFormat, VertexFormat::texture)));
 	glBindVertexArray(0);
 
 	this->vao = vao;
@@ -93,6 +93,11 @@ void Terrain::Create(char *filename)
 	this->vbos.push_back(ibo);
 
 	this->model_matrix = glm::mat4(1.0);
+
+	int texw, texh;
+	GLuint grass;
+	grass = TextureLoader::LoadTexture("textures\\grass.jpg", texw, texh);
+	SetTexture("grass", grass);
 }
 
 void Terrain::ComputeNormals()
@@ -149,6 +154,10 @@ void Terrain::Draw()
 void Terrain::Draw(const glm::mat4& projection_matrix, const glm::mat4& view_matrix)
 {
 	glUseProgram(program);
+	glActiveTexture(GL_TEXTURE0);
+	GLint location = glGetUniformLocation(program, "texture_grass");
+	glUniform1i(location, 0);
+	glBindTexture(GL_TEXTURE_2D, this->textures["grass"]);
 	glUniformMatrix4fv(glGetUniformLocation(program, "model_matrix"), 1, false, &model_matrix[0][0]);
 	glUniformMatrix4fv(glGetUniformLocation(program, "view_matrix"), 1, false, &view_matrix[0][0]);
 	glUniformMatrix4fv(glGetUniformLocation(program, "projection_matrix"), 1, false, &projection_matrix[0][0]);
@@ -184,7 +193,8 @@ const GLuint Terrain::GetTexture(std::string textureName) const
 
 void Terrain::SetTexture(std::string textureName, GLuint texture)
 {
-
+	if (texture == 0) return;
+	textures[textureName] = texture;
 }
 
 void Terrain::Destroy()

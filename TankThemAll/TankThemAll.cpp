@@ -19,8 +19,12 @@ int main(int argc, char **argv)
 		"Shaders\\ImportedVertexShader.glsl",
 		"Shaders\\ImportedFragmentShader.glsl");
 
+	engine->GetShader_Manager()->CreateProgram("terrainShader",
+		"Shaders\\TerrainVertexShader.glsl",
+		"Shaders\\TerrainFragmentShader.glsl");
+
 	Terrain* terrain = new Terrain();
-	terrain->SetProgram(engine->GetShader_Manager()->GetShader("cubeShader"));
+	terrain->SetProgram(engine->GetShader_Manager()->GetShader("terrainShader"));
 	terrain->Create("maps\\map.bmp");
 
 	engine->GetModels_Manager()->SetModel("map", terrain);

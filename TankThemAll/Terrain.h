@@ -1,4 +1,5 @@
 #pragma once
+#include <map>
 #include "IGameObject.h"
 namespace BasicEngine
 {
@@ -36,6 +37,7 @@ namespace BasicEngine
 				GLuint vao;
 				std::vector<GLuint> vbos;
 				glm::mat4 model_matrix;
+				std::map<std::string, GLuint> textures;
 			};
 		}
 	}

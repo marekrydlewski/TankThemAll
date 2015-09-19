@@ -148,6 +148,8 @@
     <None Include="Shaders\Cube_Vertex_Shader.glsl" />
     <None Include="Shaders\ImportedFragmentShader.glsl" />
     <None Include="Shaders\ImportedVertexShader.glsl" />
+    <None Include="Shaders\TerrainFragmentShader.glsl" />
+    <None Include="Shaders\TerrainVertexShader.glsl" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="TankThemAll.rc" />
