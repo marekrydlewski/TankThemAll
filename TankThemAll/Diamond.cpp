@@ -96,6 +96,7 @@ void Diamond::Create()
 	// puts 1.0 on the diagonal
 	// all other components are 0.0
 	this->model_matrix = glm::mat4(1.0);	
+	this->model_matrix = glm::translate(model_matrix, glm::vec3(5.0f, -1.0f, -5.0f));
 	this->rotate = 0.01f;
 
 
@@ -103,7 +104,8 @@ void Diamond::Create()
 
 void Diamond::Update()
 {
-	model_matrix = glm::rotate(model_matrix, rotate, glm::vec3(1.0, 0.5, 0.1));
+	this->model_matrix = glm::rotate(model_matrix, rotate, glm::vec3(1.0, 0, 0));
+	this->model_matrix = glm::translate(model_matrix, glm::vec3(0.0f, -0.02f, 0.0f));
 
 }
 

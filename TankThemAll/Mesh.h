@@ -2,6 +2,7 @@
 
 #include <vector>
 #include "stdafx.h"
+#include <sstream>
 #include "VertexFormat.h"
 #include "TextureWrap.h"
 #include "Model.h"

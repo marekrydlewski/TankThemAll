@@ -18,11 +18,13 @@ namespace BasicEngine
 									   int height,
 									   int previous_width,
 									   int previous_height) = 0;
+			virtual void MakeCameraMove(GLfloat) = 0;
+			virtual void ProcessMouseMove() = 0;
 		};
 
 		inline IListener::~IListener()
 		{
-			//implementation of pure virtual destructor
+
 		}
 	}
 }

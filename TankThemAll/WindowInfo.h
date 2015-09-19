@@ -17,7 +17,7 @@ namespace BasicEngine
 			WindowInfo()
 			{
 
-				name = "OpenGL tutorial";
+				name = "TankThemAll";
 				width = 800; height = 600;
 				position_x = 300;
 				position_y = 300;

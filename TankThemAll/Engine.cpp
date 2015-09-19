@@ -12,8 +12,9 @@ Engine::Engine()
 //You can set params for init
 bool Engine::Init()
 {
-	WindowInfo window(std::string("TankThemAll"), 400, 200, 800, 600, true);
-	ContextInfo context(4, 4, true);
+	WindowInfo window(std::string("TankThemAll"), 100, 100, 1600, 900, true);
+	ContextInfo context(4, 5, true);
+
 	FramebufferInfo frameBufferInfo(true, true, true, true);
 
 	Init::Init_GLUT::Init(window, context, frameBufferInfo);
@@ -79,3 +80,4 @@ Engine::~Engine()
 	if (m_texture_loader)
 		delete m_texture_loader;
 }
+

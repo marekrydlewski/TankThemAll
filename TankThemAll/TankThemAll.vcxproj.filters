@@ -119,6 +119,11 @@
     </ClInclude>
     <ClInclude Include="Terrain.h">
       <Filter>Source Files\Rendering\Models</Filter>
+    <ClInclude Include="Camera.h">
+      <Filter>Source Files\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="TankCamera.h">
+      <Filter>Source Files\Managers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -178,20 +183,22 @@
     </ClCompile>
     <ClCompile Include="Terrain.cpp">
       <Filter>Source Files\Rendering\Models</Filter>
+    <ClCompile Include="TankCamera.cpp">
+      <Filter>Source Files\Managers</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <None Include="Shaders\Cube_Fragment_Shader.glsl">
-      <Filter>Shaders</Filter>
-    </None>
-    <None Include="Shaders\Cube_Vertex_Shader.glsl">
-      <Filter>Shaders</Filter>
-    </None>
     <None Include="Shaders\ImportedFragmentShader.glsl">
       <Filter>Shaders</Filter>
     </None>
     <None Include="Shaders\ImportedVertexShader.glsl">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Shaders\Base_Vertex_Shader.glsl">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Shaders\Base_Fragment_Shader.glsl">
       <Filter>Shaders</Filter>
     </None>
     <None Include="Shaders\TerrainFragmentShader.glsl">

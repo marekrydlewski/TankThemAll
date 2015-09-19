@@ -26,7 +26,7 @@ namespace BasicEngine
 				virtual const GLuint GetTexture(std::string textureName) const override;
 				virtual void SetTexture(std::string textureName, GLuint texture) override;
 
-			protected:
+			public:
 				GLuint vao;
 				GLuint program;
 				std::vector<GLuint> vbos;

@@ -1,5 +1,7 @@
 #pragma once
 #include<vector>
+#include <iostream>
+#include "TextureLoader.h"
 #include "Mesh.h"
 
 using namespace BasicEngine::Rendering::Models;
@@ -24,7 +26,7 @@ public:
 	virtual const GLuint GetTexture(std::string textureName) const override;
 	virtual void SetTexture(std::string textureName, GLuint texture) override;
 
-private:
+protected:
 	/*  Model Data  */
 	std::vector<Mesh*> meshes;
 	std::string directory;
