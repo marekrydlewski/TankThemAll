@@ -15,8 +15,9 @@ namespace BasicEngine
 				Tank();
 				virtual ~Tank();
 				glm::mat4 GetTankMatrix();
-			private:
-				glm::mat4 tank_model_matrix;
+				void TranslateMeshes();
+				glm::mat4 tank_model_matrix; // it can be private later
+				glm::vec3 tank_model_position; // it can be private later
 			};
 
 

@@ -121,7 +121,7 @@
       <Filter>Source Files\Managers</Filter>
     </ClInclude>
     <ClInclude Include="TankCamera.h">
-      <Filter>Source Files\Core</Filter>
+      <Filter>Source Files\Managers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

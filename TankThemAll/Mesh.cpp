@@ -98,6 +98,6 @@ void Mesh::setupMesh()
 	this->vbos.push_back(EBO);
 
 	this->model_matrix = glm::mat4(1.0);
-
+	this->model_matrix = glm::rotate(this->model_matrix, 3.141f, glm::vec3(0.0f, 1.0f, 0.0f));
 	//this->model_matrix = glm::scale(this->model_matrix,glm::vec3(0.3f, 0.3f, 0.3f));
 }

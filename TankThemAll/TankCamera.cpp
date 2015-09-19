@@ -12,5 +12,11 @@ TankCamera::~TankCamera()
 void TankCamera::SetTankOffset(glm::vec3 offset)
 {
 	this->offset = offset;
+	
 }
 
+
+glm::vec3 TankCamera::GetTranslation()
+{
+	return this->offset - this->Position;
+}

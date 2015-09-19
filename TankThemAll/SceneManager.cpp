@@ -57,7 +57,7 @@ Scene_Manager::Scene_Manager()
 	glEnable(GL_DEPTH_TEST);
 	//glEnable(GL_CULL_FACE); //add to enable culling
 
-	camera = new TankCamera(glm::vec3(1, 1, 10), glm::vec3(0, 1, 0), YAW, PITCH);
+	//camera = new TankCamera(glm::vec3(1, 1, 10), glm::vec3(0, 1, 0), YAW, PITCH);
 	projection_matrix = glm::perspective(45.0f, 16.0f / 9.0f, 0.1f, 100.0f);
 
 	//enable callbacks
@@ -92,6 +92,8 @@ void Scene_Manager::NotifyDisplayFrame()
 	glEnable(GL_BLEND);											// added for multitexturing tutorial
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
+	//tank->tank_model_matrix -= glm::translate(tank->tank_model_matrix, camera->GetTranslation()); //diffrence between old state end new state
+	//tank->tank_model_position -= camera->GetTranslation();
 	models_manager->Draw();
 	models_manager->Draw(projection_matrix, GetViewFromCamera());
 }
@@ -118,6 +120,7 @@ glm::mat4 Scene_Manager::GetViewFromCamera()
 
 void Scene_Manager::MakeCameraMove(GLfloat deltaTime)
 {
+	auto temp = this->camera->GetTranslation();
 	if (keys[GLUT_KEY_UP])
 		camera->ProcessKeyboard(FORWARD, deltaTime);
 	if (keys[GLUT_KEY_DOWN])
@@ -126,6 +129,8 @@ void Scene_Manager::MakeCameraMove(GLfloat deltaTime)
 		camera->ProcessKeyboard(LEFT, deltaTime);
 	if (keys[GLUT_KEY_RIGHT])
 		camera->ProcessKeyboard(RIGHT, deltaTime);
+	this->tank->tank_model_position = this->camera->GetTranslation() - temp;
+	this->tank->TranslateMeshes();
 }
 
 void Scene_Manager::MakeMouseMove(int x, int y)
@@ -150,4 +155,9 @@ void Scene_Manager::BindTank(std::string name)
 		std::cout << "ENGINE: BindTank function Error: Cannot find tank object" << std::endl;
 	else
 		std::cout << "ENGINE: Camera successfully found tank object" << std::endl;
+
+	camera = new TankCamera(tank->tank_model_position + glm::vec3(0, 5, 15), glm::vec3(0, 1, 0), YAW, PITCH);
+	camera->SetTankOffset(glm::vec3(0, 5, 15));
+	this->tank->tank_model_position = this->camera->GetTranslation();
+
 }

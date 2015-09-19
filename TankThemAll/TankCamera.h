@@ -12,6 +12,7 @@ namespace BasicEngine{
 		{
 		public:
 			void SetTankOffset(glm::vec3);
+			glm::vec3 GetTranslation();
 			TankCamera(glm::vec3 position = glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3 up = glm::vec3(0.0f, 1.0f, 0.0f), GLfloat yaw = YAW, GLfloat pitch = PITCH):
 				Camera(position, up, yaw, pitch){}
 			TankCamera(GLfloat posX, GLfloat posY, GLfloat posZ, GLfloat upX, GLfloat upY, GLfloat upZ, GLfloat yaw, GLfloat pitch) :
