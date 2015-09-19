@@ -3,7 +3,7 @@
 #include "Tank.h"
 #include "Terrain.h"
 #include "Diamond.h"
-#include "SOIL.h"
+#include <SOIL.h>
 using namespace BasicEngine;
 using namespace std;
 
