@@ -25,11 +25,11 @@ int main(int argc, char **argv)
 
 	engine->GetModels_Manager()->SetModel("map", terrain);
 	
-	/*Tank* tank = new Tank();
+	Tank* tank = new Tank();
 	tank->SetProgram(engine->GetShader_Manager()->GetShader("importedModelShader"));
 	tank->Create("models\\Tiger\\Tiger_I.obj");
 
-	engine->GetModels_Manager()->SetModel("tank", tank);*/
+	engine->GetModels_Manager()->SetModel("tank", tank);
 	
 	engine->Run();
 
