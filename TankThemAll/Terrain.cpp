@@ -23,7 +23,7 @@ void Terrain::Create(char *filename)
 	unsigned char *data = SOIL_load_image(filename, &width, &height, &channels, SOIL_LOAD_L);
 	centerX = width / 2;
 	centerZ = height / 2;
-	scaleMap = 16.0;
+	scaleMap = 1.0;
 
 	heights = new float*[height];
 	for (int i = 0; i < height; ++i)
@@ -40,7 +40,7 @@ void Terrain::Create(char *filename)
 	for (int i = 0; i < height; i++)
 		for (int j = 0; j < width; j++)
 		{
-			heights[i][j] = ((float)data[i*width + j] / 128.0) - 1;
+			heights[i][j] = ((float)data[i*width + j] / 32.0) - 4;
 		}
 
 	ComputeNormals();
