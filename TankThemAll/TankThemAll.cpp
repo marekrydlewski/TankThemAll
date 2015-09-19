@@ -15,8 +15,6 @@ int main(int argc, char **argv)
 		"Shaders\\Cube_Vertex_Shader.glsl",
 		"Shaders\\Cube_Fragment_Shader.glsl");
 	
-
-	
 	engine->GetShader_Manager()->CreateProgram("importedModelShader",
 		"Shaders\\ImportedVertexShader.glsl",
 		"Shaders\\ImportedFragmentShader.glsl");
@@ -27,11 +25,11 @@ int main(int argc, char **argv)
 
 	engine->GetModels_Manager()->SetModel("map", terrain);
 	
-	Tank* tank = new Tank();
+	/*Tank* tank = new Tank();
 	tank->SetProgram(engine->GetShader_Manager()->GetShader("importedModelShader"));
 	tank->Create("models\\Tiger\\Tiger_I.obj");
 
-	engine->GetModels_Manager()->SetModel("tank", tank);
+	engine->GetModels_Manager()->SetModel("tank", tank);*/
 	
 	engine->Run();
 

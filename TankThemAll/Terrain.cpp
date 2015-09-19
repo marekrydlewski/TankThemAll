@@ -20,12 +20,10 @@ void Terrain::Create(char *filename)
 	GLuint vbo;
 	GLuint ibo;
 
-	//unsigned char *data = SOIL_load_image(filename, &width, &height, &channels, SOIL_LOAD_L);
-	width = 4;
-	height = 4;
+	unsigned char *data = SOIL_load_image(filename, &width, &height, &channels, SOIL_LOAD_L);
 	centerX = width / 2;
 	centerZ = height / 2;
-	scaleMap = 8.0;
+	scaleMap = 16.0;
 
 	heights = new float*[height];
 	for (int i = 0; i < height; ++i)
@@ -42,13 +40,12 @@ void Terrain::Create(char *filename)
 	for (int i = 0; i < height; i++)
 		for (int j = 0; j < width; j++)
 		{
-			//heights[i][j] = ((float)data[i*width + j] / 128.0) - 1;
-			heights[i][j] = 0;
+			heights[i][j] = ((float)data[i*width + j] / 128.0) - 1;
 		}
 
 	ComputeNormals();
 
-	//SOIL_free_image_data(data);
+	SOIL_free_image_data(data);
 
 	glGenVertexArrays(1, &vao);
 	glBindVertexArray(vao);
@@ -60,10 +57,10 @@ void Terrain::Create(char *filename)
 	{
 		for (int j = 0; j < width - 1; j++)
 		{
-			vertices.push_back(VertexFormat(glm::vec3((j - centerX) / scaleMap, heights[i][j], (i - centerZ) / scaleMap), glm::vec4(1, 0, 0, 1)));
-			vertices.push_back(VertexFormat(glm::vec3((j + 1 - centerX) / scaleMap, heights[i][j + 1], (i - centerZ) / scaleMap), glm::vec4(1, 0, 0, 1)));
+			vertices.push_back(VertexFormat(glm::vec3((j - centerX) / scaleMap, heights[i][j], (i - centerZ) / scaleMap), glm::vec4(1, 1, 1, 1)));
 			vertices.push_back(VertexFormat(glm::vec3((j - centerX) / scaleMap, heights[i + 1][j], (i + 1 - centerZ) / scaleMap), glm::vec4(1, 0, 0, 1)));
-			vertices.push_back(VertexFormat(glm::vec3((j + 1 - centerX) / scaleMap, heights[i + 1][j + 1], (i + 1 - centerZ) / scaleMap), glm::vec4(1, 0, 0, 1)));
+			vertices.push_back(VertexFormat(glm::vec3((j + 1 - centerX) / scaleMap, heights[i][j + 1], (i - centerZ) / scaleMap), glm::vec4(0, 1, 0, 1)));
+			vertices.push_back(VertexFormat(glm::vec3((j + 1 - centerX) / scaleMap, heights[i + 1][j + 1], (i + 1 - centerZ) / scaleMap), glm::vec4(0, 0, 1, 1)));
 		}
 	}
 
@@ -110,7 +107,7 @@ void Terrain::ComputeNormals()
 				A = heights[i][j];
 				B = heights[i + 1][j];
 				C = heights[i][j + 1];
-				glm::vec3 crossProduct = glm::cross(glm::vec3(-1/scaleMap, A - C, 0), glm::vec3(-1/scaleMap, B - C, 1/scaleMap));
+				glm::vec3 crossProduct = glm::cross(glm::vec3(0, A - B, -1 / scaleMap), glm::vec3(1 / scaleMap, C - B, -1 / scaleMap));
 				vertexNormals[i][j] += crossProduct;
 				vertexNormals[i][j + 1] += crossProduct;
 				vertexNormals[i + 1][j] += crossProduct;
@@ -121,7 +118,7 @@ void Terrain::ComputeNormals()
 				A = heights[i][j];
 				B = heights[i + 1][j];
 				C = heights[i + 1][j - 1];
-				glm::vec3 crossProduct = glm::cross(glm::vec3(1/scaleMap, A - C, -1/scaleMap), glm::vec3(1/scaleMap, B - C, 0));
+				glm::vec3 crossProduct = glm::cross(glm::vec3(-1 / scaleMap, C - A, 1 / scaleMap), glm::vec3(0, B - A, 1 / scaleMap));
 				vertexNormals[i][j] += crossProduct;
 				vertexNormals[i + 1][j - 1] += crossProduct;
 				vertexNormals[i + 1][j] += crossProduct;
@@ -156,7 +153,7 @@ void Terrain::Draw(const glm::mat4& projection_matrix, const glm::mat4& view_mat
 	glUniformMatrix4fv(glGetUniformLocation(program, "view_matrix"), 1, false, &view_matrix[0][0]);
 	glUniformMatrix4fv(glGetUniformLocation(program, "projection_matrix"), 1, false, &projection_matrix[0][0]);
 	glBindVertexArray(vao);
-	glDrawElements(GL_TRIANGLES, (width-1)*(height-1)*2, GL_UNSIGNED_INT, 0);
+	glDrawElements(GL_TRIANGLES, (width-1)*(height-1)*6, GL_UNSIGNED_INT, 0);
 }
 
 void Terrain::Update()
@@ -166,18 +163,18 @@ void Terrain::Update()
 
 void Terrain::SetProgram(GLuint program)
 {
+	if (program == 0) return;
 	this->program = program;
 }
 
 GLuint Terrain::GetVao() const
 {
-	return 0;
+	return vao;
 }
 
 const std::vector<GLuint> Terrain::GetVbos() const
 {
-	std::vector<GLuint> returrnve;
-	return returrnve;
+	return vbos;
 }
 
 const GLuint Terrain::GetTexture(std::string textureName) const
@@ -195,4 +192,7 @@ void Terrain::Destroy()
 	delete heights;
 	delete vertexNormals;
 	faceNormals.clear();
+	glDeleteVertexArrays(1, &vao);
+	glDeleteBuffers(vbos.size(), &vbos[0]);
+	vbos.clear();
 }
