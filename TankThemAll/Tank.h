@@ -20,6 +20,7 @@ namespace BasicEngine
 				glm::mat4 tank_model_matrix; // it can be private later
 				glm::vec3 tank_model_position; // it can be private later
 				GLfloat tank_model_rotation;
+				GLfloat tank_model_turret_rotation;
 			};
 
 

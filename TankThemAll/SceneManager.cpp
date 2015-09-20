@@ -31,6 +31,24 @@ void CameraCallbackUp(int key, int x, int y)
 	}
 }
 
+void CameraCallbackDownChar(unsigned char key, int x, int y)
+{
+
+	if (key >= 0 && key < 1024)
+	{
+		keys[key] = true;
+	}
+}
+
+void CameraCallbackUpChar(unsigned char key, int x, int y)
+{
+
+	if (key >= 0 && key < 1024)
+	{
+		keys[key] = false;
+	}
+}
+
 void CameraMouseCallback(int xpos, int ypos)
 {
 	if (activeUpdateCamera == false){
@@ -73,8 +91,10 @@ Scene_Manager::~Scene_Manager()
 
 void Scene_Manager::EnableCallbacks()
 {
-	glutSpecialFunc(CameraCallbackDown);
-	glutSpecialUpFunc(CameraCallbackUp);
+	//glutSpecialFunc(CameraCallbackDown);
+	//glutSpecialUpFunc(CameraCallbackUp);
+	glutKeyboardFunc(CameraCallbackDownChar);
+	glutKeyboardUpFunc(CameraCallbackUpChar);
 	glutPassiveMotionFunc(CameraMouseCallback);
 }
 
@@ -122,11 +142,12 @@ void Scene_Manager::MakeCameraMove(GLfloat deltaTime)
 {
 	//auto temp_translation = this->camera->GetTranslation();
 	//auto temp_rotation = this->camera->Yaw;
-	if (keys[GLUT_KEY_UP])
+	auto temp = this->camera->Position;
+	if (keys[char('w')])
 		camera->ProcessKeyboard(FORWARD, deltaTime);
-	if (keys[GLUT_KEY_DOWN])
+	if (keys[char('s')])
 		camera->ProcessKeyboard(BACKWARD, deltaTime);
-	if (keys[GLUT_KEY_LEFT])
+	if (keys[char('a')])
 	{
 		camera->ProcessKeyboard(LEFT, deltaTime);
 		
@@ -134,9 +155,23 @@ void Scene_Manager::MakeCameraMove(GLfloat deltaTime)
 		//new_rotation.y = 0.0f;
 		//this->tank->tank_model_rotation = glm::angle(new_rotation, temp_rotation);
 	}
-	if (keys[GLUT_KEY_RIGHT])
+	if (keys[char('d')])
 	{
 		camera->ProcessKeyboard(RIGHT, deltaTime);
+		//auto new_rotation = this->camera->Position;
+		//new_rotation.y = 0.0f;
+		//this->tank->tank_model_rotation = -1.0f * glm::angle(new_rotation, temp_rotation);
+	}
+	if (keys[char('q')])
+	{
+		camera->ProcessKeyboard(LEFT_TURRET, deltaTime);
+		//auto new_rotation = this->camera->Position;
+		//new_rotation.y = 0.0f;
+		//this->tank->tank_model_rotation = -1.0f * glm::angle(new_rotation, temp_rotation);
+	}
+	if (keys[char('e')])
+	{
+		camera->ProcessKeyboard(RIGHT_TURRET, deltaTime);
 		//auto new_rotation = this->camera->Position;
 		//new_rotation.y = 0.0f;
 		//this->tank->tank_model_rotation = -1.0f * glm::angle(new_rotation, temp_rotation);
@@ -144,10 +179,13 @@ void Scene_Manager::MakeCameraMove(GLfloat deltaTime)
 	//this->tank->tank_model_position = this->camera->GetTranslation() - temp_translation;
 	//this->tank->tank_model_rotation = (temp_rotation - this->camera->Yaw) * 0.02;
 	//this->tank->TranslateMeshes();
-	this->tank->tank_model_position = glm::rotateY(this->camera->Position, this->camera->Yaw + 90.0f);
+	this->tank->tank_model_position += glm::rotateY(this->camera->Position - temp, this->camera->Yaw + 90.0f);
+	//this->tank->tank_model_position = (this->camera->Position);
 	this->tank->tank_model_rotation = this->camera->Yaw + 90.0f;
-	this->view_matrix = glm::lookAt(this->tank->tank_model_position + glm::rotateY(this->camera->offset, this->tank->tank_model_rotation), this->tank->tank_model_position, glm::vec3(0, 1.0f, 0.0f));
-	//this->view_matrix = glm::lookAt(this->tank->tank_model_position + this->camera->offset, this->tank->tank_model_position, glm::vec3(0, 1.0f, 0.0f));
+	this->tank->tank_model_turret_rotation = this->camera->TurretYaw;
+	/*this->view_matrix = glm::lookAt(this->tank->tank_model_position + glm::rotateY(this->camera->offset, this->tank->tank_model_rotation + this->tank->tank_model_turret_rotation), this->tank->tank_model_position, glm::vec3(0, 1.0f, 0.0f));*/
+	this->view_matrix = glm::lookAt(this->tank->tank_model_position + glm::rotateY(this->camera->offset, this->tank->tank_model_turret_rotation), this->tank->tank_model_position, glm::vec3(0, 1.0f, 0.0f));
+	
 
 }
 

@@ -11,14 +11,16 @@ namespace BasicEngine{
 			FORWARD,
 			BACKWARD,
 			LEFT,
-			RIGHT
+			RIGHT,
+			LEFT_TURRET,
+			RIGHT_TURRET
 		};
 
 		// Default camera values
 		const GLfloat YAW = -90.0f;
 		const GLfloat PITCH = 0.0f;
 		const GLfloat SPEED = 0.01f;
-		const GLfloat SENSITIVTY = 0.03f;
+		const GLfloat SENSITIVTY = 0.003f;
 		const GLfloat ZOOM = 45.0f;
 
 

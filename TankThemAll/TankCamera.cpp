@@ -29,9 +29,13 @@ void TankCamera::ProcessKeyboard(Camera_Movement direction, GLfloat deltaTime)
 	if (direction == BACKWARD)
 		this->Position -= this->Front * velocity;
 	if (direction == LEFT)
-		this->Yaw += -velocity;
+		this->Yaw += velocity*0.1;
 	if (direction == RIGHT)
-		this->Yaw += velocity;
+		this->Yaw += -velocity*0.1;
+	if (direction == RIGHT_TURRET)
+		this->TurretYaw += -velocity*0.1;
+	if (direction == LEFT_TURRET)
+		this->TurretYaw += velocity*0.1;
 	this->updateCameraVectors();
 }
 
