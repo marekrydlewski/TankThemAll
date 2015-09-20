@@ -121,7 +121,8 @@ glm::mat4 Scene_Manager::GetViewFromCamera()
 void Scene_Manager::MakeCameraMove(GLfloat deltaTime)
 {
 	
-	auto temp = this->camera->GetTranslation();
+	auto temp_translation = this->camera->GetTranslation();
+	auto temp_rotation = this->camera->Yaw;
 	if (keys[GLUT_KEY_UP])
 		camera->ProcessKeyboard(FORWARD, deltaTime);
 	if (keys[GLUT_KEY_DOWN])
@@ -130,7 +131,8 @@ void Scene_Manager::MakeCameraMove(GLfloat deltaTime)
 		camera->ProcessKeyboard(LEFT, deltaTime);
 	if (keys[GLUT_KEY_RIGHT])
 		camera->ProcessKeyboard(RIGHT, deltaTime);
-	this->tank->tank_model_position = this->camera->GetTranslation() - temp;
+	this->tank->tank_model_position = this->camera->GetTranslation() - temp_translation;
+	this->tank->tank_model_rotation = -this->camera->Yaw + temp_rotation;
 	this->tank->TranslateMeshes();
 }
 
@@ -158,7 +160,7 @@ void Scene_Manager::BindTank(std::string name)
 		std::cout << "ENGINE: Camera successfully found tank object" << std::endl;
 
 	camera = new TankCamera(tank->tank_model_position + glm::vec3(0, 5, 15), glm::vec3(0, 1, 0), YAW, PITCH);
-	camera->SetTankOffset(glm::vec3(0, 5, 15));
-	this->tank->tank_model_position = this->camera->GetTranslation();
+	//camera->SetTankOffset(glm::vec3(1000, 5, 115));
+	//this->tank->tank_model_position = this->camera->GetTranslation();
 
 }

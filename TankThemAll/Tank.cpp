@@ -9,6 +9,7 @@ Tank::Tank()
 {
 	tank_model_matrix = glm::mat4(1.0f);
 	tank_model_position = glm::vec3(0.0f);
+	tank_model_rotation = 0.0f;
 }
 
 
@@ -26,7 +27,9 @@ void Tank::TranslateMeshes()
 {
 	for (unsigned int i = 0; i < this->meshes.size(); i++)
 	{
+		this->meshes[i]->model_matrix = glm::rotate(this->meshes[i]->model_matrix, this->tank_model_rotation, glm::vec3(0, 1.0, 0));
 		this->meshes[i]->model_matrix = glm::translate(this->meshes[i]->model_matrix, this->tank_model_position);
+
 	}
 	
 }

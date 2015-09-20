@@ -115,8 +115,8 @@ namespace BasicEngine{
 				if (this->Zoom >= 45.0f)
 					this->Zoom = 45.0f;
 			}
-
-		private:
+			
+		protected:
 			// Calculates the front vector from the Camera's (updated) Eular Angles
 			void updateCameraVectors()
 			{
