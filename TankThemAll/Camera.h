@@ -1,6 +1,7 @@
 #pragma once
 #include "stdafx.h"
 #include <vector>
+#include <iostream>
 using namespace std;
 namespace BasicEngine{
 	namespace Rendering{

@@ -39,6 +39,7 @@ int main(int argc, char **argv)
 	Diamond* diamond = new Diamond();
 	diamond->SetProgram(engine->GetShader_Manager()->GetShader("baseShader"));
 	diamond->Create();
+
 	engine->GetModels_Manager()->SetModel("tank", tank);
 	engine->GetModels_Manager()->SetModel("diamond", diamond);
 

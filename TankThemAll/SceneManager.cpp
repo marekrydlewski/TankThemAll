@@ -120,6 +120,7 @@ glm::mat4 Scene_Manager::GetViewFromCamera()
 
 void Scene_Manager::MakeCameraMove(GLfloat deltaTime)
 {
+	
 	auto temp = this->camera->GetTranslation();
 	if (keys[GLUT_KEY_UP])
 		camera->ProcessKeyboard(FORWARD, deltaTime);
