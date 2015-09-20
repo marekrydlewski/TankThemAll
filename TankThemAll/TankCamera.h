@@ -18,8 +18,12 @@ namespace BasicEngine{
 			TankCamera(GLfloat posX, GLfloat posY, GLfloat posZ, GLfloat upX, GLfloat upY, GLfloat upZ, GLfloat yaw, GLfloat pitch) :
 				Camera(posX, posY, posZ, upX, upY, upZ, yaw, pitch){};
 			void ProcessKeyboard(Camera_Movement direction, GLfloat deltaTime);
+			GLfloat AngleY();
+			glm::mat4 GetViewMatrix()
+			{
+				return glm::lookAt(this->Position, this->Position + this->Front, this->Up);
+			}
 			virtual ~TankCamera();
-		private:
 			glm::vec3 offset;
 		};
 	}

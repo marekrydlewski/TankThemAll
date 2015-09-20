@@ -32,5 +32,14 @@ void TankCamera::ProcessKeyboard(Camera_Movement direction, GLfloat deltaTime)
 		this->Yaw += -velocity;
 	if (direction == RIGHT)
 		this->Yaw += velocity;
-	//this->updateCameraVectors();
+	this->updateCameraVectors();
+}
+
+GLfloat TankCamera::AngleY()
+{
+	auto tempPosition = this->Position;
+	tempPosition.y = 0.0f;
+	auto tempFront = this->Front;
+	tempFront.y = 0.0f;
+	return glm::angle(tempPosition, tempFront);
 }
