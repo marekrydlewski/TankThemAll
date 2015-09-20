@@ -95,7 +95,7 @@ void Scene_Manager::NotifyDisplayFrame()
 	//tank->tank_model_matrix -= glm::translate(tank->tank_model_matrix, camera->GetTranslation()); //diffrence between old state end new state
 	//tank->tank_model_position -= camera->GetTranslation();
 	models_manager->Draw();
-	models_manager->Draw(projection_matrix, GetViewFromCamera());
+	models_manager->Draw(projection_matrix, view_matrix);
 }
 
 void Scene_Manager::NotifyEndFrame()
@@ -120,7 +120,6 @@ glm::mat4 Scene_Manager::GetViewFromCamera()
 
 void Scene_Manager::MakeCameraMove(GLfloat deltaTime)
 {
-	
 	//auto temp_translation = this->camera->GetTranslation();
 	//auto temp_rotation = this->camera->Yaw;
 	if (keys[GLUT_KEY_UP])
@@ -145,8 +144,11 @@ void Scene_Manager::MakeCameraMove(GLfloat deltaTime)
 	//this->tank->tank_model_position = this->camera->GetTranslation() - temp_translation;
 	//this->tank->tank_model_rotation = (temp_rotation - this->camera->Yaw) * 0.02;
 	//this->tank->TranslateMeshes();
-	this->tank->tank_model_position = this->camera->Position - this->camera->offset;
+	this->tank->tank_model_position = glm::rotateY(this->camera->Position, this->camera->Yaw + 90.0f);
 	this->tank->tank_model_rotation = this->camera->Yaw + 90.0f;
+	this->view_matrix = glm::lookAt(this->tank->tank_model_position + glm::rotateY(this->camera->offset, this->tank->tank_model_rotation), this->tank->tank_model_position, glm::vec3(0, 1.0f, 0.0f));
+	//this->view_matrix = glm::lookAt(this->tank->tank_model_position + this->camera->offset, this->tank->tank_model_position, glm::vec3(0, 1.0f, 0.0f));
+
 }
 
 void Scene_Manager::MakeMouseMove(int x, int y)
@@ -172,7 +174,7 @@ void Scene_Manager::BindTank(std::string name)
 	else
 		std::cout << "ENGINE: Camera successfully found tank object" << std::endl;
 
-	camera = new TankCamera(tank->tank_model_position + glm::vec3(0, 20, 15), glm::vec3(0, 1, 0), YAW, PITCH);
+	camera = new TankCamera(glm::vec3(0, 0, 0), glm::vec3(0, 1, 0), YAW, PITCH);
 	camera->SetTankOffset(glm::vec3(0, 5, 15));
 	//this->tank->tank_model_position = this->camera->GetTranslation();
 
