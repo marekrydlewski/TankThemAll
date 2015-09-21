@@ -11,9 +11,9 @@ bool activeUpdateCamera = false;
 bool firstMouse = true;
 bool specialMode = false;
 bool enableEntrySpecialMode = true;
+GLfloat scroll = 45.0f;
 GLfloat xoffset, yoffset;
 GLfloat lastX, lastY;
-
 
 void CameraCallbackDown(int key, int x, int y)
 {
@@ -54,7 +54,7 @@ void CameraCallbackUpChar(unsigned char key, int x, int y)
 		specialMode = !specialMode;
 		if (specialMode)
 			enableEntrySpecialMode = true;
-		cout << specialMode << endl;
+		scroll = 45.0f;
 	}
 }
 
@@ -72,6 +72,22 @@ void CameraMouseCallback(int xpos, int ypos)
 		lastX = xpos;
 		lastY = ypos;
 		activeUpdateCamera = true;
+	}
+}
+
+void ScrollCallback(int button, int state, int x, int y)
+{
+	if (button == 3)
+	{
+		scroll += 0.01;
+		if (scroll > 47.0)
+			scroll = 47.0;
+	}
+	else if (button == 4)
+	{
+		scroll -= 0.01;
+		if (scroll < 44.0f)
+			scroll = 44.0f;
 	}
 }
 
@@ -102,6 +118,7 @@ void Scene_Manager::EnableCallbacks()
 	//glutSpecialUpFunc(CameraCallbackUp);
 	glutKeyboardFunc(CameraCallbackDownChar);
 	glutKeyboardUpFunc(CameraCallbackUpChar);
+	glutMouseFunc(ScrollCallback);
 	glutPassiveMotionFunc(CameraMouseCallback);
 }
 
@@ -202,6 +219,7 @@ void Scene_Manager::MakeCameraMove(GLfloat deltaTime)
 		}
 		this->view_matrix = this->cameraView->GetViewMatrix();
 	}
+	projection_matrix = glm::perspective(scroll, 16.0f / 9.0f, 0.1f, 100.0f);
 }
 
 void Scene_Manager::MakeMouseMove(int x, int y)
