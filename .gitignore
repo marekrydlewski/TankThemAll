@@ -248,3 +248,5 @@ FakesAssemblies/
 **/*.Server/ModelManifest.xml
 _Pvt_Extensions
 
+#except soil lib
+!soil/lib/SOIL.lib
