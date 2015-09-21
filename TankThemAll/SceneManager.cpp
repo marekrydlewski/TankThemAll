@@ -10,6 +10,7 @@ bool keys[1024] = { false };
 bool activeUpdateCamera = false;
 bool firstMouse = true;
 bool specialMode = false;
+bool enableEntrySpecialMode = true;
 GLfloat xoffset, yoffset;
 GLfloat lastX, lastY;
 
@@ -51,6 +52,8 @@ void CameraCallbackUpChar(unsigned char key, int x, int y)
 	if (key == 'x')
 	{
 		specialMode = !specialMode;
+		if (specialMode)
+			enableEntrySpecialMode = true;
 		cout << specialMode << endl;
 	}
 }
@@ -79,7 +82,6 @@ Scene_Manager::Scene_Manager()
 {
 	glEnable(GL_DEPTH_TEST);
 	//glEnable(GL_CULL_FACE); //add to enable culling
-
 	//camera = new TankCamera(glm::vec3(1, 1, 10), glm::vec3(0, 1, 0), YAW, PITCH);
 	projection_matrix = glm::perspective(45.0f, 16.0f / 9.0f, 0.1f, 100.0f);
 
@@ -147,35 +149,57 @@ void Scene_Manager::MakeCameraMove(GLfloat deltaTime)
 {
 	auto temp = this->camera->Position;
 	if (keys[char('w')])
-		camera->ProcessKeyboard(FORWARD, deltaTime);
+	{
+		if (specialMode)
+			cameraView->ProcessKeyboard(FORWARD, deltaTime);
+		else
+			camera->ProcessKeyboard(FORWARD, deltaTime);
+	}
+
 	if (keys[char('s')])
-		camera->ProcessKeyboard(BACKWARD, deltaTime);
+	{
+		if (specialMode)
+			cameraView->ProcessKeyboard(BACKWARD, deltaTime);
+		else
+			camera->ProcessKeyboard(BACKWARD, deltaTime);
+	}
 	if (keys[char('a')])
 	{
-		camera->ProcessKeyboard(LEFT, deltaTime);
+		if (specialMode)
+			cameraView->ProcessKeyboard(LEFT, deltaTime);
+		else
+			camera->ProcessKeyboard(LEFT, deltaTime);
 	}
 	if (keys[char('d')])
 	{
-		camera->ProcessKeyboard(RIGHT, deltaTime);
+		if (specialMode)
+			cameraView->ProcessKeyboard(RIGHT, deltaTime);
+		else
+			camera->ProcessKeyboard(RIGHT, deltaTime);
 	}
 	if (keys[char('q')])
 	{
-		camera->ProcessKeyboard(LEFT_TURRET, deltaTime);
+		if (!specialMode)
+			camera->ProcessKeyboard(LEFT_TURRET, deltaTime);
 	}
 	if (keys[char('e')])
 	{
-		camera->ProcessKeyboard(RIGHT_TURRET, deltaTime);
+		if (!specialMode)
+			camera->ProcessKeyboard(RIGHT_TURRET, deltaTime);
 	}
 
 	this->tank->tank_model_position += glm::rotateY(this->camera->Position - temp, this->camera->Yaw + 90.0f);
-	//this->tank->tank_model_position = (this->camera->Position);
 	this->tank->tank_model_rotation = this->camera->Yaw + 90.0f;
 	this->tank->tank_model_turret_rotation = this->camera->TurretYaw;
-	if (!specialMode)
+	if (!specialMode) //normal mode
 		this->view_matrix = glm::lookAt(this->tank->tank_model_position + glm::rotateY(this->camera->offset, this->tank->tank_model_rotation + this->tank->tank_model_turret_rotation), this->tank->tank_model_position, glm::vec3(0, 1.0f, 0.0f));
 	else
-	{
-		cameraView->Position = this->cameraView->Position = (this->tank->tank_model_position + glm::rotateY(this->camera->offset, this->tank->tank_model_rotation));
+	{ //free camera
+		if (enableEntrySpecialMode)
+		{
+			cameraView->Position = this->cameraView->Position = (this->tank->tank_model_position + glm::vec3(0.0f, 5.0f, 0.0f));
+			enableEntrySpecialMode = false;
+		}
 		this->view_matrix = this->cameraView->GetViewMatrix();
 	}
 }
