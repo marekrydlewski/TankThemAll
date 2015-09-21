@@ -28,4 +28,5 @@ class Mesh :
 	private:
 		/*  Functions    */
 		void setupMesh();
+		void calculateNormals();
 };

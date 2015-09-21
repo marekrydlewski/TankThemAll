@@ -19,6 +19,8 @@ void Mesh::Create(std::vector<VertexFormat> vertices, std::vector<GLuint> indice
 	this->indices = indices;
 	this->textures = textures;
 
+	calculateNormals();
+
 	this->setupMesh();
 }
 
@@ -88,9 +90,9 @@ void Mesh::setupMesh()
 		(GLvoid*)offsetof(VertexFormat, VertexFormat::texture));
 
 	// Vertex Normals
-	/*glEnableVertexAttribArray(2);
+	glEnableVertexAttribArray(2);
 	glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, sizeof(VertexFormat),
-		(GLvoid*)offsetof(VertexFormat, VertexFormat::normals));*/
+		(GLvoid*)offsetof(VertexFormat, VertexFormat::normal));
 
 	glBindVertexArray(0);
 	this->vao = VAO;
@@ -100,4 +102,62 @@ void Mesh::setupMesh()
 	this->model_matrix = glm::mat4(1.0);
 	this->model_matrix = glm::rotate(this->model_matrix, 3.141f, glm::vec3(0.0f, 1.0f, 0.0f));
 	//this->model_matrix = glm::scale(this->model_matrix,glm::vec3(0.3f, 0.3f, 0.3f));
+}
+
+void Mesh::calculateNormals()
+{
+	std::vector<glm::vec3> uniqueVertices;
+	std::map<int,glm::vec3> normals;
+
+	for (int i = 0; i < indices.size(); i += 3)
+	{
+		glm::vec3 A, B, C;
+
+		A = vertices[indices[i]].position;
+		B = vertices[indices[i + 1]].position;
+		C = vertices[indices[i + 2]].position;
+
+		glm::vec3 faceNormal = glm::cross(A - B, C - B);
+		
+		for (int j = 0; j < 3; j++)
+		{
+			bool WasVertexUsed = false;
+			int VertexIndex;
+			for (int k = 0; k < uniqueVertices.size(); k++)
+			{
+				if (uniqueVertices[k] == vertices[indices[i + j]].position)
+				{
+					WasVertexUsed = true;
+					VertexIndex = k;
+				}
+			}
+			if (WasVertexUsed)
+			{
+				normals[VertexIndex] += faceNormal;
+			}
+			else
+			{
+				uniqueVertices.push_back(vertices[indices[i + j]].position);
+				normals[uniqueVertices.size() - 1] = faceNormal;
+			}
+		}
+	}
+
+	for (auto &it : normals)
+	{
+		it.second = glm::normalize(it.second);
+	}
+
+	for (auto &v : vertices)
+	{
+		int normalPosition;
+		for (int i = 0; i < uniqueVertices.size(); i++)
+		{
+			if (v.position == uniqueVertices[i])
+			{
+				v.normal = normals[i];
+				break;
+			}
+		}
+	}
 }
