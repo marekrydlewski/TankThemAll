@@ -3,6 +3,7 @@
 #include "Tank.h"
 #include "Terrain.h"
 #include "Diamond.h"
+#include "Bullet.h"
 #include <SOIL.h>
 using namespace BasicEngine;
 using namespace std;
@@ -39,6 +40,13 @@ int main(int argc, char **argv)
 	Diamond* diamond = new Diamond();
 	diamond->SetProgram(engine->GetShader_Manager()->GetShader("baseShader"));
 	diamond->Create();
+
+	Bullet* bullet = new Bullet();
+	bullet->SetProgram(engine->GetShader_Manager()->GetShader("baseShader"));
+	bullet->Create();
+
+	engine->GetModels_Manager()->SetModel("bullet", bullet);
+
 
 	engine->GetModels_Manager()->SetModel("tank", tank);
 	engine->GetModels_Manager()->SetModel("diamond", diamond);

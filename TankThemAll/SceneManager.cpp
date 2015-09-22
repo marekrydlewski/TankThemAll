@@ -245,7 +245,8 @@ void Scene_Manager::BindTank(std::string name)
 	else
 		std::cout << "ENGINE: Camera successfully found tank object" << std::endl;
 
-	camera = new TankCamera(glm::vec3(0, 0, 0), glm::vec3(0, 1, 0), YAW, PITCH);
+	this->tank->tank_model_position = glm::vec3(10.0f, 0.0f, 0.0f);
+	camera = new TankCamera(this->tank->tank_model_position, glm::vec3(0, 1, 0), YAW, PITCH);
 	camera->SetTankOffset(glm::vec3(0, 5, 15));
 	cameraView = new Camera(glm::vec3(0, 0, 0), glm::vec3(0, 1, 0), YAW, PITCH);
 
