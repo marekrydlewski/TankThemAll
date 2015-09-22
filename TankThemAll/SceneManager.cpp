@@ -225,11 +225,14 @@ void Scene_Manager::MakeCameraMove(GLfloat deltaTime)
 		shoot = false;
 		glm::mat4 bullet_pos = glm::mat4(1.0f);
 		bullet_pos = glm::translate(bullet_pos, this->tank->tank_model_position);
-		bullet_pos = glm::translate(bullet_pos, glm::rotateY(glm::vec3(10.0f, 0.0f, 0.0f), (this->tank->tank_model_rotation +
-			this->tank->tank_model_turret_rotation 
-			+ glm::radians(90.0f))));
+		auto bullet_angle = this->tank->tank_model_rotation +
+			this->tank->tank_model_turret_rotation
+			+ glm::radians(90.0f);
+		bullet_pos = glm::translate(bullet_pos, glm::rotateY(glm::vec3(6.35, 2.2f, 0.0f), bullet_angle)); //compute start bullet possition
+		//bullet_pos = glm::translate(bullet_pos, glm::rotateY() );
+
 		bullet_pos = glm::scale(bullet_pos, glm::vec3(0.3f, 0.3f, 0.3f));
-		this->bullet->Spawn(bullet_pos);
+		this->bullet->Spawn(bullet_pos, bullet_angle);
 	}
 
 

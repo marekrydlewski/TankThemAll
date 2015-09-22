@@ -97,7 +97,13 @@ void Bullet::Create()
 
 void Bullet::Update()
 {
-	//model_matrix = glm::rotate(model_matrix, rotate, glm::vec3(1.0, 0.5, 0.1));
+	if (isFired)
+	{
+		model_matrix = glm::translate(model_matrix, 
+			glm::rotateY(glm::vec3(0.7f, 0.0f, 0.0f),angle)
+			);
+	}
+	
 }
 
 void Bullet::Draw(const glm::mat4& projection_matrix, const glm::mat4& view_matrix)
@@ -115,8 +121,9 @@ void Bullet::Draw(const glm::mat4& projection_matrix, const glm::mat4& view_matr
 
 }
 
-void Bullet::Spawn(const glm::mat4& bullet_model_matrix)
+void Bullet::Spawn(const glm::mat4& bullet_model_matrix, GLfloat bullet_angle)
 {
 	isFired = true;
+	angle = bullet_angle;
 	model_matrix = bullet_model_matrix;
 }
