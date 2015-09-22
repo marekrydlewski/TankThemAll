@@ -4,6 +4,7 @@
 #include "Terrain.h"
 #include "Tree1.h"
 #include "Skybox.h"
+#include "Bullet.h"
 #include <SOIL.h>
 using namespace BasicEngine;
 using namespace std;
@@ -37,7 +38,7 @@ int main(int argc, char **argv)
 	terrain->Create("maps\\map.bmp");
 
 	engine->GetModels_Manager()->SetModel("map", terrain);
-	
+
 	for (int i = 0; i < 10; i++)
 	{
 		Tree1* tree = new Tree1();
@@ -50,14 +51,22 @@ int main(int argc, char **argv)
 		sprintf((char*)tmp.c_str(), "tree_%d", i);
 		engine->GetModels_Manager()->SetModel(tmp, tree);
 	}
-	
+
 	Tank* tank = new Tank();
 	tank->SetProgram(engine->GetShader_Manager()->GetShader("importedModelShader"));
 	tank->Create("models\\Tiger\\Tiger_I.obj");
 
+	Bullet* bullet = new Bullet();
+	bullet->SetProgram(engine->GetShader_Manager()->GetShader("baseShader"));
+	bullet->Create();
+
+	engine->GetModels_Manager()->SetModel("bullet", bullet);
+
+
 	engine->GetModels_Manager()->SetModel("tank", tank);
 
 	engine->GetScene_Manager()->BindTank("tank");
+	engine->GetScene_Manager()->BindBullet("bullet");
 
 	engine->Run();
 
