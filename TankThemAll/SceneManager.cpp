@@ -250,3 +250,11 @@ void Scene_Manager::BindTank(std::string name)
 	cameraView = new Camera(glm::vec3(0, 0, 0), glm::vec3(0, 1, 0), YAW, PITCH);
 
 }
+
+glm::vec3 Scene_Manager::GetTankCameraPosition(bool special=false)
+{
+	if (!special)
+		return this->tank->tank_model_position + glm::rotateY(this->camera->offset, this->tank->tank_model_rotation + this->tank->tank_model_turret_rotation);
+	else
+		return this->tank->tank_model_position + glm::vec3(0.0f, 5.0f, 0.0f);
+}

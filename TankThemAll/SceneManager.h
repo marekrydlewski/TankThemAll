@@ -28,6 +28,7 @@ namespace BasicEngine
 				camera->SetTankOffset(x);
 			}
 			void SetModelsManager(Managers::Models_Manager* models_manager);
+			glm::vec3 GetTankCameraPosition(bool);
 	
 				
 		private:
@@ -37,7 +38,6 @@ namespace BasicEngine
 			Rendering::Models::Tank* tank;
 			glm::mat4 projection_matrix;
 			glm::mat4 view_matrix;
-		private:
 			void EnableCallbacks();
 			void MakeMouseMove(int x, int y);
 		};
