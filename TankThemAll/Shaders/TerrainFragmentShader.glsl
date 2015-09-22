@@ -14,7 +14,7 @@ uniform vec3 light_source_1;
 void main()
 {
 	vec3 LightColor = vec3(1,1,1);
-	float LightPower = 50.0f;
+	float LightPower = 100.0f;
 
 	vec3 MaterialDiffuseColor = texture2D( texture_grass, tex ).rgb;
 	vec3 MaterialAmbientColor = vec3(0.1,0.1,0.1) * MaterialDiffuseColor;
@@ -37,9 +37,9 @@ void main()
 
 	out_color = 
 		// Ambient : simulates indirect lighting
-		MaterialAmbientColor +
+		vec4(MaterialAmbientColor +
 		// Diffuse : "color" of the object
 		MaterialDiffuseColor * LightColor * LightPower * cosTheta / (distance*distance) +
 		// Specular : reflective highlight, like a mirror
-		MaterialSpecularColor * LightColor * LightPower * pow(cosAlpha,5) / (distance*distance);
+		MaterialSpecularColor * LightColor * LightPower * pow(cosAlpha,5) / (distance*distance),1);
 }
