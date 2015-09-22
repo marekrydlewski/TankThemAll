@@ -14,11 +14,11 @@ uniform vec3 light_source_1;
 void main()
 {
 	vec3 LightColor = vec3(1,1,1);
-	float LightPower = 40.0f;
+	float LightPower = 70.0f;
 
 	vec3 MaterialDiffuseColor = texture2D( texture_grass, tex ).rgb;
-	vec3 MaterialAmbientColor = vec3(0.3,0.3,0.3) * MaterialDiffuseColor;
-	vec3 MaterialSpecularColor = vec3(0.2,0.2,0.2);
+	vec3 MaterialAmbientColor = vec3(0.8,0.8,0.8) * MaterialDiffuseColor;
+	vec3 MaterialSpecularColor = vec3(0.4,0.4,0.4);
 
 	float distance = length( light_source_1 - Position_worldspace );
 
