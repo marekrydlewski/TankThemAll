@@ -86,12 +86,13 @@ void CubeIndex::Create()
 
 	this->model_matrix = glm::mat4(1.0);
 	this->model_matrix = glm::translate(model_matrix, glm::vec3(1.0f, 1.0f, -1.5f));
-	this->rotate = 0.01f;
+	this->model_matrix = glm::scale(model_matrix, glm::vec3(0.3f, 0.3f, 0.3f));
+	//this->rotate = 0.01f;
 }
 
 void CubeIndex::Update()
 {
-	model_matrix = glm::rotate(model_matrix, rotate, glm::vec3(1.0, 0.5, 0.1));
+	//model_matrix = glm::rotate(model_matrix, rotate, glm::vec3(1.0, 0.5, 0.1));
 }
 
 void CubeIndex::Draw(const glm::mat4& projection_matrix, const glm::mat4& view_matrix)
