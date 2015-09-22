@@ -32,6 +32,7 @@ namespace BasicEngine
 		private:
 			Managers::Models_Manager* models_manager;
 			Rendering::TankCamera* camera;
+			Rendering::Camera* cameraView;
 			Rendering::Models::Tank* tank;
 			glm::mat4 projection_matrix;
 			glm::mat4 view_matrix;

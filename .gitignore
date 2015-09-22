@@ -248,5 +248,11 @@ FakesAssemblies/
 **/*.Server/ModelManifest.xml
 _Pvt_Extensions
 
+
 #except soil lib
 !soil/lib/SOIL.lib
+
+# soil
+soil/img_test.png-screenshot.bmp
+soil/Thumbs.db
+

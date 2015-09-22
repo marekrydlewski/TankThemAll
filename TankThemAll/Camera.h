@@ -20,7 +20,7 @@ namespace BasicEngine{
 		const GLfloat YAW = -90.0f;
 		const GLfloat PITCH = 0.0f;
 		const GLfloat SPEED = 0.01f;
-		const GLfloat SENSITIVTY = 0.003f;
+		const GLfloat SENSITIVTY = 0.25f;
 		const GLfloat ZOOM = 45.0f;
 
 
@@ -44,7 +44,7 @@ namespace BasicEngine{
 
 			// Constructor with vectors
 			Camera(glm::vec3 position = glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3 up = glm::vec3(0.0f, 1.0f, 0.0f), GLfloat yaw = YAW, GLfloat pitch = PITCH): 
-				Front(glm::vec3(0.0f, -5.0f, -1.0f)), MovementSpeed(SPEED), MouseSensitivity(SENSITIVTY), Zoom(ZOOM)
+				Front(glm::vec3(0.0f, 0.0f, -1.0f)), MovementSpeed(SPEED), MouseSensitivity(SENSITIVTY), Zoom(ZOOM)
 			{
 				this->Position = position;
 				this->WorldUp = up;

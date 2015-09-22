@@ -15,12 +15,6 @@ void TankCamera::SetTankOffset(glm::vec3 offset)
 
 }
 
-
-glm::vec3 TankCamera::GetTranslation()
-{
-	return this->offset - this->Position;
-}
-
 void TankCamera::ProcessKeyboard(Camera_Movement direction, GLfloat deltaTime)
 {
 	GLfloat velocity = this->MovementSpeed * deltaTime;
@@ -37,13 +31,4 @@ void TankCamera::ProcessKeyboard(Camera_Movement direction, GLfloat deltaTime)
 	if (direction == LEFT_TURRET)
 		this->TurretYaw += velocity*0.1;
 	this->updateCameraVectors();
-}
-
-GLfloat TankCamera::AngleY()
-{
-	auto tempPosition = this->Position;
-	tempPosition.y = 0.0f;
-	auto tempFront = this->Front;
-	tempFront.y = 0.0f;
-	return glm::angle(tempPosition, tempFront);
 }
