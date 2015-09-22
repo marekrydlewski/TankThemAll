@@ -116,6 +116,7 @@
     <ClInclude Include="Terrain.h" />
     <ClInclude Include="TextureWrap.h" />
     <ClInclude Include="TextureLoader.h" />
+    <ClInclude Include="Tree1.h" />
     <ClInclude Include="Triangle.h" />
     <ClInclude Include="VertexFormat.h" />
     <ClInclude Include="WindowInfo.h" />
@@ -143,6 +144,7 @@
     <ClCompile Include="TankThemAll.cpp" />
     <ClCompile Include="Terrain.cpp" />
     <ClCompile Include="TextureLoader.cpp" />
+    <ClCompile Include="Tree1.cpp" />
     <ClCompile Include="Triangle.cpp" />
   </ItemGroup>
   <ItemGroup>

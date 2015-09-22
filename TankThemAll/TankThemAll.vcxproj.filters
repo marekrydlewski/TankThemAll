@@ -21,6 +21,7 @@
     <ClCompile Include="Terrain.cpp" />
     <ClCompile Include="TextureLoader.cpp" />
     <ClCompile Include="Triangle.cpp" />
+    <ClCompile Include="Tree1.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BMPHeaders.h" />
@@ -53,6 +54,7 @@
     <ClInclude Include="Triangle.h" />
     <ClInclude Include="VertexFormat.h" />
     <ClInclude Include="WindowInfo.h" />
+    <ClInclude Include="Tree1.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="TankThemAll.rc" />
