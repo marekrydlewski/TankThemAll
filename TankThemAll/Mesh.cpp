@@ -4,6 +4,8 @@
 
 using namespace BasicEngine::Rendering;
 
+GLfloat LightPos[] = { 0.0, 8.0, 0.0 };
+
 Mesh::Mesh(std::vector<VertexFormat> vertices, std::vector<GLuint> indices, std::vector<TextureWrap> textures)
 {
 	this->Create(vertices, indices, textures);
@@ -52,6 +54,8 @@ void Mesh::Draw(const glm::mat4& projection_matrix, const glm::mat4& view_matrix
 		glBindTexture(GL_TEXTURE_2D, this->textures[i].id);
 	}
 	// Draw mesh
+	GLuint location = glGetUniformLocation(program, "light_source_1");
+	glUniform3fv(location, 1, LightPos);
 	glUniformMatrix4fv(glGetUniformLocation(program, "model_matrix"), 1, false, &model_matrix[0][0]);
 	glUniformMatrix4fv(glGetUniformLocation(program, "view_matrix"), 1, false, &view_matrix[0][0]);
 	glUniformMatrix4fv(glGetUniformLocation(program, "projection_matrix"), 1, false, &projection_matrix[0][0]);
@@ -150,7 +154,6 @@ void Mesh::calculateNormals()
 
 	for (auto &v : vertices)
 	{
-		int normalPosition;
 		for (int i = 0; i < uniqueVertices.size(); i++)
 		{
 			if (v.position == uniqueVertices[i])
