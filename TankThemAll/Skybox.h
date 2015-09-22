@@ -1,5 +1,6 @@
 #pragma once
 #include "IGameObject.h"
+
 namespace BasicEngine
 {
 	namespace Rendering
@@ -12,7 +13,7 @@ namespace BasicEngine
 			public:
 				Skybox();
 				virtual ~Skybox();
-				void Create();
+				void Create(BasicEngine::Managers::Scene_Manager *sceneManager);
 				virtual void Draw() override;
 				virtual void Draw(const glm::mat4& projection_matrix, const glm::mat4& view_matrix) override;
 				virtual void Update() override;
@@ -24,6 +25,8 @@ namespace BasicEngine
 
 				virtual const GLuint GetTexture(std::string textureName) const override;
 				virtual void SetTexture(std::string textureName, GLuint texture) override;
+			private:
+				BasicEngine::Managers::Scene_Manager *_sceneManager;
 			};
 		}
 	}

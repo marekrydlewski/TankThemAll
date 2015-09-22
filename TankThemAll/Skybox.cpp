@@ -13,9 +13,9 @@ Skybox::~Skybox()
 {
 }
 
-void Skybox::Create()
+void Skybox::Create(BasicEngine::Managers::Scene_Manager *sceneManager)
 {
-
+	_sceneManager = sceneManager;
 }
 
 void Skybox::Destroy()

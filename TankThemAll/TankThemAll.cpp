@@ -29,7 +29,7 @@ int main(int argc, char **argv)
 
 	Skybox* skybox = new Skybox();
 	skybox->SetProgram(engine->GetShader_Manager()->GetShader("baseShader"));
-	skybox->Create();
+	skybox->Create(engine->GetScene_Manager());
 
 	engine->GetModels_Manager()->SetModel("skybox", skybox);
 
