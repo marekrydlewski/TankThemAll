@@ -79,13 +79,13 @@ void ScrollCallback(int button, int state, int x, int y)
 {
 	if (button == 3)
 	{
-		scroll += 0.01;
+		scroll += 0.01f;
 		if (scroll > 47.0)
 			scroll = 47.0;
 	}
 	else if (button == 4)
 	{
-		scroll -= 0.01;
+		scroll -= 0.01f;
 		if (scroll < 44.0f)
 			scroll = 44.0f;
 	}
@@ -204,7 +204,11 @@ void Scene_Manager::MakeCameraMove(GLfloat deltaTime)
 		if (!specialMode)
 			camera->ProcessKeyboard(RIGHT_TURRET, deltaTime);
 	}
-
+	if (keys[27])//ESC escape
+	{
+		glutLeaveMainLoop();
+	}
+	
 	this->tank->tank_model_position += glm::rotateY(this->camera->Position - temp, this->camera->Yaw + 90.0f);
 	this->tank->tank_model_rotation = this->camera->Yaw + 90.0f;
 	this->tank->tank_model_turret_rotation = this->camera->TurretYaw;
@@ -258,4 +262,15 @@ glm::vec3 Scene_Manager::GetTankCameraPosition(bool special=false)
 		return this->tank->tank_model_position + glm::rotateY(this->camera->offset, this->tank->tank_model_rotation + this->tank->tank_model_turret_rotation);
 	else
 		return this->tank->tank_model_position + glm::vec3(0.0f, 5.0f, 0.0f);
+}
+
+void Scene_Manager::BindBullet(std::string name)
+{
+
+	bullet = dynamic_cast<Bullet*>(models_manager->GetModelPointer(name));
+	if (bullet == nullptr)
+		std::cout << "ENGINE: BindBullet function Error: Cannot find tank object" << std::endl;
+	else
+		std::cout << "ENGINE: Camera successfully found bullet object" << std::endl;
+
 }

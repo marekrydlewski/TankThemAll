@@ -1,7 +1,10 @@
 #include "stdafx.h"
 #include "Bullet.h"
 
-using namespace BasicEngine::Rendering;
+using namespace BasicEngine;
+using namespace Rendering;
+using namespace Models;
+
 
 #define PI 3.14159265
 
@@ -110,4 +113,10 @@ void Bullet::Draw(const glm::mat4& projection_matrix, const glm::mat4& view_matr
 		glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
 	}
 
+}
+
+void Bullet::Spawn(const glm::mat4& bullet_model_matrix)
+{
+	isFired = true;
+	model_matrix = bullet_model_matrix;
 }

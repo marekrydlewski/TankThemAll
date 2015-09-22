@@ -4,7 +4,7 @@
 #include "Camera.h"
 #include "TankCamera.h"
 #include "Tank.h"
-
+#include "Bullet.h"
 namespace BasicEngine
 {
 	namespace Managers
@@ -24,6 +24,7 @@ namespace BasicEngine
 			virtual glm::mat4 GetViewFromCamera();
 
 			void BindTank(std::string);
+			void BindBullet(std::string);
 			void SetCameraOffset(glm::vec3 x){
 				camera->SetTankOffset(x);
 			}
@@ -36,6 +37,7 @@ namespace BasicEngine
 			Rendering::TankCamera* camera;
 			Rendering::Camera* cameraView;
 			Rendering::Models::Tank* tank;
+			Rendering::Models::Bullet* bullet;
 			glm::mat4 projection_matrix;
 			glm::mat4 view_matrix;
 			void EnableCallbacks();

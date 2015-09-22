@@ -52,6 +52,7 @@ int main(int argc, char **argv)
 	engine->GetModels_Manager()->SetModel("diamond", diamond);
 
 	engine->GetScene_Manager()->BindTank("tank");
+	engine->GetScene_Manager()->BindBullet("bullet");
 
 	engine->Run();
 
