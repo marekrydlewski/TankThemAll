@@ -184,7 +184,8 @@ std::vector<TextureWrap> ImportedModel::loadMaterialTextures(aiMaterial* mat, ai
 		if (!skip)
 		{   // If texture hasn't been loaded already, load it
 			TextureWrap texture;
-			texture.id = TextureLoader::loadDDS(fullPath.C_Str());
+			int width, height;
+			texture.id = filename.find(".dds") != std::string::npos ? TextureLoader::loadDDS(fullPath.C_Str()) : TextureLoader::LoadTexture(fullPath.C_Str(), width, height);
 			texture.type = typeName;
 			texture.path = fullPath;
 			textures.push_back(texture);

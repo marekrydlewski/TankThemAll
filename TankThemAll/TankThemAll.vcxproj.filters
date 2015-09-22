@@ -1,72 +1,233 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="CubeIndex.cpp" />
-    <ClCompile Include="DebugOutput.cpp" />
-    <ClCompile Include="Diamond.cpp" />
-    <ClCompile Include="Engine.cpp" />
-    <ClCompile Include="ImportedModel.cpp" />
-    <ClCompile Include="InitGLEW.cpp" />
-    <ClCompile Include="InitGLUT.cpp" />
-    <ClCompile Include="Mesh.cpp" />
-    <ClCompile Include="Model.cpp" />
-    <ClCompile Include="ModelsManager.cpp" />
-    <ClCompile Include="Quad.cpp" />
-    <ClCompile Include="SceneManager.cpp" />
-    <ClCompile Include="ShaderManager.cpp" />
-    <ClCompile Include="stdafx.cpp" />
-    <ClCompile Include="Tank.cpp" />
-    <ClCompile Include="TankCamera.cpp" />
-    <ClCompile Include="TankThemAll.cpp" />
-    <ClCompile Include="Terrain.cpp" />
-    <ClCompile Include="TextureLoader.cpp" />
-    <ClCompile Include="Triangle.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="BMPHeaders.h" />
-    <ClInclude Include="Camera.h" />
-    <ClInclude Include="ContextInfo.h" />
-    <ClInclude Include="CubeIndex.h" />
-    <ClInclude Include="DebugOutput.h" />
-    <ClInclude Include="Diamond.h" />
-    <ClInclude Include="Engine.h" />
-    <ClInclude Include="FrameBufferInfo.h" />
-    <ClInclude Include="IGameObject.h" />
-    <ClInclude Include="IListener.h" />
-    <ClInclude Include="ImportedModel.h" />
-    <ClInclude Include="InitGLEW.h" />
-    <ClInclude Include="InitGLUT.h" />
-    <ClInclude Include="Mesh.h" />
-    <ClInclude Include="Model.h" />
-    <ClInclude Include="ModelsManager.h" />
-    <ClInclude Include="Quad.h" />
-    <ClInclude Include="resource.h" />
-    <ClInclude Include="SceneManager.h" />
-    <ClInclude Include="ShaderManager.h" />
-    <ClInclude Include="stdafx.h" />
-    <ClInclude Include="Tank.h" />
-    <ClInclude Include="TankCamera.h" />
-    <ClInclude Include="targetver.h" />
-    <ClInclude Include="Terrain.h" />
-    <ClInclude Include="TextureWrap.h" />
-    <ClInclude Include="TextureLoader.h" />
-    <ClInclude Include="Triangle.h" />
-    <ClInclude Include="VertexFormat.h" />
-    <ClInclude Include="WindowInfo.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="TankThemAll.rc" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
-    <None Include="Shaders\Base_Fragment_Shader.glsl" />
-    <None Include="Shaders\Base_Vertex_Shader.glsl" />
-    <None Include="Shaders\ImportedFragmentShader.glsl" />
-    <None Include="Shaders\ImportedVertexShader.glsl" />
-    <None Include="Shaders\TerrainFragmentShader.glsl" />
-    <None Include="Shaders\TerrainVertexShader.glsl" />
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Source Files\Core">
+      <UniqueIdentifier>{aa15d521-ab29-43f0-867f-563b9b955074}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Managers">
+      <UniqueIdentifier>{cdbb5e3d-4998-4ca1-85bc-b748a8926fee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shaders">
+      <UniqueIdentifier>{eb70d64c-2dc9-4530-a20c-f2fc4c86309b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Core\Init">
+      <UniqueIdentifier>{b2d95e1a-e586-40db-95c8-80e7b68064ee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Rendering">
+      <UniqueIdentifier>{64bd0a4b-2307-49bc-b23e-58569587f210}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Rendering\Models">
+      <UniqueIdentifier>{ba0b41a7-ca60-45be-b9e5-4c1fcb3ec698}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ShaderManager.h">
+      <Filter>Source Files\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="WindowInfo.h">
+      <Filter>Source Files\Core\Init</Filter>
+    </ClInclude>
+    <ClInclude Include="ContextInfo.h">
+      <Filter>Source Files\Core\Init</Filter>
+    </ClInclude>
+    <ClInclude Include="FrameBufferInfo.h">
+      <Filter>Source Files\Core\Init</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="InitGLEW.h">
+      <Filter>Source Files\Core\Init</Filter>
+    </ClInclude>
+    <ClInclude Include="IListener.h">
+      <Filter>Source Files\Core\Init</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager.h">
+      <Filter>Source Files\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="IGameObject.h">
+      <Filter>Source Files\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="VertexFormat.h">
+      <Filter>Source Files\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Model.h">
+      <Filter>Source Files\Rendering\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="Triangle.h">
+      <Filter>Source Files\Rendering\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelsManager.h">
+      <Filter>Source Files\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="InitGLUT.h">
+      <Filter>Source Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Quad.h">
+      <Filter>Source Files\Rendering\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="DebugOutput.h">
+      <Filter>Source Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureLoader.h">
+      <Filter>Source Files\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Diamond.h">
+      <Filter>Source Files\Rendering\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="CubeIndex.h">
+      <Filter>Source Files\Rendering\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="BMPHeaders.h">
+      <Filter>Source Files\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh.h">
+      <Filter>Source Files\Rendering\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureWrap.h">
+      <Filter>Source Files\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="ImportedModel.h">
+      <Filter>Source Files\Rendering\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="Tank.h">
+      <Filter>Source Files\Rendering\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>Source Files\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="TankCamera.h">
+      <Filter>Source Files\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="Bullet.h">
+      <Filter>Source Files\Rendering\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="Terrain.h">
+      <Filter>Source Files\Rendering\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="Tree1.h">
+      <Filter>Source Files\Rendering\Models</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="TankThemAll.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ShaderManager.cpp">
+      <Filter>Source Files\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="InitGLEW.cpp">
+      <Filter>Source Files\Core\Init</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneManager.cpp">
+      <Filter>Source Files\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="Model.cpp">
+      <Filter>Source Files\Rendering\Models</Filter>
+    </ClCompile>
+    <ClCompile Include="Triangle.cpp">
+      <Filter>Source Files\Rendering\Models</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelsManager.cpp">
+      <Filter>Source Files\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="InitGLUT.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Quad.cpp">
+      <Filter>Source Files\Rendering\Models</Filter>
+    </ClCompile>
+    <ClCompile Include="DebugOutput.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureLoader.cpp">
+      <Filter>Source Files\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="CubeIndex.cpp">
+      <Filter>Source Files\Rendering\Models</Filter>
+    </ClCompile>
+    <ClCompile Include="Diamond.cpp">
+      <Filter>Source Files\Rendering\Models</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh.cpp">
+      <Filter>Source Files\Rendering\Models</Filter>
+    </ClCompile>
+    <ClCompile Include="ImportedModel.cpp">
+      <Filter>Source Files\Rendering\Models</Filter>
+    </ClCompile>
+    <ClCompile Include="Tank.cpp">
+      <Filter>Source Files\Rendering\Models</Filter>
+    </ClCompile>
+    <ClCompile Include="TankCamera.cpp">
+      <Filter>Source Files\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="Bullet.cpp">
+      <Filter>Source Files\Rendering\Models</Filter>
+    </ClCompile>
+    <ClCompile Include="Terrain.cpp">
+      <Filter>Source Files\Rendering\Models</Filter>
+    </ClCompile>
+    <ClCompile Include="Tree1.cpp">
+      <Filter>Source Files\Rendering\Models</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <None Include="Shaders\TerrainFragmentShader.glsl">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Shaders\Base_Fragment_Shader.glsl">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Shaders\Base_Vertex_Shader.glsl">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Shaders\ImportedFragmentShader.glsl">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Shaders\ImportedVertexShader.glsl">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Shaders\TerrainVertexShader.glsl">
+      <Filter>Shaders</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="TankThemAll.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>

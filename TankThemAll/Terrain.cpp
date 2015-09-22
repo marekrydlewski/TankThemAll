@@ -5,6 +5,8 @@
 using namespace BasicEngine::Rendering;
 using namespace BasicEngine::Rendering::Models;
 
+GLfloat LightPosition[] = { 0.0, 8.0, 0.0 };
+
 Terrain::Terrain()
 {
 }
@@ -23,7 +25,7 @@ void Terrain::Create(char *filename)
 	unsigned char *data = SOIL_load_image(filename, &width, &height, &channels, SOIL_LOAD_L);
 	centerX = width / 2;
 	centerZ = height / 2;
-	scaleMap = 16.0;
+	scaleMap = 1.0;
 
 	heights = new float*[height];
 	for (int i = 0; i < height; ++i)
@@ -40,7 +42,7 @@ void Terrain::Create(char *filename)
 	for (int i = 0; i < height; i++)
 		for (int j = 0; j < width; j++)
 		{
-			heights[i][j] = ((float)data[i*width + j] / 128.0) - 1;
+			heights[i][j] = ((float)data[i*width + j] / 32.0) - 4;
 		}
 
 	ComputeNormals();
@@ -57,10 +59,10 @@ void Terrain::Create(char *filename)
 	{
 		for (int j = 0; j < width - 1; j++)
 		{
-			vertices.push_back(VertexFormat(glm::vec3((j - centerX) / scaleMap, heights[i][j], (i - centerZ) / scaleMap), glm::vec2(0, 0)));
-			vertices.push_back(VertexFormat(glm::vec3((j - centerX) / scaleMap, heights[i + 1][j], (i + 1 - centerZ) / scaleMap), glm::vec2(0, 1)));
-			vertices.push_back(VertexFormat(glm::vec3((j + 1 - centerX) / scaleMap, heights[i][j + 1], (i - centerZ) / scaleMap), glm::vec2(1, 0)));
-			vertices.push_back(VertexFormat(glm::vec3((j + 1 - centerX) / scaleMap, heights[i + 1][j + 1], (i + 1 - centerZ) / scaleMap), glm::vec2(1, 1)));
+			vertices.push_back(VertexFormat(glm::vec3((j - centerX) / scaleMap, heights[i][j], (i - centerZ) / scaleMap), glm::vec2(0, 0), vertexNormals[i][j]));
+			vertices.push_back(VertexFormat(glm::vec3((j - centerX) / scaleMap, heights[i + 1][j], (i + 1 - centerZ) / scaleMap), glm::vec2(0, 1), vertexNormals[i + 1][j]));
+			vertices.push_back(VertexFormat(glm::vec3((j + 1 - centerX) / scaleMap, heights[i][j + 1], (i - centerZ) / scaleMap), glm::vec2(1, 0), vertexNormals[i][j + 1]));
+			vertices.push_back(VertexFormat(glm::vec3((j + 1 - centerX) / scaleMap, heights[i + 1][j + 1], (i + 1 - centerZ) / scaleMap), glm::vec2(1, 1), vertexNormals[i + 1][j + 1]));
 		}
 	}
 
@@ -158,6 +160,8 @@ void Terrain::Draw(const glm::mat4& projection_matrix, const glm::mat4& view_mat
 	GLint location = glGetUniformLocation(program, "texture_grass");
 	glUniform1i(location, 0);
 	glBindTexture(GL_TEXTURE_2D, this->textures["grass"]);
+	location = glGetUniformLocation(program, "light_source_1");
+	glUniform3fv(location, 1, LightPosition);
 	glUniformMatrix4fv(glGetUniformLocation(program, "model_matrix"), 1, false, &model_matrix[0][0]);
 	glUniformMatrix4fv(glGetUniformLocation(program, "view_matrix"), 1, false, &view_matrix[0][0]);
 	glUniformMatrix4fv(glGetUniformLocation(program, "projection_matrix"), 1, false, &projection_matrix[0][0]);

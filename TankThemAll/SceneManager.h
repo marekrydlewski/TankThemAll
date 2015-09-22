@@ -4,7 +4,7 @@
 #include "Camera.h"
 #include "TankCamera.h"
 #include "Tank.h"
-
+#include "Bullet.h"
 namespace BasicEngine
 {
 	namespace Managers
@@ -24,19 +24,21 @@ namespace BasicEngine
 			virtual glm::mat4 GetViewFromCamera();
 
 			void BindTank(std::string);
+			void BindBullet(std::string);
 			void SetCameraOffset(glm::vec3 x){
 				camera->SetTankOffset(x);
 			}
 			void SetModelsManager(Managers::Models_Manager* models_manager);
+			glm::vec3 GetTankCameraPosition(bool);
 	
-				
 		private:
 			Managers::Models_Manager* models_manager;
 			Rendering::TankCamera* camera;
+			Rendering::Camera* cameraView;
 			Rendering::Models::Tank* tank;
+			Rendering::Models::Bullet* bullet;
 			glm::mat4 projection_matrix;
 			glm::mat4 view_matrix;
-		private:
 			void EnableCallbacks();
 			void MakeMouseMove(int x, int y);
 		};

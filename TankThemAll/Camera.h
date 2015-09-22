@@ -1,6 +1,7 @@
 #pragma once
 #include "stdafx.h"
 #include <vector>
+#include <iostream>
 using namespace std;
 namespace BasicEngine{
 	namespace Rendering{
@@ -10,14 +11,16 @@ namespace BasicEngine{
 			FORWARD,
 			BACKWARD,
 			LEFT,
-			RIGHT
+			RIGHT,
+			LEFT_TURRET,
+			RIGHT_TURRET
 		};
 
 		// Default camera values
 		const GLfloat YAW = -90.0f;
 		const GLfloat PITCH = 0.0f;
 		const GLfloat SPEED = 0.01f;
-		const GLfloat SENSITIVTY = 0.03f;
+		const GLfloat SENSITIVTY = 0.25f;
 		const GLfloat ZOOM = 45.0f;
 
 
@@ -114,8 +117,8 @@ namespace BasicEngine{
 				if (this->Zoom >= 45.0f)
 					this->Zoom = 45.0f;
 			}
-
-		private:
+			
+		protected:
 			// Calculates the front vector from the Camera's (updated) Eular Angles
 			void updateCameraVectors()
 			{
