@@ -29,7 +29,6 @@ namespace BasicEngine
 			}
 			void SetModelsManager(Managers::Models_Manager* models_manager);
 	
-				
 		private:
 			Managers::Models_Manager* models_manager;
 			Rendering::TankCamera* camera;

@@ -1,146 +1,72 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+    <ClCompile Include="CubeIndex.cpp" />
     <ClCompile Include="DebugOutput.cpp" />
+    <ClCompile Include="Diamond.cpp" />
     <ClCompile Include="Engine.cpp" />
+    <ClCompile Include="ImportedModel.cpp" />
     <ClCompile Include="InitGLEW.cpp" />
     <ClCompile Include="InitGLUT.cpp" />
+    <ClCompile Include="Mesh.cpp" />
+    <ClCompile Include="Model.cpp" />
+    <ClCompile Include="ModelsManager.cpp" />
+    <ClCompile Include="Quad.cpp" />
+    <ClCompile Include="SceneManager.cpp" />
+    <ClCompile Include="ShaderManager.cpp" />
     <ClCompile Include="stdafx.cpp" />
+    <ClCompile Include="Tank.cpp" />
     <ClCompile Include="TankCamera.cpp" />
     <ClCompile Include="TankThemAll.cpp" />
+    <ClCompile Include="Terrain.cpp" />
     <ClCompile Include="TextureLoader.cpp" />
-    <ClCompile Include="CubeIndex.cpp">
-      <Filter>Rendering\Models</Filter>
-    </ClCompile>
-    <ClCompile Include="Diamond.cpp">
-      <Filter>Rendering\Models</Filter>
-    </ClCompile>
-    <ClCompile Include="ImportedModel.cpp">
-      <Filter>Rendering\Models</Filter>
-    </ClCompile>
-    <ClCompile Include="Mesh.cpp">
-      <Filter>Rendering\Models</Filter>
-    </ClCompile>
-    <ClCompile Include="Model.cpp">
-      <Filter>Rendering\Models</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneManager.cpp">
-      <Filter>Managers</Filter>
-    </ClCompile>
-    <ClCompile Include="ShaderManager.cpp">
-      <Filter>Managers</Filter>
-    </ClCompile>
-    <ClCompile Include="ModelsManager.cpp">
-      <Filter>Managers</Filter>
-    </ClCompile>
-    <ClCompile Include="Triangle.cpp">
-      <Filter>Rendering\Models</Filter>
-    </ClCompile>
-    <ClCompile Include="Terrain.cpp">
-      <Filter>Rendering\Models</Filter>
-    </ClCompile>
-    <ClCompile Include="Tank.cpp">
-      <Filter>Rendering\Models</Filter>
-    </ClCompile>
-    <ClCompile Include="Quad.cpp">
-      <Filter>Rendering\Models</Filter>
-    </ClCompile>
+    <ClCompile Include="Triangle.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BMPHeaders.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="ContextInfo.h" />
+    <ClInclude Include="CubeIndex.h" />
     <ClInclude Include="DebugOutput.h" />
+    <ClInclude Include="Diamond.h" />
     <ClInclude Include="Engine.h" />
     <ClInclude Include="FrameBufferInfo.h" />
     <ClInclude Include="IGameObject.h" />
     <ClInclude Include="IListener.h" />
+    <ClInclude Include="ImportedModel.h" />
     <ClInclude Include="InitGLEW.h" />
     <ClInclude Include="InitGLUT.h" />
+    <ClInclude Include="Mesh.h" />
+    <ClInclude Include="Model.h" />
+    <ClInclude Include="ModelsManager.h" />
+    <ClInclude Include="Quad.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="SceneManager.h" />
+    <ClInclude Include="ShaderManager.h" />
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="Tank.h" />
     <ClInclude Include="TankCamera.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="Terrain.h" />
     <ClInclude Include="TextureWrap.h" />
     <ClInclude Include="TextureLoader.h" />
+    <ClInclude Include="Triangle.h" />
     <ClInclude Include="VertexFormat.h" />
     <ClInclude Include="WindowInfo.h" />
-    <ClInclude Include="CubeIndex.h">
-      <Filter>Rendering\Models</Filter>
-    </ClInclude>
-    <ClInclude Include="Diamond.h">
-      <Filter>Rendering\Models</Filter>
-    </ClInclude>
-    <ClInclude Include="ImportedModel.h">
-      <Filter>Rendering\Models</Filter>
-    </ClInclude>
-    <ClInclude Include="Mesh.h">
-      <Filter>Rendering\Models</Filter>
-    </ClInclude>
-    <ClInclude Include="Model.h">
-      <Filter>Rendering\Models</Filter>
-    </ClInclude>
-    <ClInclude Include="ShaderManager.h">
-      <Filter>Managers</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneManager.h">
-      <Filter>Managers</Filter>
-    </ClInclude>
-    <ClInclude Include="ModelsManager.h">
-      <Filter>Managers</Filter>
-    </ClInclude>
-    <ClInclude Include="Triangle.h">
-      <Filter>Rendering\Models</Filter>
-    </ClInclude>
-    <ClInclude Include="Terrain.h">
-      <Filter>Rendering\Models</Filter>
-    </ClInclude>
-    <ClInclude Include="Tank.h">
-      <Filter>Rendering\Models</Filter>
-    </ClInclude>
-    <ClInclude Include="Quad.h">
-      <Filter>Rendering\Models</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="TankThemAll.rc" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Shaders\Base_Fragment_Shader.glsl" />
+    <None Include="Shaders\Base_Vertex_Shader.glsl" />
+    <None Include="Shaders\ImportedFragmentShader.glsl" />
+    <None Include="Shaders\ImportedVertexShader.glsl" />
+    <None Include="Shaders\TerrainFragmentShader.glsl" />
+    <None Include="Shaders\TerrainVertexShader.glsl" />
     <None Include="packages.config" />
-    <None Include="Shaders\Base_Fragment_Shader.glsl">
-      <Filter>Shaders</Filter>
-    </None>
-    <None Include="Shaders\Base_Vertex_Shader.glsl">
-      <Filter>Shaders</Filter>
-    </None>
-    <None Include="Shaders\ImportedVertexShader.glsl">
-      <Filter>Shaders</Filter>
-    </None>
-    <None Include="Shaders\ImportedFragmentShader.glsl">
-      <Filter>Shaders</Filter>
-    </None>
-    <None Include="Shaders\TerrainFragmentShader.glsl">
-      <Filter>Shaders</Filter>
-    </None>
-    <None Include="Shaders\TerrainVertexShader.glsl">
-      <Filter>Shaders</Filter>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <Filter Include="Shaders">
-      <UniqueIdentifier>{3cf5b240-439d-4a5e-9d46-06172a67809a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Rendering">
-      <UniqueIdentifier>{05779be8-249b-409f-bf57-995e0b3e74db}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Rendering\Models">
-      <UniqueIdentifier>{b2328ee7-e200-4763-8553-b71a1743a917}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Managers">
-      <UniqueIdentifier>{0034fb88-b834-49c8-9ac7-21eac19ea14e}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
 </Project>
