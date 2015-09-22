@@ -90,8 +90,8 @@ void Bullet::Create()
 	this->vbos.push_back(ibo);
 
 	this->model_matrix = glm::mat4(1.0);
-	this->model_matrix = glm::translate(model_matrix, glm::vec3(1.0f, 1.0f, -1.5f));
-	this->model_matrix = glm::scale(model_matrix, glm::vec3(0.3f, 0.3f, 0.3f));
+	//this->model_matrix = glm::translate(model_matrix, glm::vec3(1.0f, 1.0f, -1.5f));
+	//this->model_matrix = glm::scale(model_matrix, glm::vec3(0.03f, 0.03f, 0.03f));
 	//this->rotate = 0.01f;
 }
 
@@ -103,7 +103,7 @@ void Bullet::Update()
 void Bullet::Draw(const glm::mat4& projection_matrix, const glm::mat4& view_matrix)
 {
 
-	if (!isFired)
+	if (isFired)
 	{
 		glUseProgram(program);
 		glUniformMatrix4fv(glGetUniformLocation(program, "model_matrix"), 1, false, &model_matrix[0][0]);

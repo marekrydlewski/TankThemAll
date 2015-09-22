@@ -11,6 +11,7 @@ bool activeUpdateCamera = false;
 bool firstMouse = true;
 bool specialMode = false;
 bool enableEntrySpecialMode = true;
+bool shoot = false;
 GLfloat scroll = 45.0f;
 GLfloat xoffset, yoffset;
 GLfloat lastX, lastY;
@@ -56,6 +57,11 @@ void CameraCallbackUpChar(unsigned char key, int x, int y)
 			enableEntrySpecialMode = true;
 		scroll = 45.0f;
 	}
+	else if ((int)key == 32)//space
+	{
+		shoot = true;
+	}
+
 }
 
 void CameraMouseCallback(int xpos, int ypos)
@@ -208,10 +214,25 @@ void Scene_Manager::MakeCameraMove(GLfloat deltaTime)
 	{
 		glutLeaveMainLoop();
 	}
+
 	
 	this->tank->tank_model_position += glm::rotateY(this->camera->Position - temp, this->camera->Yaw + 90.0f);
 	this->tank->tank_model_rotation = this->camera->Yaw + 90.0f;
 	this->tank->tank_model_turret_rotation = this->camera->TurretYaw;
+
+	if (shoot) //shoot
+	{
+		shoot = false;
+		glm::mat4 bullet_pos = glm::mat4(1.0f);
+		bullet_pos = glm::translate(bullet_pos, this->tank->tank_model_position);
+		bullet_pos = glm::translate(bullet_pos, glm::rotateY(glm::vec3(10.0f, 0.0f, 0.0f), (this->tank->tank_model_rotation +
+			this->tank->tank_model_turret_rotation 
+			+ glm::radians(90.0f))));
+		bullet_pos = glm::scale(bullet_pos, glm::vec3(0.3f, 0.3f, 0.3f));
+		this->bullet->Spawn(bullet_pos);
+	}
+
+
 	if (!specialMode) //normal mode
 		this->view_matrix = glm::lookAt(this->tank->tank_model_position + glm::rotateY(this->camera->offset, this->tank->tank_model_rotation + this->tank->tank_model_turret_rotation), this->tank->tank_model_position, glm::vec3(0, 1.0f, 0.0f));
 	else
