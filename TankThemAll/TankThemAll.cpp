@@ -58,10 +58,52 @@ int main(int argc, char **argv)
 		engine->GetModels_Manager()->SetModel(tmp, tree);
 	}
 
-	CubeIndex* box = new CubeIndex();
-	box->SetProgram(engine->GetShader_Manager()->GetShader("importedModelShader"));
-	box->Create();
-	engine->GetModels_Manager()->SetModel("box", box);
+	for (int i = 0; i < 5; i++)
+	{
+		int XorZ = rand() % 2;
+		int signX = rand() % 2 ? 1 : -1;
+		int signZ = rand() % 2 ? 1 : -1;
+		GLfloat Xoffset = ((((float)rand()) / (float)RAND_MAX) * (signX * 50 - signX * 3)) + signX * 3;
+		GLfloat Zoffset = ((((float)rand()) / (float)RAND_MAX) * (signZ * 50 - signZ * 3)) + signZ * 3;
+		for (int j = 0; j < 4; j++)
+		{
+			CubeIndex* box = new CubeIndex();
+			box->SetProgram(engine->GetShader_Manager()->GetShader("importedModelShader"));
+			XorZ == 0 ? box->Create(Xoffset + j*2, 0, Zoffset) : box->Create(Xoffset, 0, Zoffset + j*2);
+
+			std::string tmp = "";
+			sprintf((char*)tmp.c_str(), "bunch_%d_box_%d", i, j);
+			engine->GetModels_Manager()->SetModel(tmp, box);
+		}
+		for (int j = 0; j < 3; j++)
+		{
+			CubeIndex* box = new CubeIndex();
+			box->SetProgram(engine->GetShader_Manager()->GetShader("importedModelShader"));
+			XorZ == 0 ? box->Create(Xoffset + 1 + j * 2, 2, Zoffset) : box->Create(Xoffset, 2, Zoffset + 1 + j * 2);
+
+			std::string tmp = "";
+			sprintf((char*)tmp.c_str(), "bunch_%d_box_%d", i, j+4);
+			engine->GetModels_Manager()->SetModel(tmp, box);
+		}
+		for (int j = 0; j < 2; j++)
+		{
+			CubeIndex* box = new CubeIndex();
+			box->SetProgram(engine->GetShader_Manager()->GetShader("importedModelShader"));
+			XorZ == 0 ? box->Create(Xoffset + 2 + j * 2, 4, Zoffset) : box->Create(Xoffset, 4, Zoffset + 2 + j * 2);
+
+			std::string tmp = "";
+			sprintf((char*)tmp.c_str(), "bunch_%d_box_%d", i, j + 7);
+			engine->GetModels_Manager()->SetModel(tmp, box);
+		}
+		CubeIndex* box = new CubeIndex();
+		box->SetProgram(engine->GetShader_Manager()->GetShader("importedModelShader"));
+		XorZ == 0 ? box->Create(Xoffset + 3, 6, Zoffset) : box->Create(Xoffset, 6, Zoffset + 3);
+
+		std::string tmp = "";
+		sprintf((char*)tmp.c_str(), "bunch_%d_box_9", i);
+		engine->GetModels_Manager()->SetModel(tmp, box);
+	}
+
 
 	Tank* tank = new Tank();
 	tank->SetProgram(engine->GetShader_Manager()->GetShader("importedModelShader"));

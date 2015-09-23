@@ -15,7 +15,7 @@ CubeIndex::~CubeIndex()
 {
 }
 
-void CubeIndex::Create()
+void CubeIndex::Create(GLfloat offsetX, GLfloat offsetY, GLfloat offsetZ)
 {
 	GLuint vao;
 	GLuint vbo;
@@ -90,6 +90,8 @@ void CubeIndex::Create()
 	this->vbos.push_back(ibo);
 
 	this->model_matrix = glm::mat4(1.0);
+	this->model_matrix = glm::translate(this->model_matrix, glm::vec3(0,0.3,0));
+	this->model_matrix = glm::translate(this->model_matrix, glm::vec3(offsetX, offsetY, offsetZ));
 
 	int texw, texh;
 	SetTexture("wood", TextureLoader::LoadTexture("textures\\wooden_box.jpg", texw, texh));
