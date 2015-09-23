@@ -28,11 +28,18 @@ void Skybox::Create(BasicEngine::Managers::Scene_Manager *sceneManager)
 	std::vector<VertexFormat> vertices;
 	std::vector<GLuint>  indices = 
 	{
-		0,1,2,3,
-		4,5,6,7,
-		8,9,10,11,
-		12,13,14,15,
-		16,17,18,19,
+		0,1,2,
+		0,2,3,
+		4,5,6,
+		4,6,7,
+		8,9,10,
+		8,10,11,
+		12,13,14,
+		12,14,15,
+		16,17,18,
+		16,18,19,
+		20,21,22,
+		22,22,23
 	};
 
 	//front
@@ -48,10 +55,10 @@ void Skybox::Create(BasicEngine::Managers::Scene_Manager *sceneManager)
 	vertices.push_back(VertexFormat(glm::vec3(65.0, -65.0, 65.0), glm::vec4(1,-1,1,1)));
 
 	//left
-	vertices.push_back(VertexFormat(glm::vec3(-65.0, 65.0, -65.0), glm::vec4(-1,1,-1,1)));
-	vertices.push_back(VertexFormat(glm::vec3(-65.0, 65.0, 65.0), glm::vec4(-1,1,1, 1)));
-	vertices.push_back(VertexFormat(glm::vec3(-65.0, -65.0, 65.0), glm::vec4(-1,-1,1, 1)));
-	vertices.push_back(VertexFormat(glm::vec3(-65.0, -65.0, -65.0), glm::vec4(-1,-1,-1,1)));
+	vertices.push_back(VertexFormat(glm::vec3(-65.0, 65.0, 65.0), glm::vec4(-1,1,1,1)));
+	vertices.push_back(VertexFormat(glm::vec3(-65.0, 65.0, -65.0), glm::vec4(-1,1,-1, 1)));
+	vertices.push_back(VertexFormat(glm::vec3(-65.0, -65.0, -65.0), glm::vec4(-1,-1,-1, 1)));
+	vertices.push_back(VertexFormat(glm::vec3(-65.0, -65.0, 65.0), glm::vec4(-1,-1,1,1)));
 
 	//back
 	vertices.push_back(VertexFormat(glm::vec3(-65.0, 65.0, -65.0), glm::vec4(-1,1,-1, 1)));
@@ -60,10 +67,16 @@ void Skybox::Create(BasicEngine::Managers::Scene_Manager *sceneManager)
 	vertices.push_back(VertexFormat(glm::vec3(-65.0, -65.0, -65.0), glm::vec4(-1,-1,-1,1)));
 
 	//upper
-	vertices.push_back(VertexFormat(glm::vec3(-65.0, 65.0, 65.0), glm::vec4(-1,1,1, 1)));
-	vertices.push_back(VertexFormat(glm::vec3(65.0, 65.0, 65.0), glm::vec4(1, 1,1,1)));
-	vertices.push_back(VertexFormat(glm::vec3(65.0, 65.0, -65.0), glm::vec4(1, 1,-1,1)));
-	vertices.push_back(VertexFormat(glm::vec3(-65.0, 65.0, -65.0), glm::vec4(-1,1,-1,1)));
+	vertices.push_back(VertexFormat(glm::vec3(-65.0, 65.0, 65.0), glm::vec4(1,1,-1, 1)));
+	vertices.push_back(VertexFormat(glm::vec3(65.0, 65.0, 65.0), glm::vec4(-1, 1,-1,1)));
+	vertices.push_back(VertexFormat(glm::vec3(65.0, 65.0, -65.0), glm::vec4(-1, 1,1,1)));
+	vertices.push_back(VertexFormat(glm::vec3(-65.0, 65.0, -65.0), glm::vec4(1,1,1,1)));
+
+	//lower
+	vertices.push_back(VertexFormat(glm::vec3(-65.0, -65.0, 65.0), glm::vec4(-1, -1, 1, 1)));
+	vertices.push_back(VertexFormat(glm::vec3(65.0, -65.0, 65.0), glm::vec4(1, -1, 1, 1)));
+	vertices.push_back(VertexFormat(glm::vec3(65.0, -65.0, -65.0), glm::vec4(1, -1, -1, 1)));
+	vertices.push_back(VertexFormat(glm::vec3(-65.0, -65.0, -65.0), glm::vec4(-1, -1, -1, 1)));
 
 	glGenBuffers(1, &vbo);
 	glBindBuffer(GL_ARRAY_BUFFER, vbo);
@@ -108,15 +121,15 @@ void Skybox::Draw()
 void Skybox::Draw(const glm::mat4& projection_matrix, const glm::mat4& view_matrix)
 {
 	glUseProgram(program);
+	glDepthMask(0);
 	glActiveTexture(GL_TEXTURE0);
 	glUniform1i(glGetUniformLocation(program, "skybox_texture"), 0);
 	glBindTexture(GL_TEXTURE_CUBE_MAP, this->textures["cubemap"]);
 	glUniformMatrix4fv(glGetUniformLocation(program, "model_matrix"), 1, false, &model_matrix[0][0]);
 	glUniformMatrix4fv(glGetUniformLocation(program, "view_matrix"), 1, false, &view_matrix[0][0]);
 	glUniformMatrix4fv(glGetUniformLocation(program, "projection_matrix"), 1, false, &projection_matrix[0][0]);
-	glDepthMask(0);
 	glBindVertexArray(vao);
-	glDrawElements(GL_QUADS, 24, GL_UNSIGNED_INT, 0);
+	glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
 	glDepthMask(1);
 }
 

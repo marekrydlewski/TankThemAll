@@ -44,11 +44,13 @@ int main(int argc, char **argv)
 
 	engine->GetModels_Manager()->SetModel("map", terrain);
 
-	for (int i = 0; i < 10; i++)
+	for (int i = 0; i < 20; i++)
 	{
 		Tree1* tree = new Tree1();
 		tree->SetProgram(engine->GetShader_Manager()->GetShader("importedModelShader"));
-		tree->Create("models\\Tree1\\tree.obj", ((((float)rand()) / (float)RAND_MAX) * (10 - (-10))) + (-10), ((((float)rand()) / (float)RAND_MAX) * (10 - (-10))) + (-10));
+		int signX = rand() % 2 ? 1 : -1;
+		int signZ = rand() % 2 ? 1 : -1;
+		tree->Create("models\\Tree1\\tree.obj", ((((float)rand()) / (float)RAND_MAX) * (signX * 50 - signX * 3)) + signX * 3, ((((float)rand()) / (float)RAND_MAX) * (signZ * 50 - signZ * 3)) + signZ * 3);
 
 		std::string tmp = "";
 		sprintf((char*)tmp.c_str(), "tree_%d", i);
