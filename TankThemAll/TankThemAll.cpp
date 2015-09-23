@@ -4,7 +4,7 @@
 #include "Terrain.h"
 #include "Tree1.h"
 #include "Diamond.h"
-#include "Bullet.h"
+#include "Bullets.h"
 #include <SOIL.h>
 using namespace BasicEngine;
 using namespace std;
@@ -34,13 +34,13 @@ int main(int argc, char **argv)
 
 	engine->GetModels_Manager()->SetModel("map", terrain);
 
-	for (int i = 0; i < 10; i++)
+	for (int i = 0; i < 100; i++)
 	{
 		Tree1* tree = new Tree1();
 		tree->SetProgram(engine->GetShader_Manager()->GetShader("importedModelShader"));
-		tree->Create("models\\Tree1\\tree.obj", ((((float)rand()) / (float)RAND_MAX) * (20 - (-20))) + (-20), ((((float)rand()) / (float)RAND_MAX) * (20 - (-20))) + (-20));
+		tree->Create("models\\Tree1\\tree.obj", ((((float)rand()) / (float)RAND_MAX) * (100 - (-100))) + (-100), ((((float)rand()) / (float)RAND_MAX) * (100 - (-100))) + (-100));
 
-		std::string tmp="";
+		std::string tmp = "";
 		sprintf((char*)tmp.c_str(), "tree_%d", i);
 		engine->GetModels_Manager()->SetModel(tmp, tree);
 	}
@@ -53,17 +53,17 @@ int main(int argc, char **argv)
 	diamond->SetProgram(engine->GetShader_Manager()->GetShader("baseShader"));
 	diamond->Create();
 
-	Bullet* bullet = new Bullet();
-	bullet->SetProgram(engine->GetShader_Manager()->GetShader("baseShader"));
-	bullet->Create();
+	Bullets* bullets = new Bullets();
+	bullets->SetProgram(engine->GetShader_Manager()->GetShader("baseShader"));
+	bullets->Create();
 
-	engine->GetModels_Manager()->SetModel("bullet", bullet);
+	engine->GetModels_Manager()->SetModel("bullets", bullets);
 
 
 	engine->GetModels_Manager()->SetModel("tank", tank);
 
 	engine->GetScene_Manager()->BindTank("tank");
-	engine->GetScene_Manager()->BindBullet("bullet");
+	engine->GetScene_Manager()->BindBullets("bullets");
 
 	engine->Run();
 
