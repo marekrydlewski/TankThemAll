@@ -1,6 +1,5 @@
 #include "stdafx.h"
 #include "Bullets.h"
-#include "IGameObject.h"
 
 using namespace BasicEngine;
 using namespace Rendering;
@@ -14,4 +13,17 @@ Bullets::Bullets()
 
 Bullets::~Bullets()
 {
+}
+
+
+
+void Bullets::Draw(const glm::mat4& projection_matrix, const glm::mat4& view_matrix)
+{
+
+
+}
+
+void Bullets::Update()
+{
+
 }

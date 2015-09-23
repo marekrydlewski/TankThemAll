@@ -1,6 +1,11 @@
 #pragma once
-#include "IGameObject.h"
+#include<vector>
+#include <iostream>
+#include "Bullet.h"
+#include "Model.h"
 
+
+using namespace std;
 namespace BasicEngine
 {
 	namespace Rendering
@@ -8,11 +13,15 @@ namespace BasicEngine
 		namespace Models
 		{
 			class Bullets :
-				public IGameObject
+				public Model
 			{
 			public:
 				Bullets();
 				virtual ~Bullets();
+				virtual void Draw(const glm::mat4& projection_matrix, const glm::mat4& view_matrix) override;
+				virtual void Update()           override;
+
+				vector<Bullet*> listOfBullets;
 			};
 		}
 
