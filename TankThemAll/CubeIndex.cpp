@@ -5,7 +5,7 @@ using namespace Rendering;
 using namespace Models;
 
 #define PI 3.14159265
-GLfloat LightPosit[] = { 0.0, 8.0, 0.0 };
+GLfloat LightPosit[] = { 0.0, 10.0, 0.0 };
 CubeIndex::CubeIndex()
 {
 }
