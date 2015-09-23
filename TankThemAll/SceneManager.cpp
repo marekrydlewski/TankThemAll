@@ -215,10 +215,17 @@ void Scene_Manager::MakeCameraMove(GLfloat deltaTime)
 		glutLeaveMainLoop();
 	}
 
-
+	//calulate tank parameters
 	this->tank->tank_model_position += glm::rotateY(this->camera->Position - temp, this->camera->Yaw + 90.0f);
 	this->tank->tank_model_rotation = this->camera->Yaw + 90.0f;
 	this->tank->tank_model_turret_rotation = this->camera->TurretYaw;
+
+	//check trees for collision
+	glm::mat4 check_pos = glm::mat4(1.0f);
+	check_pos = glm::translate(check_pos, this->tank->tank_model_position);
+	check_pos = glm::translate(check_pos, glm::rotateY(glm::vec3(3.35, 0.0f, 0.0f), this->tank->tank_model_rotation + glm::radians(90.0f)));
+	this->CheckTrees(glm::vec3(check_pos[3][0], check_pos[3][1], check_pos[3][2]));
+
 
 	if (shoot) //shoot
 	{
@@ -233,6 +240,8 @@ void Scene_Manager::MakeCameraMove(GLfloat deltaTime)
 
 		bullet_pos = glm::scale(bullet_pos, glm::vec3(0.3f, 0.3f, 0.3f));
 		this->bullets->AddBullet(bullet_pos, bullet_angle);
+
+		//this->bullets->AddBullet(check_pos, 0.0f);
 
 	}
 
@@ -298,4 +307,23 @@ void Scene_Manager::BindBullets(std::string name)
 	else
 		std::cout << "ENGINE: Camera successfully found bullets object" << std::endl;
 
+
+}
+
+void Scene_Manager::CheckTrees(glm::vec3 position)
+{
+	Tree1* tree = nullptr;
+	for (auto model : models_manager->gameModelList)
+	{
+		auto name = model.first.substr(0, 5);
+		if (name == "tree_")
+		{
+			tree = dynamic_cast<Tree1*>(model.second);
+			if (tree != nullptr)
+			{
+				tree->CheckCollision(position, 4.0f);
+			}
+		}
+
+	}
 }

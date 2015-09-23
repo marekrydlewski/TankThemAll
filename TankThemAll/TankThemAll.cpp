@@ -34,11 +34,11 @@ int main(int argc, char **argv)
 
 	engine->GetModels_Manager()->SetModel("map", terrain);
 
-	for (int i = 0; i < 100; i++)
+	for (int i = 0; i < 10; i++)
 	{
 		Tree1* tree = new Tree1();
 		tree->SetProgram(engine->GetShader_Manager()->GetShader("importedModelShader"));
-		tree->Create("models\\Tree1\\tree.obj", ((((float)rand()) / (float)RAND_MAX) * (100 - (-100))) + (-100), ((((float)rand()) / (float)RAND_MAX) * (100 - (-100))) + (-100));
+		tree->Create("models\\Tree1\\tree.obj", ((((float)rand()) / (float)RAND_MAX) * (10 - (-10))) + (-10), ((((float)rand()) / (float)RAND_MAX) * (10 - (-10))) + (-10));
 
 		std::string tmp = "";
 		sprintf((char*)tmp.c_str(), "tree_%d", i);

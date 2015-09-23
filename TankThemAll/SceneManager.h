@@ -5,6 +5,7 @@
 #include "TankCamera.h"
 #include "Tank.h"
 #include "Bullets.h"
+#include "Tree1.h"
 
 namespace BasicEngine
 {
@@ -31,6 +32,7 @@ namespace BasicEngine
 			}
 			void SetModelsManager(Managers::Models_Manager* models_manager);
 			glm::vec3 GetTankCameraPosition(bool);
+			void CheckTrees(glm::vec3 position);
 
 		private:
 			Managers::Models_Manager* models_manager;
