@@ -33,6 +33,10 @@ int main(int argc, char **argv)
 		"Shaders\\TerrainVertexShader.glsl",
 		"Shaders\\TerrainFragmentShader.glsl");
 
+	engine->GetShader_Manager()->CreateProgram("bulletShader",
+		"Shaders\\BulletVertexShader.glsl",
+		"Shaders\\BulletFragmentShader.glsl");
+
 	Skybox* skybox = new Skybox();
 	skybox->SetProgram(engine->GetShader_Manager()->GetShader("skyboxShader"));
 	skybox->Create(engine->GetScene_Manager());
@@ -110,7 +114,7 @@ int main(int argc, char **argv)
 	tank->Create("models\\Tiger\\Tiger_I.obj");
 
 	Bullets* bullets = new Bullets();
-	bullets->SetProgram(engine->GetShader_Manager()->GetShader("baseShader"));
+	bullets->SetProgram(engine->GetShader_Manager()->GetShader("bulletShader"));
 	bullets->Create();
 
 	engine->GetModels_Manager()->SetModel("bullets", bullets);

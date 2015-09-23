@@ -27,6 +27,7 @@ namespace BasicEngine
 			private:
 				GLfloat rotate;
 				GLfloat angle;
+				void calculateNormals(std::vector<GLuint> indices, std::vector<VertexFormat> &vertices);
 
 			};
 		}
