@@ -4,7 +4,7 @@
 
 using namespace BasicEngine::Rendering;
 
-GLfloat LightPos[] = { 0.0, 8.0, 0.0 };
+GLfloat LightPos[] = { 0.0, 10.0, 0.0 };
 
 Mesh::Mesh(std::vector<VertexFormat> vertices, std::vector<GLuint> indices, std::vector<TextureWrap> textures)
 {

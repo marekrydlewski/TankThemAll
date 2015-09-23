@@ -5,7 +5,7 @@
 using namespace BasicEngine::Rendering;
 using namespace BasicEngine::Rendering::Models;
 
-GLfloat LightPosition[] = { 0.0, 8.0, 0.0 };
+GLfloat LightPosition[] = { 0.0, 10.0, 0.0 };
 
 Terrain::Terrain()
 {

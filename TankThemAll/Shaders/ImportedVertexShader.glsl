@@ -8,6 +8,7 @@ out vec2 tex;
 out vec3 Position_worldspace;
 out vec3 EyeDirection_cameraspace;
 out vec3 LightDirection_cameraspace;
+out vec3 LightDirection2_cameraspace;
 out vec3 Normal_cameraspace;
 
 uniform mat4 model_matrix;
@@ -27,8 +28,12 @@ void main()
 	
 	vec3 LightPosition_cameraspace = (view_matrix * vec4(light_source_1, 1)).xyz;
 	
+	vec3 LightPosition2_cameraspace = (view_matrix * vec4((in_position + vec3(-5, 10, 1)),1)).xyz;
+
 	LightDirection_cameraspace = LightPosition_cameraspace + EyeDirection_cameraspace;
 	
+	LightDirection2_cameraspace = LightPosition2_cameraspace + EyeDirection_cameraspace;
+
 	Normal_cameraspace = (view_matrix * model_matrix * vec4(in_normal, 0)).xyz;
 	
 	tex = in_texture;
