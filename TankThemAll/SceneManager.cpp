@@ -224,7 +224,13 @@ void Scene_Manager::MakeCameraMove(GLfloat deltaTime)
 	glm::mat4 check_pos = glm::mat4(1.0f);
 	check_pos = glm::translate(check_pos, this->tank->tank_model_position);
 	check_pos = glm::translate(check_pos, glm::rotateY(glm::vec3(3.35, 0.0f, 0.0f), this->tank->tank_model_rotation + glm::radians(90.0f)));
+
+	glm::mat4 check_pos2 = glm::mat4(1.0f);
+	check_pos2 = glm::translate(check_pos, this->tank->tank_model_position);
+	check_pos2 = glm::translate(check_pos, glm::rotateY(glm::vec3(2.65, 0.0f, 0.0f), this->tank->tank_model_rotation + glm::radians(270.0f)));
 	this->CheckTrees(glm::vec3(check_pos[3][0], check_pos[3][1], check_pos[3][2]));
+	this->CheckTrees(glm::vec3(check_pos2[3][0], check_pos2[3][1], check_pos2[3][2]));
+
 
 
 	if (shoot) //shoot
