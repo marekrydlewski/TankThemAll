@@ -1,13 +1,18 @@
 #include "stdafx.h"
+#include <iostream>
 #include "CubeIndex.h"
+
 using namespace BasicEngine;
 using namespace Rendering;
 using namespace Models;
+using namespace std;
 
 #define PI 3.14159265
 GLfloat LightPosit[] = { 0.0, 10.0, 0.0 };
 CubeIndex::CubeIndex()
 {
+
+	isDrawn = true;
 }
 
 
@@ -90,7 +95,7 @@ void CubeIndex::Create(GLfloat offsetX, GLfloat offsetY, GLfloat offsetZ)
 	this->vbos.push_back(ibo);
 
 	this->model_matrix = glm::mat4(1.0);
-	this->model_matrix = glm::translate(this->model_matrix, glm::vec3(0,0.3,0));
+	this->model_matrix = glm::translate(this->model_matrix, glm::vec3(0, 0.3, 0));
 	this->model_matrix = glm::translate(this->model_matrix, glm::vec3(offsetX, offsetY, offsetZ));
 
 	int texw, texh;
@@ -105,19 +110,22 @@ void CubeIndex::Update()
 void CubeIndex::Draw(const glm::mat4& projection_matrix, const glm::mat4& view_matrix)
 {
 
+	if (isDrawn)
+	{
+		glUseProgram(program);
+		glActiveTexture(GL_TEXTURE0);
+		GLint location = glGetUniformLocation(program, "texture_diffuse1");
+		glUniform1i(location, 0);
+		glBindTexture(GL_TEXTURE_2D, this->textures["wood"]);
+		location = glGetUniformLocation(program, "light_source_1");
+		glUniform3fv(location, 1, LightPosit);
+		glUniformMatrix4fv(glGetUniformLocation(program, "model_matrix"), 1, false, &model_matrix[0][0]);
+		glUniformMatrix4fv(glGetUniformLocation(program, "view_matrix"), 1, false, &view_matrix[0][0]);
+		glUniformMatrix4fv(glGetUniformLocation(program, "projection_matrix"), 1, false, &projection_matrix[0][0]);
+		glBindVertexArray(vao);
+		glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+	}
 
-	glUseProgram(program);
-	glActiveTexture(GL_TEXTURE0);
-	GLint location = glGetUniformLocation(program, "texture_diffuse1");
-	glUniform1i(location, 0);
-	glBindTexture(GL_TEXTURE_2D, this->textures["wood"]);
-	location = glGetUniformLocation(program, "light_source_1");
-	glUniform3fv(location, 1, LightPosit);
-	glUniformMatrix4fv(glGetUniformLocation(program, "model_matrix"), 1, false, &model_matrix[0][0]);
-	glUniformMatrix4fv(glGetUniformLocation(program, "view_matrix"), 1, false, &view_matrix[0][0]);
-	glUniformMatrix4fv(glGetUniformLocation(program, "projection_matrix"), 1, false, &projection_matrix[0][0]);
-	glBindVertexArray(vao);
-	glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
 }
 
 void CubeIndex::calculateNormals(std::vector<GLuint> indices, std::vector<VertexFormat> &vertices)
@@ -173,6 +181,34 @@ void CubeIndex::calculateNormals(std::vector<GLuint> indices, std::vector<Vertex
 				v.normal = normals[i];
 				break;
 			}
+		}
+	}
+}
+
+void CubeIndex::CheckCollision(glm::vec3 collider_position, GLfloat radius)
+{
+	if (isDrawn)
+	{
+		glm::vec3 cube_position = glm::vec3(model_matrix[3][0], model_matrix[3][1], model_matrix[3][2]);
+
+		GLfloat x_collide, z_collide;
+		GLfloat x_cube, z_cube;
+
+		x_collide = collider_position.x;
+		z_collide = collider_position.z;
+
+		x_cube = cube_position.x;
+		z_cube = cube_position.z;
+
+		//cout << x_collide << " collide  " << z_collide << endl;
+		//cout << x_cube << " cube" << z_cube << endl;
+		auto rot = ((float)rand() / (float)RAND_MAX);
+		rot /= 2;
+
+		if ((((x_collide - x_cube)*(x_collide - x_cube)) +
+			((z_collide - z_cube)*(z_collide - z_cube))) <= radius * radius)
+		{
+			isDrawn = false;
 		}
 	}
 }

@@ -232,7 +232,7 @@ void Scene_Manager::MakeCameraMove(GLfloat deltaTime)
 	this->CheckTrees(glm::vec3(check_pos[3][0], check_pos[3][1], check_pos[3][2]), 2.7f);
 	this->CheckTrees(glm::vec3(check_pos2[3][0], check_pos2[3][1], check_pos2[3][2]), 2.7f);
 
-	
+
 
 	if (shoot) //shoot
 	{
@@ -341,5 +341,25 @@ void Scene_Manager::CheckBulletsCollision()
 	for (auto& bullet : this->bullets->listOfBullets)
 	{
 		this->CheckTrees(bullet->GetPosition(), 0.7f);
+		this->CheckBoxes(bullet->GetPosition(), 1.0f);
+	}
+}
+
+void Scene_Manager::CheckBoxes(glm::vec3 position, GLfloat radius)
+{
+	CubeIndex* box = nullptr;
+	for (auto model : models_manager->gameModelList)
+	{
+		auto name = model.first.substr(0, 6);
+		if (name == "bunch_")
+		{
+			box = dynamic_cast<CubeIndex*>(model.second);
+			if (box != nullptr)
+			{
+				box->CheckCollision(position, radius);
+				//cout << model.first << endl;
+			}
+		}
+
 	}
 }

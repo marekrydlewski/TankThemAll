@@ -6,6 +6,7 @@
 #include "Tank.h"
 #include "Bullets.h"
 #include "Tree1.h"
+#include "CubeIndex.h"
 
 namespace BasicEngine
 {
@@ -33,6 +34,7 @@ namespace BasicEngine
 			void SetModelsManager(Managers::Models_Manager* models_manager);
 			glm::vec3 GetTankCameraPosition(bool);
 			void CheckTrees(glm::vec3 position, GLfloat radius);
+			void Scene_Manager::CheckBoxes(glm::vec3 position, GLfloat radius);
 			void CheckBulletsCollision();
 
 		private:
@@ -41,6 +43,7 @@ namespace BasicEngine
 			Rendering::Camera* cameraView;
 			Rendering::Models::Tank* tank;
 			Rendering::Models::Bullets* bullets;
+			vector<Rendering::Models::CubeIndex*> pyramids;
 			glm::mat4 projection_matrix;
 			glm::mat4 view_matrix;
 			void EnableCallbacks();
