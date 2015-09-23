@@ -39,7 +39,7 @@ int main(int argc, char **argv)
 
 	engine->GetModels_Manager()->SetModel("map", terrain);
 
-	for (int i = 0; i < 10; i++)
+	/*for (int i = 0; i < 10; i++)
 	{
 		Tree1* tree = new Tree1();
 		tree->SetProgram(engine->GetShader_Manager()->GetShader("importedModelShader"));
@@ -50,7 +50,7 @@ int main(int argc, char **argv)
 		std::string tmp="";
 		sprintf((char*)tmp.c_str(), "tree_%d", i);
 		engine->GetModels_Manager()->SetModel(tmp, tree);
-	}
+	}*/
 
 	Tank* tank = new Tank();
 	tank->SetProgram(engine->GetShader_Manager()->GetShader("importedModelShader"));

@@ -133,7 +133,7 @@
       <Filter>Source Files\Rendering\Models</Filter>
     </ClInclude>
     <ClInclude Include="Skybox.h">
-       <Filter>Source Files\Rendering\Models</Filter>
+      <Filter>Source Files\Rendering\Models</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -225,6 +225,12 @@
       <Filter>Shaders</Filter>
     </None>
     <None Include="Shaders\TerrainVertexShader.glsl">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="SkyboxVertexShader.glsl">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="SkyboxFragmentShader.glsl">
       <Filter>Shaders</Filter>
     </None>
   </ItemGroup>

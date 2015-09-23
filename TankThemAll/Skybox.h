@@ -1,6 +1,6 @@
 #pragma once
 #include "IGameObject.h"
-
+#include "SceneManager.h"
 namespace BasicEngine
 {
 	namespace Rendering
@@ -27,6 +27,11 @@ namespace BasicEngine
 				virtual void SetTexture(std::string textureName, GLuint texture) override;
 			private:
 				BasicEngine::Managers::Scene_Manager *_sceneManager;
+				GLuint vao;
+				std::vector<GLuint> vbos;
+				glm::mat4 model_matrix;
+				GLuint program;
+				std::map<std::string, GLuint> textures;
 			};
 		}
 	}
