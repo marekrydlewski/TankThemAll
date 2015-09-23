@@ -356,9 +356,27 @@ void Scene_Manager::CheckBoxes(glm::vec3 position, GLfloat radius)
 			box = dynamic_cast<CubeIndex*>(model.second);
 			if (box != nullptr)
 			{
-				box->CheckCollision(position, radius);
+				if (box->CheckCollision(position, radius))
+					this->ProcessPyramidHit(model.first);
 				//cout << model.first << endl;
 			}
+		}
+
+	}
+}
+
+
+void Scene_Manager::ProcessPyramidHit(string nameCube) // it works only for 9 pyramids
+{
+	auto name_substr = nameCube.substr(0, 7);
+	CubeIndex* box = nullptr;
+	for (auto model : models_manager->gameModelList)
+	{
+		auto name = model.first.substr(0, 7);
+		if (name == name_substr)
+		{
+			box = dynamic_cast<CubeIndex*>(model.second);
+			box->ActivateFall();
 		}
 
 	}

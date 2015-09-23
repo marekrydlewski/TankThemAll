@@ -33,9 +33,7 @@ namespace BasicEngine
 			}
 			void SetModelsManager(Managers::Models_Manager* models_manager);
 			glm::vec3 GetTankCameraPosition(bool);
-			void CheckTrees(glm::vec3 position, GLfloat radius);
-			void Scene_Manager::CheckBoxes(glm::vec3 position, GLfloat radius);
-			void CheckBulletsCollision();
+	
 
 		private:
 			Managers::Models_Manager* models_manager;
@@ -48,6 +46,10 @@ namespace BasicEngine
 			glm::mat4 view_matrix;
 			void EnableCallbacks();
 			void MakeMouseMove(int x, int y);
+			void CheckTrees(glm::vec3 position, GLfloat radius);
+			void CheckBoxes(glm::vec3 position, GLfloat radius);
+			void CheckBulletsCollision();
+			void ProcessPyramidHit(std::string);
 		};
 
 	}

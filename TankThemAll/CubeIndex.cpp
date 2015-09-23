@@ -185,7 +185,7 @@ void CubeIndex::calculateNormals(std::vector<GLuint> indices, std::vector<Vertex
 	}
 }
 
-void CubeIndex::CheckCollision(glm::vec3 collider_position, GLfloat radius)
+bool CubeIndex::CheckCollision(glm::vec3 collider_position, GLfloat radius)
 {
 	if (isDrawn)
 	{
@@ -209,6 +209,15 @@ void CubeIndex::CheckCollision(glm::vec3 collider_position, GLfloat radius)
 			((z_collide - z_cube)*(z_collide - z_cube))) <= radius * radius)
 		{
 			isDrawn = false;
+			return true;
 		}
 	}
+	return false;
+}
+
+
+void CubeIndex::ActivateFall()
+{
+
+
 }

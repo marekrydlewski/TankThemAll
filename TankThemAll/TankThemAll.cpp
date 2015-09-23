@@ -76,7 +76,7 @@ int main(int argc, char **argv)
 			XorZ == 0 ? box->Create(Xoffset + j*2, 0, Zoffset) : box->Create(Xoffset, 0, Zoffset + j*2);
 
 			std::string tmp = "";
-			sprintf((char*)tmp.c_str(), "bunch_%d_box_%d", i, j);
+			sprintf((char*)tmp.c_str(), "bunch_%d_#box_%d", i, j);
 			engine->GetModels_Manager()->SetModel(tmp, box);
 		}
 		for (int j = 0; j < 3; j++)
@@ -86,7 +86,7 @@ int main(int argc, char **argv)
 			XorZ == 0 ? box->Create(Xoffset + 1 + j * 2, 2, Zoffset) : box->Create(Xoffset, 2, Zoffset + 1 + j * 2);
 
 			std::string tmp = "";
-			sprintf((char*)tmp.c_str(), "bunch_%d_box_%d", i, j+4);
+			sprintf((char*)tmp.c_str(), "bunch_%d_#box_%d", i, j+4);
 			engine->GetModels_Manager()->SetModel(tmp, box);
 		}
 		for (int j = 0; j < 2; j++)
@@ -96,7 +96,7 @@ int main(int argc, char **argv)
 			XorZ == 0 ? box->Create(Xoffset + 2 + j * 2, 4, Zoffset) : box->Create(Xoffset, 4, Zoffset + 2 + j * 2);
 
 			std::string tmp = "";
-			sprintf((char*)tmp.c_str(), "bunch_%d_box_%d", i, j + 7);
+			sprintf((char*)tmp.c_str(), "bunch_%d_#box_%d", i, j + 7);
 			engine->GetModels_Manager()->SetModel(tmp, box);
 		}
 		CubeIndex* box = new CubeIndex();
@@ -104,7 +104,7 @@ int main(int argc, char **argv)
 		XorZ == 0 ? box->Create(Xoffset + 3, 6, Zoffset) : box->Create(Xoffset, 6, Zoffset + 3);
 
 		std::string tmp = "";
-		sprintf((char*)tmp.c_str(), "bunch_%d_box_9", i);
+		sprintf((char*)tmp.c_str(), "bunch_%d_#box_9", i);
 		engine->GetModels_Manager()->SetModel(tmp, box);
 	}
 

@@ -19,7 +19,8 @@ namespace BasicEngine
 				void Create(GLfloat offsetX, GLfloat offsetY, GLfloat offsetZ);
 				virtual void Draw(const glm::mat4& projection_matrix, const glm::mat4& view_matrix) override final;
 				virtual void Update() override final;
-				void CheckCollision(glm::vec3 collider_position, GLfloat radius);
+				bool CheckCollision(glm::vec3 collider_position, GLfloat radius);
+				void ActivateFall();
 
 			private:
 				GLfloat rotate;
