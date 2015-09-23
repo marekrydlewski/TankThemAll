@@ -22,6 +22,7 @@ namespace BasicEngine
 				virtual void Draw(const glm::mat4& projection_matrix, const glm::mat4& view_matrix) override final;
 				virtual void Spawn(const glm::mat4& bullet_model_matrix, GLfloat angle);	
 				virtual void Update() override final;
+				glm::vec3 GetPosition();
 
 			private:
 				GLfloat rotate;

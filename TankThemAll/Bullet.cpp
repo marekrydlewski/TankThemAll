@@ -127,3 +127,9 @@ void Bullet::Spawn(const glm::mat4& bullet_model_matrix, GLfloat bullet_angle)
 	angle = bullet_angle;
 	model_matrix = bullet_model_matrix;
 }
+
+glm::vec3 Bullet::GetPosition()
+{
+	return glm::vec3(model_matrix[3][0], model_matrix[3][1], model_matrix[3][2]);
+
+}

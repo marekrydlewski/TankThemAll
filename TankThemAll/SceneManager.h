@@ -32,7 +32,8 @@ namespace BasicEngine
 			}
 			void SetModelsManager(Managers::Models_Manager* models_manager);
 			glm::vec3 GetTankCameraPosition(bool);
-			void CheckTrees(glm::vec3 position);
+			void CheckTrees(glm::vec3 position, GLfloat radius);
+			void CheckBulletsCollision();
 
 		private:
 			Managers::Models_Manager* models_manager;

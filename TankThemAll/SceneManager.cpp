@@ -131,6 +131,7 @@ void Scene_Manager::EnableCallbacks()
 void Scene_Manager::NotifyBeginFrame()
 {
 	models_manager->Update();
+	CheckBulletsCollision();
 }
 
 void Scene_Manager::NotifyDisplayFrame()
@@ -228,10 +229,10 @@ void Scene_Manager::MakeCameraMove(GLfloat deltaTime)
 	glm::mat4 check_pos2 = glm::mat4(1.0f);
 	check_pos2 = glm::translate(check_pos, this->tank->tank_model_position);
 	check_pos2 = glm::translate(check_pos, glm::rotateY(glm::vec3(2.65, 0.0f, 0.0f), this->tank->tank_model_rotation + glm::radians(270.0f)));
-	this->CheckTrees(glm::vec3(check_pos[3][0], check_pos[3][1], check_pos[3][2]));
-	this->CheckTrees(glm::vec3(check_pos2[3][0], check_pos2[3][1], check_pos2[3][2]));
+	this->CheckTrees(glm::vec3(check_pos[3][0], check_pos[3][1], check_pos[3][2]), 2.7f);
+	this->CheckTrees(glm::vec3(check_pos2[3][0], check_pos2[3][1], check_pos2[3][2]), 2.7f);
 
-
+	
 
 	if (shoot) //shoot
 	{
@@ -316,7 +317,7 @@ void Scene_Manager::BindBullets(std::string name)
 
 }
 
-void Scene_Manager::CheckTrees(glm::vec3 position)
+void Scene_Manager::CheckTrees(glm::vec3 position, GLfloat radius)
 {
 	Tree1* tree = nullptr;
 	for (auto model : models_manager->gameModelList)
@@ -327,9 +328,18 @@ void Scene_Manager::CheckTrees(glm::vec3 position)
 			tree = dynamic_cast<Tree1*>(model.second);
 			if (tree != nullptr)
 			{
-				tree->CheckCollision(position, 4.0f);
+				tree->CheckCollision(position, radius);
 			}
 		}
 
+	}
+}
+
+
+void Scene_Manager::CheckBulletsCollision()
+{
+	for (auto& bullet : this->bullets->listOfBullets)
+	{
+		this->CheckTrees(bullet->GetPosition(), 0.7f);
 	}
 }

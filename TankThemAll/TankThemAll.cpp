@@ -6,6 +6,7 @@
 #include "Skybox.h"
 #include "Diamond.h"
 #include "Bullets.h"
+#include "CubeIndex.h"
 #include <SOIL.h>
 using namespace BasicEngine;
 using namespace std;
@@ -57,13 +58,14 @@ int main(int argc, char **argv)
 		engine->GetModels_Manager()->SetModel(tmp, tree);
 	}
 
+	CubeIndex* box = new CubeIndex();
+	box->SetProgram(engine->GetShader_Manager()->GetShader("importedModelShader"));
+	box->Create();
+	engine->GetModels_Manager()->SetModel("box", box);
+
 	Tank* tank = new Tank();
 	tank->SetProgram(engine->GetShader_Manager()->GetShader("importedModelShader"));
 	tank->Create("models\\Tiger\\Tiger_I.obj");
-
-	Diamond* diamond = new Diamond();
-	diamond->SetProgram(engine->GetShader_Manager()->GetShader("baseShader"));
-	diamond->Create();
 
 	Bullets* bullets = new Bullets();
 	bullets->SetProgram(engine->GetShader_Manager()->GetShader("baseShader"));
