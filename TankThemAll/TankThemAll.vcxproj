@@ -91,6 +91,7 @@
   <ItemGroup>
     <ClInclude Include="BMPHeaders.h" />
     <ClInclude Include="Bullet.h" />
+    <ClInclude Include="Bullets.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="ContextInfo.h" />
     <ClInclude Include="CubeIndex.h" />
@@ -125,6 +126,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Bullet.cpp" />
+    <ClCompile Include="Bullets.cpp" />
     <ClCompile Include="CubeIndex.cpp" />
     <ClCompile Include="DebugOutput.cpp" />
     <ClCompile Include="Diamond.cpp" />

@@ -28,7 +28,6 @@ namespace BasicEngine
 
 			void SetModel(const std::string& gameObjectName, IGameObject* gameObject);
 
-		private:
 			std::map<std::string, IGameObject*> gameModelList;
 			std::map<std::string, IGameObject*> gameModelList_NDC;
 		};

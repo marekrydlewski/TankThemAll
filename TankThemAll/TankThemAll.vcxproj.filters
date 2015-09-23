@@ -134,6 +134,8 @@
     </ClInclude>
     <ClInclude Include="Skybox.h">
       <Filter>Source Files\Rendering\Models</Filter>
+    <ClInclude Include="Bullets.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -205,6 +207,8 @@
     </ClCompile>
     <ClCompile Include="Skybox.cpp">
       <Filter>Source Files\Rendering\Models</Filter>
+    <ClCompile Include="Bullets.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
