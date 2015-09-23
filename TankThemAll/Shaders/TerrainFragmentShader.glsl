@@ -17,7 +17,7 @@ void main()
 	float LightPower = 70.0f;
 
 	vec3 MaterialDiffuseColor = texture2D( texture_grass, tex ).rgb;
-	vec3 MaterialAmbientColor = vec3(0.8,0.8,0.8) * MaterialDiffuseColor;
+	vec3 MaterialAmbientColor = vec3(0.6,0.6,0.6) * MaterialDiffuseColor;
 	vec3 MaterialSpecularColor = vec3(0.4,0.4,0.4);
 
 	float distance = length( light_source_1 - Position_worldspace );

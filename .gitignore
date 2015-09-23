@@ -254,5 +254,5 @@ _Pvt_Extensions
 
 # soil
 soil/img_test.png-screenshot.bmp
-soil/Thumbs.db
+*.db
 
