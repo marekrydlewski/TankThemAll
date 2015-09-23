@@ -25,6 +25,8 @@ namespace BasicEngine
 
 				virtual const GLuint GetTexture(std::string textureName) const override;
 				virtual void SetTexture(std::string textureName, GLuint texture) override;
+
+				GLuint loadCubemap(vector<const GLchar*> faces);
 			private:
 				BasicEngine::Managers::Scene_Manager *_sceneManager;
 				GLuint vao;
@@ -32,6 +34,7 @@ namespace BasicEngine
 				glm::mat4 model_matrix;
 				GLuint program;
 				std::map<std::string, GLuint> textures;
+				std::vector<const GLchar*> faces;
 			};
 		}
 	}

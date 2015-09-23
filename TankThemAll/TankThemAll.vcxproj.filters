@@ -227,10 +227,10 @@
     <None Include="Shaders\TerrainVertexShader.glsl">
       <Filter>Shaders</Filter>
     </None>
-    <None Include="SkyboxVertexShader.glsl">
+    <None Include="Shaders\SkyboxFragmentShader.glsl">
       <Filter>Shaders</Filter>
     </None>
-    <None Include="SkyboxFragmentShader.glsl">
+    <None Include="Shaders\SkyboxVertexShader.glsl">
       <Filter>Shaders</Filter>
     </None>
   </ItemGroup>

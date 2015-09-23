@@ -19,6 +19,10 @@ int main(int argc, char **argv)
 		"Shaders\\Base_Vertex_Shader.glsl",
 		"Shaders\\Base_Fragment_Shader.glsl");
 
+	engine->GetShader_Manager()->CreateProgram("skyboxShader",
+		"Shaders\\SkyboxVertexShader.glsl",
+		"Shaders\\SkyboxFragmentShader.glsl");
+
 	engine->GetShader_Manager()->CreateProgram("importedModelShader",
 		"Shaders\\ImportedVertexShader.glsl",
 		"Shaders\\ImportedFragmentShader.glsl");
@@ -28,7 +32,7 @@ int main(int argc, char **argv)
 		"Shaders\\TerrainFragmentShader.glsl");
 
 	Skybox* skybox = new Skybox();
-	skybox->SetProgram(engine->GetShader_Manager()->GetShader("baseShader"));
+	skybox->SetProgram(engine->GetShader_Manager()->GetShader("skyboxShader"));
 	skybox->Create(engine->GetScene_Manager());
 
 	engine->GetModels_Manager()->SetModel("skybox", skybox);

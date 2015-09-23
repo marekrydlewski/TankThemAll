@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "Skybox.h"
+#include <SOIL.h>
 using namespace BasicEngine;
 using namespace Rendering;
 using namespace Models;
@@ -27,14 +28,42 @@ void Skybox::Create(BasicEngine::Managers::Scene_Manager *sceneManager)
 	std::vector<VertexFormat> vertices;
 	std::vector<GLuint>  indices = 
 	{
-		0,1,2,3
+		0,1,2,3,
+		4,5,6,7,
+		8,9,10,11,
+		12,13,14,15,
+		16,17,18,19,
 	};
 
 	//front
-	vertices.push_back(VertexFormat(glm::vec3(-65.0, 65.0, -65.0), glm::vec2(0, 1)));
-	vertices.push_back(VertexFormat(glm::vec3(65.0, 65.0, -65.0), glm::vec2(1, 1)));
-	vertices.push_back(VertexFormat(glm::vec3(65.0, -65.0, -65.0), glm::vec2(1, 0)));
-	vertices.push_back(VertexFormat(glm::vec3(-65.0, -65.0, -65.0), glm::vec2(0, 0)));
+	vertices.push_back(VertexFormat(glm::vec3(-65.0, 65.0, 65.0), glm::vec4(-1,1,1,1)));
+	vertices.push_back(VertexFormat(glm::vec3(65.0, 65.0, 65.0), glm::vec4(1, 1,1,1)));
+	vertices.push_back(VertexFormat(glm::vec3(65.0, -65.0, 65.0), glm::vec4(1, -1,1,1)));
+	vertices.push_back(VertexFormat(glm::vec3(-65.0, -65.0, 65.0), glm::vec4(-1,-1,1,1)));
+
+	//right
+	vertices.push_back(VertexFormat(glm::vec3(65.0, 65.0, 65.0), glm::vec4(1,1,1,1)));
+	vertices.push_back(VertexFormat(glm::vec3(65.0, 65.0, -65.0), glm::vec4(1, 1,-1,1)));
+	vertices.push_back(VertexFormat(glm::vec3(65.0, -65.0, -65.0), glm::vec4(1, -1,-1,1)));
+	vertices.push_back(VertexFormat(glm::vec3(65.0, -65.0, 65.0), glm::vec4(1,-1,1,1)));
+
+	//left
+	vertices.push_back(VertexFormat(glm::vec3(-65.0, 65.0, -65.0), glm::vec4(-1,1,-1,1)));
+	vertices.push_back(VertexFormat(glm::vec3(-65.0, 65.0, 65.0), glm::vec4(-1,1,1, 1)));
+	vertices.push_back(VertexFormat(glm::vec3(-65.0, -65.0, 65.0), glm::vec4(-1,-1,1, 1)));
+	vertices.push_back(VertexFormat(glm::vec3(-65.0, -65.0, -65.0), glm::vec4(-1,-1,-1,1)));
+
+	//back
+	vertices.push_back(VertexFormat(glm::vec3(-65.0, 65.0, -65.0), glm::vec4(-1,1,-1, 1)));
+	vertices.push_back(VertexFormat(glm::vec3(65.0, 65.0, -65.0), glm::vec4(1, 1,-1,1)));
+	vertices.push_back(VertexFormat(glm::vec3(65.0, -65.0, -65.0), glm::vec4(1, -1,-1,1)));
+	vertices.push_back(VertexFormat(glm::vec3(-65.0, -65.0, -65.0), glm::vec4(-1,-1,-1,1)));
+
+	//upper
+	vertices.push_back(VertexFormat(glm::vec3(-65.0, 65.0, 65.0), glm::vec4(-1,1,1, 1)));
+	vertices.push_back(VertexFormat(glm::vec3(65.0, 65.0, 65.0), glm::vec4(1, 1,1,1)));
+	vertices.push_back(VertexFormat(glm::vec3(65.0, 65.0, -65.0), glm::vec4(1, 1,-1,1)));
+	vertices.push_back(VertexFormat(glm::vec3(-65.0, 65.0, -65.0), glm::vec4(-1,1,-1,1)));
 
 	glGenBuffers(1, &vbo);
 	glBindBuffer(GL_ARRAY_BUFFER, vbo);
@@ -47,7 +76,7 @@ void Skybox::Create(BasicEngine::Managers::Scene_Manager *sceneManager)
 	glEnableVertexAttribArray(0);
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(VertexFormat), (GLvoid*)0);
 	glEnableVertexAttribArray(1);
-	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, sizeof(VertexFormat), (GLvoid*)(offsetof(VertexFormat, VertexFormat::texture)));
+	glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, sizeof(VertexFormat), (GLvoid*)(offsetof(VertexFormat, VertexFormat::color)));
 	glBindVertexArray(0);
 	this->vao = vao;
 	this->vbos.push_back(vbo);
@@ -57,13 +86,13 @@ void Skybox::Create(BasicEngine::Managers::Scene_Manager *sceneManager)
 	// puts 1.0 on the diagonal
 	// all other components are 0.0
 	this->model_matrix = glm::mat4(1.0);
-
-	int texw, texh;
-	SetTexture("skybox_front", TextureLoader::LoadTexture("textures\\siege_front.jpg", texw, texh));
-	SetTexture("skybox_left", TextureLoader::LoadTexture("textures\\siege_left.jpg", texw, texh));
-	SetTexture("skybox_right", TextureLoader::LoadTexture("textures\\siege_right.jpg", texw, texh));
-	SetTexture("skybox_back", TextureLoader::LoadTexture("textures\\siege_back.jpg", texw, texh));
-	SetTexture("skybox_top", TextureLoader::LoadTexture("textures\\siege_top.jpg", texw, texh));
+	faces.push_back("textures\\FullMoonRight2048.png");
+	faces.push_back("textures\\FullMoonLeft2048.png");
+	faces.push_back("textures\\FullMoonUp2048.png");
+	faces.push_back("textures\\FullMoonDown2048.png");
+	faces.push_back("textures\\FullMoonBack2048.png");
+	faces.push_back("textures\\FullMoonFront2048.png");
+	SetTexture("cubemap", loadCubemap(faces));
 }
 
 void Skybox::Destroy()
@@ -81,55 +110,14 @@ void Skybox::Draw(const glm::mat4& projection_matrix, const glm::mat4& view_matr
 	glUseProgram(program);
 	glActiveTexture(GL_TEXTURE0);
 	glUniform1i(glGetUniformLocation(program, "skybox_texture"), 0);
-	glBindTexture(GL_TEXTURE_2D, this->textures["skybox_front"]);
+	glBindTexture(GL_TEXTURE_CUBE_MAP, this->textures["cubemap"]);
 	glUniformMatrix4fv(glGetUniformLocation(program, "model_matrix"), 1, false, &model_matrix[0][0]);
 	glUniformMatrix4fv(glGetUniformLocation(program, "view_matrix"), 1, false, &view_matrix[0][0]);
 	glUniformMatrix4fv(glGetUniformLocation(program, "projection_matrix"), 1, false, &projection_matrix[0][0]);
 	glDepthMask(0);
 	glBindVertexArray(vao);
-	glDrawElements(GL_QUADS, 4, GL_UNSIGNED_INT, 0);
+	glDrawElements(GL_QUADS, 24, GL_UNSIGNED_INT, 0);
 	glDepthMask(1);
-	model_matrix = glm::rotate(model_matrix, 90.0f, glm::vec3(0,1.0,0));
-	glUniform1i(glGetUniformLocation(program, "skybox_texture"), 0);
-	glBindTexture(GL_TEXTURE_2D, this->textures["skybox_left"]);
-	glUniformMatrix4fv(glGetUniformLocation(program, "model_matrix"), 1, false, &model_matrix[0][0]);
-	glUniformMatrix4fv(glGetUniformLocation(program, "view_matrix"), 1, false, &view_matrix[0][0]);
-	glUniformMatrix4fv(glGetUniformLocation(program, "projection_matrix"), 1, false, &projection_matrix[0][0]);
-	glDepthMask(0);
-	glBindVertexArray(vao);
-	glDrawElements(GL_QUADS, 4, GL_UNSIGNED_INT, 0);
-	glDepthMask(1);
-	model_matrix = glm::rotate(model_matrix, 90.0f, glm::vec3(0, 1.0, 0));
-	glUniform1i(glGetUniformLocation(program, "skybox_texture"), 0);
-	glBindTexture(GL_TEXTURE_2D, this->textures["skybox_back"]);
-	glUniformMatrix4fv(glGetUniformLocation(program, "model_matrix"), 1, false, &model_matrix[0][0]);
-	glUniformMatrix4fv(glGetUniformLocation(program, "view_matrix"), 1, false, &view_matrix[0][0]);
-	glUniformMatrix4fv(glGetUniformLocation(program, "projection_matrix"), 1, false, &projection_matrix[0][0]);
-	glDepthMask(0);
-	glBindVertexArray(vao);
-	glDrawElements(GL_QUADS, 4, GL_UNSIGNED_INT, 0);
-	glDepthMask(1);
-	model_matrix = glm::rotate(model_matrix, 90.0f, glm::vec3(0, 1.0, 0));
-	glUniform1i(glGetUniformLocation(program, "skybox_texture"), 0);
-	glBindTexture(GL_TEXTURE_2D, this->textures["skybox_right"]);
-	glUniformMatrix4fv(glGetUniformLocation(program, "model_matrix"), 1, false, &model_matrix[0][0]);
-	glUniformMatrix4fv(glGetUniformLocation(program, "view_matrix"), 1, false, &view_matrix[0][0]);
-	glUniformMatrix4fv(glGetUniformLocation(program, "projection_matrix"), 1, false, &projection_matrix[0][0]);
-	glDepthMask(0);
-	glBindVertexArray(vao);
-	glDrawElements(GL_QUADS, 4, GL_UNSIGNED_INT, 0);
-	glDepthMask(1);
-	model_matrix = glm::rotate(model_matrix, 90.0f, glm::vec3(0, 0, 1.0));
-	glUniform1i(glGetUniformLocation(program, "skybox_texture"), 0);
-	glBindTexture(GL_TEXTURE_2D, this->textures["skybox_top"]);
-	glUniformMatrix4fv(glGetUniformLocation(program, "model_matrix"), 1, false, &model_matrix[0][0]);
-	glUniformMatrix4fv(glGetUniformLocation(program, "view_matrix"), 1, false, &view_matrix[0][0]);
-	glUniformMatrix4fv(glGetUniformLocation(program, "projection_matrix"), 1, false, &projection_matrix[0][0]);
-	glDepthMask(0);
-	glBindVertexArray(vao);
-	glDrawElements(GL_QUADS, 4, GL_UNSIGNED_INT, 0);
-	glDepthMask(1);
-
 }
 
 const GLuint Skybox::GetTexture(std::string textureName) const
@@ -164,4 +152,32 @@ void Skybox::Update()
 	model_matrix = glm::mat4(1.0);
 	glm::vec3 camPos = _sceneManager->GetTankCameraPosition(false);
 	model_matrix = glm::translate(model_matrix, camPos);
+}
+
+GLuint Skybox::loadCubemap(vector<const GLchar*> faces)
+{
+	GLuint textureID;
+	glGenTextures(1, &textureID);
+	glActiveTexture(GL_TEXTURE0);
+
+	int width, height;
+	unsigned char* image;
+
+	glBindTexture(GL_TEXTURE_CUBE_MAP, textureID);
+	for (GLuint i = 0; i < faces.size(); i++)
+	{
+		image = SOIL_load_image(faces[i], &width, &height, 0, SOIL_LOAD_RGB);
+		glTexImage2D(
+			GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, 0,
+			GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, image
+			);
+	}
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
+	glBindTexture(GL_TEXTURE_CUBE_MAP, 0);
+
+	return textureID;
 }
