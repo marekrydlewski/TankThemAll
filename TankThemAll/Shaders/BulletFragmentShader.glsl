@@ -11,14 +11,14 @@ in vec3 LightDirection2_cameraspace;
 
 void main()
 {
-	vec3 LightColor = vec3(1,1,1);
-	float LightPower2 = 120.0f;
+	vec3 LightColor = vec3(0.5,0.5,0.8);
+	float LightPower2 = 80.0f;
 
 	vec3 MaterialDiffuseColor = vec3(0.75,0.75,0.75);
-	vec3 MaterialAmbientColor = vec3(0.4,0.4,0.4) * MaterialDiffuseColor;
-	vec3 MaterialSpecularColor = vec3(0.6,0.6,0.6);
+	vec3 MaterialAmbientColor = vec3(0.3,0.3,0.3) * MaterialDiffuseColor;
+	vec3 MaterialSpecularColor = vec3(0.3,0.3,0.3);
 
-	float distance2 = 11.225;
+	float distance2 = 3.225;
 
 	vec3 n = normalize( Normal_cameraspace );
 
@@ -40,5 +40,5 @@ void main()
 
 		(MaterialDiffuseColor * LightColor * LightPower2 * cosTheta2 / (distance2*distance2)) +
 
-		(MaterialSpecularColor * LightColor * LightPower2 * pow(cosAlpha2,5) / (distance2*distance2)),1);
+		(MaterialSpecularColor * LightColor * LightPower2 * pow(cosAlpha2,7) / (distance2*distance2)),1);
 }
