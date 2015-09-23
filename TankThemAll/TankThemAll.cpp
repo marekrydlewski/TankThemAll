@@ -5,13 +5,14 @@
 #include "Tree1.h"
 #include "Diamond.h"
 #include "Bullets.h"
+#include "Skybox.h"
 #include <SOIL.h>
 using namespace BasicEngine;
 using namespace std;
 
 int main(int argc, char **argv)
 {
-
+	//srand(time(0));
 	Engine* engine = new Engine();
 	engine->Init();
 
@@ -19,6 +20,9 @@ int main(int argc, char **argv)
 		"Shaders\\Base_Vertex_Shader.glsl",
 		"Shaders\\Base_Fragment_Shader.glsl");
 
+	engine->GetShader_Manager()->CreateProgram("skyboxShader",
+		"Shaders\\SkyboxVertexShader.glsl",
+		"Shaders\\SkyboxFragmentShader.glsl");
 
 	engine->GetShader_Manager()->CreateProgram("importedModelShader",
 		"Shaders\\ImportedVertexShader.glsl",
@@ -28,17 +32,25 @@ int main(int argc, char **argv)
 		"Shaders\\TerrainVertexShader.glsl",
 		"Shaders\\TerrainFragmentShader.glsl");
 
+	Skybox* skybox = new Skybox();
+	skybox->SetProgram(engine->GetShader_Manager()->GetShader("skyboxShader"));
+	skybox->Create(engine->GetScene_Manager());
+
+	engine->GetModels_Manager()->SetModel("skybox", skybox);
+
 	Terrain* terrain = new Terrain();
 	terrain->SetProgram(engine->GetShader_Manager()->GetShader("terrainShader"));
 	terrain->Create("maps\\map.bmp");
 
 	engine->GetModels_Manager()->SetModel("map", terrain);
 
-	for (int i = 0; i < 10; i++)
+  for (int i = 0; i < 10; i++)
 	{
 		Tree1* tree = new Tree1();
 		tree->SetProgram(engine->GetShader_Manager()->GetShader("importedModelShader"));
-		tree->Create("models\\Tree1\\tree.obj", ((((float)rand()) / (float)RAND_MAX) * (10 - (-10))) + (-10), ((((float)rand()) / (float)RAND_MAX) * (10 - (-10))) + (-10));
+		int signX = rand() % 2 ? 1 : -1;
+		int signZ = rand() % 2 ? 1 : -1;
+		tree->Create("models\\Tree1\\tree.obj", ((((float)rand()) / (float)RAND_MAX) * (signX * 20 - signX * 3)) + signX * 3, ((((float)rand()) / (float)RAND_MAX) * (signZ * 20 - signZ * 3)) + signZ * 3);
 
 		std::string tmp = "";
 		sprintf((char*)tmp.c_str(), "tree_%d", i);

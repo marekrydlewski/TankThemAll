@@ -111,6 +111,7 @@
     <ClInclude Include="resource.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="ShaderManager.h" />
+    <ClInclude Include="Skybox.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Tank.h" />
     <ClInclude Include="TankCamera.h" />
@@ -139,6 +140,7 @@
     <ClCompile Include="Quad.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="ShaderManager.cpp" />
+    <ClCompile Include="Skybox.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
@@ -157,6 +159,8 @@
     <None Include="Shaders\Base_Vertex_Shader.glsl" />
     <None Include="Shaders\ImportedFragmentShader.glsl" />
     <None Include="Shaders\ImportedVertexShader.glsl" />
+    <None Include="Shaders\SkyboxFragmentShader.glsl" />
+    <None Include="Shaders\SkyboxVertexShader.glsl" />
     <None Include="Shaders\TerrainFragmentShader.glsl" />
     <None Include="Shaders\TerrainVertexShader.glsl" />
   </ItemGroup>

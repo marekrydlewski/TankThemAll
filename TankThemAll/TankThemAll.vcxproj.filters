@@ -132,9 +132,12 @@
     <ClInclude Include="Tree1.h">
       <Filter>Source Files\Rendering\Models</Filter>
     </ClInclude>
-    <ClInclude Include="Bullets.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
+    <ClInclude Include="Skybox.h">
+      <Filter>Source Files\Rendering\Models</Filter>
+  </ClInclude>
+      <ClInclude Include="Bullets.h">
+        <Filter>Source Files\Rendering\Models</Filter>
+      </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TankThemAll.cpp">
@@ -204,7 +207,10 @@
       <Filter>Source Files\Rendering\Models</Filter>
     </ClCompile>
     <ClCompile Include="Bullets.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Rendering\Models</Filter>
+    </ClCompile>
+    <ClCompile Include="Skybox.cpp">
+      <Filter>Source Files\Rendering\Models</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -225,6 +231,12 @@
       <Filter>Shaders</Filter>
     </None>
     <None Include="Shaders\TerrainVertexShader.glsl">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Shaders\SkyboxFragmentShader.glsl">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Shaders\SkyboxVertexShader.glsl">
       <Filter>Shaders</Filter>
     </None>
   </ItemGroup>
