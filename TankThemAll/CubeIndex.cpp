@@ -104,13 +104,18 @@ void CubeIndex::Create(GLfloat offsetX, GLfloat offsetY, GLfloat offsetZ)
 
 void CubeIndex::Update()
 {
+	if (!isDrawn ) //&& model_matrix[3][1] > 0
+	{
+		this->model_matrix = glm::rotate(model_matrix, 0.1f, glm::vec3(0.1, 0, 0.1));
+		this->model_matrix = glm::translate(model_matrix, glm::vec3(0.0f, -0.1f, 0.0f));
 
+	}
 }
 
 void CubeIndex::Draw(const glm::mat4& projection_matrix, const glm::mat4& view_matrix)
 {
 
-	if (isDrawn)
+	//if (isDrawn)
 	{
 		glUseProgram(program);
 		glActiveTexture(GL_TEXTURE0);
@@ -219,5 +224,6 @@ bool CubeIndex::CheckCollision(glm::vec3 collider_position, GLfloat radius)
 void CubeIndex::ActivateFall()
 {
 
+	isDrawn = false;
 
 }
