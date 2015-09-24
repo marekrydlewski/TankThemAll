@@ -49,26 +49,26 @@ int main(int argc, char **argv)
 
 	engine->GetModels_Manager()->SetModel("map", terrain);
 
-	for (int i = 0; i < 20; i++)
+	for (int i = 0; i < 50; i++)
 	{
 		Tree1* tree = new Tree1();
 		tree->SetProgram(engine->GetShader_Manager()->GetShader("importedModelShader"));
 		int signX = rand() % 2 ? 1 : -1;
 		int signZ = rand() % 2 ? 1 : -1;
-		tree->Create("models\\Tree1\\tree.obj", ((((float)rand()) / (float)RAND_MAX) * (signX * 50 - signX * 3)) + signX * 3, ((((float)rand()) / (float)RAND_MAX) * (signZ * 50 - signZ * 3)) + signZ * 3);
+		tree->Create("models\\Tree1\\tree.obj", ((((float)rand()) / (float)RAND_MAX) * (signX * 65 - signX * 3)) + signX * 3, ((((float)rand()) / (float)RAND_MAX) * (signZ * 65 - signZ * 3)) + signZ * 3);
 
 		std::string tmp = "";
 		sprintf((char*)tmp.c_str(), "tree_%d", i);
 		engine->GetModels_Manager()->SetModel(tmp, tree);
 	}
 
-	for (int i = 0; i < 5; i++)
+	for (int i = 0; i < 8; i++)
 	{
 		int XorZ = rand() % 2;
 		int signX = rand() % 2 ? 1 : -1;
 		int signZ = rand() % 2 ? 1 : -1;
-		GLfloat Xoffset = ((((float)rand()) / (float)RAND_MAX) * (signX * 50 - signX * 3)) + signX * 3;
-		GLfloat Zoffset = ((((float)rand()) / (float)RAND_MAX) * (signZ * 50 - signZ * 3)) + signZ * 3;
+		GLfloat Xoffset = ((((float)rand()) / (float)RAND_MAX) * (signX * 60 - signX * 3)) + signX * 3;
+		GLfloat Zoffset = ((((float)rand()) / (float)RAND_MAX) * (signZ * 60 - signZ * 3)) + signZ * 3;
 		for (int j = 0; j < 4; j++)
 		{
 			CubeIndex* box = new CubeIndex();

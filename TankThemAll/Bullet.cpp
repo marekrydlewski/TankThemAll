@@ -111,7 +111,7 @@ void Bullet::Update()
 	if (isFired)
 	{
 		model_matrix = glm::translate(model_matrix, 
-			glm::rotateY(glm::vec3(0.7f, 0.0f, 0.0f),angle)
+			glm::rotateY(glm::vec3(1.9f, 0.0f, 0.0f),angle)
 			);
 	}
 	
