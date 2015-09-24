@@ -340,7 +340,7 @@ void Scene_Manager::CheckBulletsCollision()
 {
 	for (auto& bullet : this->bullets->listOfBullets)
 	{
-		this->CheckTrees(bullet->GetPosition(), 0.7f);
+		this->CheckTrees(bullet->GetPosition(), 1.3f);
 		this->CheckBoxes(bullet->GetPosition(), 1.0f);
 	}
 }
