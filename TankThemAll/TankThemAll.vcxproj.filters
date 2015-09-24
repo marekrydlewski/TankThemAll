@@ -217,6 +217,8 @@
     <None Include="Shaders\SkyboxVertexShader.glsl" />
     <None Include="Shaders\TerrainFragmentShader.glsl" />
     <None Include="Shaders\TerrainVertexShader.glsl" />
+    <None Include="Shaders\BulletFragmentShader.glsl" />
+    <None Include="Shaders\BulletVertexShader.glsl" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
